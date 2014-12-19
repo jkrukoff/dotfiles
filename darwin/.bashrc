@@ -39,6 +39,11 @@ alias tree='tree -FA'
 HISTCONTROL=ignoredups
 HISTFILESIZE=0
 
+# Git prompt variables
+GIT_PS1_SHOWDIRTYSTATE='true'
+GIT_PS1_SHOWSTASHSTATE='true'
+GIT_PS1_SHOWUPSTREAM='auto'
+
 # Prompt variables
 case "$TERM" in
 	xterm*)
@@ -125,7 +130,7 @@ SHRTDASH='
 '
 
 # Time to actually set the prompt!
-PS1="$CLR_PUNC\\[\$(eval $LONGDASH)\\]$MVTOEDGE[$CLR_USER\\u@\\h(\$SHLVL) $CLR_PUNC|$CLR_TEXT \\@ \\d$CLR_PUNC]\$(eval $SHRTDASH)$CLR_NORM\\n\\w \\!\\\$ "
+PS1="$CLR_PUNC\\[\$(eval $LONGDASH)\\]$MVTOEDGE[$CLR_USER\\u@\\h(\$SHLVL) $CLR_TEXT\$(__git_ps1 \"git:%s \")$CLR_PUNC|$CLR_TEXT \\@ \\d$CLR_PUNC]\$(eval $SHRTDASH)$CLR_NORM\\n\\w \\!\\\$ "
 PS2='\w \!>'
 PS4='+ \!>'
 
