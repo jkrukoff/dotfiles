@@ -1,0 +1,12 @@
+#!/bin/bash
+# .bash_project_utopia
+
+# Only set CDPATH for interactive shells.
+if [[ $- == *i* ]]; then
+	CDPATH=.:$GOPATH/src/stash.itriagehealth.com
+fi
+
+cd $GOPATH/src/stash.itriagehealth.com/utopia/utopia
+gotags -R=true . > tags
+git fetch
+git status

@@ -1,0 +1,11 @@
+#!/bin/bash
+# .bash_project_dotfiles
+
+# Only set CDPATH for interactive shells.
+if [[ $- == *i* ]]; then
+	CDPATH=.:~/Documents/dotfiles
+fi
+
+cd ~/Documents/dotfiles
+git fetch
+git status
