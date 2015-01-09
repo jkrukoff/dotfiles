@@ -36,6 +36,38 @@ HISTIGNORE="[ 	]*:&:bg:fg"
 HISTCONTROL=ignoredups
 HISTFILESIZE=0
 
+# Project management and switching.
+
+if [ -n "$PROJECT" ]; then
+	export -n PROJECT
+	source ~/.bash_project_${PROJECT}
+fi
+
+function project {
+	local PROJECT="$1"
+	local CLR_NORM="$(tput sgr0)"
+	local CLR_PUNC="$CLR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
+	local LINE_BREAK="$CLR_PUNC$(eval printf ~%.0s {1..$(( $COLUMNS - 1 ))})$CLR_NORM"
+
+	if [ -r ~/.bash_project_${PROJECT} ]; then
+		echo -e "\n\n$LINE_BREAK\n$(tput setaf 2)Switching to project: $PROJECT$CLR_NORM\n$LINE_BREAK\n\n"
+		PROJECT="$PROJECT" bash
+	else
+		echo "$(tput setaf 1)No project file for: $PROJECT"
+	fi
+}
+
+# Track user login/out activity.
+
+TRACK_WHO=""
+function track_who {
+	local WHO="$(who | cut -d ' ' -f 1 | sort -u)"
+	if [ $WHO != $TRACK_WHO ]; then
+		comm <(echo "$TRACK_WHO") <(echo "$WHO")
+	fi
+	TRACK_WHO="$WHO"
+}
+
 # External autocomplete.
 
 BASH_AUTOCOMPLETE_DIR=/usr/local/etc/bash_completion.d
@@ -56,6 +88,7 @@ GIT_PS1_SHOWDIRTYSTATE='true'
 GIT_PS1_SHOWSTASHSTATE='true'
 GIT_PS1_SHOWUPSTREAM='auto'
 
+# Set status line for terminals that support it.
 if tput hs; then
 	STATUS_LINE="$(tput tsl)[ \u@\h(\$SHLVL) ]: \$PWD$(tput fsl)"
 else
@@ -67,12 +100,12 @@ MVTODASH="$(tput cr)"'$(tput cuf $(( $(tput cols) - ${#DASH} - 1 )) )'
 # Used directly in PS1.
 MVTOEDGE="$(tput cr)"
 CLR_NORM="$(tput sgr0)"
-CLR_PUNC="${CLR_NORM}$(tput bold)$(tput setaf 4)$(tput setab 4)"
-CLR_TEXT="${CLR_NORM}$(tput setaf 6)$(tput setab 4)"
+CLR_PUNC="$CLR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
+CLR_TEXT="$CLR_NORM$(tput setaf 6)$(tput setab 4)"
 
 # Try to make it obvious that I'm root.
 if [ "$(whoami)" == "root" ]; then
-	CLR_USER="${CLR_NORM}$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
+	CLR_USER="$CLR_NORM$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
 	PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH"
 	export PATH
 else
@@ -130,23 +163,3 @@ unset CLR_PUNC
 unset CLR_TEXT
 unset CLR_NORM
 unset CLR_USER
-
-# Project management and switching.
-
-if [ -n "$PROJECT" ]; then
-	source ~/.bash_project_${PROJECT}
-fi
-
-function project {
-	local PROJECT="$1"
-	local CLR_NORM="$(tput sgr0)"
-	local CLR_PUNC="${CLR_NORM}$(tput bold)$(tput setaf 4)$(tput setab 4)"
-	local LINE_BREAK="$CLR_PUNC$(eval printf ~%.0s {1..$(( $COLUMNS - 1 ))})$CLR_NORM"
-
-	if [ -r ~/.bash_project_${PROJECT} ]; then
-		echo -e "\n\n$LINE_BREAK\n$(tput setaf 2)Switching to project: $PROJECT$CLR_NORM\n$LINE_BREAK\n\n"
-		PROJECT="$PROJECT" bash
-	else
-		echo "$(tput setaf 1)No project file for: $PROJECT"
-	fi
-}

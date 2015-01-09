@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+	cat <<USAGE
+USAGE: $0 branchname
+USAGE
+	exit 1
+fi
+
+echo "Creating new git branch $1"
+git fetch
+git branch "$1" origin/master
+if ! git checkout "$1"; then
+	1>&2 echo -e "\n\n$(tput setaf 1)Failed to checkout new branch.$(tput sgr0)"
+	exit 1
+else
+	git status
+fi

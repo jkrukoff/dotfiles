@@ -8,5 +8,7 @@ fi
 
 cd $GOPATH/src/stash.itriagehealth.com/utopia/utopia
 gotags -R=true . > tags
+boot2docker -m 4096 up
+$(boot2docker shellinit)
 git fetch
 git status
