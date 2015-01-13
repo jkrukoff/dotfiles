@@ -1,0 +1,9 @@
+# Register with:
+# git config --global core.excludesfile ~/.gitignore_global
+
+# Vim swap files.
+*.swp
+*.swo
+
+# Vim tag files.
+tags

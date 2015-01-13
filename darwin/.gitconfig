@@ -1,3 +1,13 @@
 [user]
 	name = John Krukoff
-	email = john@krukoff.us
+	email = jkrukoff@itriagehealth.com
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/A743841/.gitignore_global
+[url "git@stash.itriagehealth.com:/utopia/utopia.git"]
+	insteadOf = https://stash.itriagehealth.com/utopia/utopia
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f

@@ -1,11 +1,34 @@
 #!/bin/bash
-# .bash_project_dotfiles
+# .bash_project_utopia_site
+
+DOTFILES_PATH=~/Documents/dotfiles
+export VIM_TAGS="$DOTFILES_PATH/tags"
 
 # Only set CDPATH for interactive shells.
 if [[ $- == *i* ]]; then
-	CDPATH=.:~/Documents/dotfiles
+	CDPATH=".:$DOTFILES_PATH"
 fi
 
-cd ~/Documents/dotfiles
+cd "$DOTFILES_PATH"
+ctags --recurse=yes -f - > tags
 git fetch
 git status
+
+function save {
+	echo "Copying dotfiles from ~/ to ${PWD}."
+	local path
+	for path in .vimrc .vim .ctags .gitconfig .gitignore_global .inputrc; do
+		cp -a ~/"$path" ./
+	done
+	cp -a ~/.bash* ./
+}
+
+function restore {
+	echo "Copying dotfiles from $PWD to ~/."
+	local path
+	for path in .vimrc .vim .ctags .gitconfig .gitignore_global .inputrc; do
+		cp -a "$path" ~/
+	done
+	cp -a .bash* ~/
+}
+
