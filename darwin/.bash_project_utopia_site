@@ -10,6 +10,6 @@ if [[ $- == *i* ]]; then
 fi
 
 cd "$UTOPIA_PATH"
-ctags --recurse=yes -f - > tags
+ctags --recurse=yes -f - > tags 2> /dev/null
 git fetch
 git status

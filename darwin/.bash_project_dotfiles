@@ -10,25 +10,27 @@ if [[ $- == *i* ]]; then
 fi
 
 cd "$DOTFILES_PATH"
-ctags --recurse=yes -f - > tags
+ctags --recurse=yes -f - > tags 2> /dev/null
 git fetch
 git status
 
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
 	local path
-	for path in .vimrc .vim .ctags .gitconfig .gitignore_global .inputrc; do
+	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
 		cp -a ~/"$path" ./
 	done
 	cp -a ~/.bash* ./
+	# Make sure github token stays private.
+	sed -i '' 's/^\(export HOMEBREW_GITHUB_API_TOKEN=\).*$/#\1/' .bash_profile
+	sed -i '' 's/jkrukoff@itriagehealth.com/john@krukoff.us/' .gitconfig
 }
 
 function restore {
 	echo "Copying dotfiles from $PWD to ~/."
 	local path
-	for path in .vimrc .vim .ctags .gitconfig .gitignore_global .inputrc; do
+	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
 		cp -a "$path" ~/
 	done
 	cp -a .bash* ~/
 }
-
