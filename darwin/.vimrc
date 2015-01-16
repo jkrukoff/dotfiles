@@ -135,5 +135,8 @@ if has("autocmd")
 	autocmd FileType html setlocal softtabstop=4
 	autocmd FileType html setlocal shiftwidth=4
 	autocmd FileType html setlocal expandtab
+
+	"Markdown specific settings.
+	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 endif
 

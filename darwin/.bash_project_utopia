@@ -12,6 +12,6 @@ fi
 cd "$UTOPIA_PATH"
 gotags -R=true . > tags
 boot2docker -m 4096 up
-$(boot2docker shellinit)
+$(boot2docker shellinit | sed 's/^[[:space:]]*//')
 git fetch
 git status

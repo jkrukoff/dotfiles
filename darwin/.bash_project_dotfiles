@@ -33,4 +33,5 @@ function restore {
 		cp -a "$path" ~/
 	done
 	cp -a .bash* ~/
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
