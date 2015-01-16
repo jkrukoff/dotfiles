@@ -20,6 +20,7 @@ function save {
 	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
 		cp -a ~/"$path" ./
 	done
+	mkdir .ssh && cp -a ~/.ssh/config .ssh/config
 	cp -a ~/.bash* ./
 	# Make sure github token stays private.
 	sed -i '' 's/^\(export HOMEBREW_GITHUB_API_TOKEN=\).*$/#\1/' .bash_profile
@@ -32,6 +33,7 @@ function restore {
 	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
 		cp -a "$path" ~/
 	done
+	cp -a .ssh/config ~/.ssh/config
 	cp -a .bash* ~/
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
