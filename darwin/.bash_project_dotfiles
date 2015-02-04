@@ -17,7 +17,7 @@ git status
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
 	local path
-	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
+	for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc; do
 		cp -a ~/"$path" ./
 	done
 	mkdir .ssh && cp -a ~/.ssh/config .ssh/config
@@ -30,7 +30,7 @@ function save {
 function restore {
 	echo "Copying dotfiles from $PWD to ~/."
 	local path
-	for path in bin .vimrc .ctags .gitconfig .gitignore_global .inputrc; do
+	for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc; do
 		cp -a "$path" ~/
 	done
 	cp -a .ssh/config ~/.ssh/config

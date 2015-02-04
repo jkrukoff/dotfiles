@@ -1,0 +1,15 @@
+#!/bin/bash
+# .bash_project_utopia
+
+TODO_PATH="$GOPATH/src/github.com/jkrukoff/todo"
+export VIM_TAGS="$TODO_PATH/tags"
+
+# Only set CDPATH for interactive shells.
+if [[ $- == *i* ]]; then
+	CDPATH=".:$GOPATH/src/github.com/jkrukoff/todo"
+fi
+
+cd "$TODO_PATH"
+gotags -R=true . > tags
+git fetch
+git status

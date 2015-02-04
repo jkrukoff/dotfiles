@@ -103,8 +103,9 @@ if has("autocmd")
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
-	au FileType go nmap <Leader>s <Plug>(go-implements)
 	au FileType go nmap <Leader>i <Plug>(go-info)
+	au FileType go nmap <Leader>o <Plug>(go-implements)
+	au FileType go nmap <Leader>p <Plug>(go-callees)
 	au FileType go nmap <Leader>gd <Plug>(go-doc)
 	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 	au FileType go nmap <Leader>gs <Plug>(go-doc-split)
@@ -119,6 +120,7 @@ if has("autocmd")
 	au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 	au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 	au FileType go nmap <Leader>e <Plug>(go-rename)
+	au FileType go nmap <Leader>I :GoImports<CR>
 
 	"Python specific settings.
 	autocmd FileType python set nocindent		"DON'T screw with my indenting
@@ -138,5 +140,8 @@ if has("autocmd")
 
 	"Markdown specific settings.
 	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+	"Git specific settings.
+	autocmd Filetype gitcommit setlocal spell textwidth=72
 endif
 
