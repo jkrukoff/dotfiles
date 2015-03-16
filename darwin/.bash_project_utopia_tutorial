@@ -1,0 +1,20 @@
+#!/bin/bash
+# .bash_project_utopia_tutorial
+
+# Configure RVM requirements.
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+rvm use 2.2.1
+
+UTOPIA_PATH=~/Documents/Utopia\ Tutorial
+export VIM_TAGS="$UTOPIA_PATH/tags"
+
+# Only set CDPATH for interactive shells.
+if [[ $- == *i* ]]; then
+	CDPATH=".:$UTOPIA_PATH"
+fi
+
+cd "$UTOPIA_PATH"
+ctags --recurse=yes -f - > tags 2> /dev/null
+git fetch
+git status

@@ -15,3 +15,7 @@
 	tool = opendiff
 [init]
 	templatedir = ~/.git_template
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true

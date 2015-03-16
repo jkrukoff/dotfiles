@@ -29,6 +29,7 @@ alias md='mkdir'
 alias rd='rmdir'
 alias pstree='pstree -g3'
 alias tree='tree -FA'
+alias info='info --vi-keys'
 
 # History variables.
 
