@@ -16,7 +16,12 @@ export EDITOR=`which vim`
 
 # Development environment variables.
 
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export GOPATH=$HOME/Documents/go
 export PATH=$PATH:$GOPATH/bin
+
+# Nix package manager.
+
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+	source ~/.nix-profile/etc/profile.d/nix.sh
+fi

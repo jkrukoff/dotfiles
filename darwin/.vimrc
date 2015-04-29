@@ -8,13 +8,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "Actual plugin list
+Plugin 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'jpythonfold.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
-Plugin 'fatih/vim-go'
 Plugin 'vim-flake8'
-Plugin 'jpythonfold.vim'
 
 "Finalize plugin setup.
 call vundle#end()
@@ -98,29 +100,32 @@ endif
 if has("autocmd")
 	filetype on					"Enable filetype detection
 
+	"JSON specific settings.
+	let g:vim_json_syntax_conceal = 0
+
 	"Go specific settings.
 	let g:go_def_mapping_enabled = 0
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
-	au FileType go nmap <Leader>i <Plug>(go-info)
-	au FileType go nmap <Leader>o <Plug>(go-implements)
-	au FileType go nmap <Leader>p <Plug>(go-callees)
-	au FileType go nmap <Leader>gd <Plug>(go-doc)
-	au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-	au FileType go nmap <Leader>gs <Plug>(go-doc-split)
-	au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-	au FileType go nmap <Leader>gt <Plug>(go-doc-tab)
-	au FileType go nmap <leader>r <Plug>(go-run)
-	au FileType go nmap <leader>b <Plug>(go-build)
-	au FileType go nmap <leader>t <Plug>(go-test)
-	au FileType go nmap <leader>c <Plug>(go-coverage)
-	au FileType go nmap <Leader>dd <Plug>(go-def)
-	au FileType go nmap <Leader>ds <Plug>(go-def-split)
-	au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-	au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-	au FileType go nmap <Leader>e <Plug>(go-rename)
-	au FileType go nmap <Leader>I :GoImports<CR>
+	autocmd FileType go nmap <Leader>i <Plug>(go-info)
+	autocmd FileType go nmap <Leader>o <Plug>(go-implements)
+	autocmd FileType go nmap <Leader>p <Plug>(go-callees)
+	autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
+	autocmd FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+	autocmd FileType go nmap <Leader>gs <Plug>(go-doc-split)
+	autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+	autocmd FileType go nmap <Leader>gt <Plug>(go-doc-tab)
+	autocmd FileType go nmap <leader>r <Plug>(go-run)
+	autocmd FileType go nmap <leader>b <Plug>(go-build)
+	autocmd FileType go nmap <leader>t <Plug>(go-test)
+	autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+	autocmd FileType go nmap <Leader>dd <Plug>(go-def)
+	autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+	autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+	autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
+	autocmd FileType go nmap <Leader>e <Plug>(go-rename)
+	autocmd FileType go nmap <Leader>I :GoImports<CR>
 
 	"Python specific settings.
 	autocmd FileType python set nocindent		"DON'T screw with my indenting

@@ -30,6 +30,7 @@ alias rd='rmdir'
 alias pstree='pstree -g3'
 alias tree='tree -FA'
 alias info='info --vi-keys'
+alias have='which -s'
 
 # History variables.
 
@@ -37,45 +38,23 @@ HISTIGNORE="[ 	]*:&:bg:fg"
 HISTCONTROL=ignoredups
 HISTFILESIZE=0
 
-# Project management and switching.
+# External directory history.
 
-if [ -n "$PROJECT" ]; then
-	export -n PROJECT
-	source ~/.bash_project_${PROJECT}
-fi
-
-function project {
-	local PROJECT="$1"
-	local CLR_NORM="$(tput sgr0)"
-	local CLR_PUNC="$CLR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
-	local LINE_BREAK="$CLR_PUNC$(eval printf ~%.0s {1..$(( $COLUMNS - 1 ))})$CLR_NORM"
-
-	if [ -r ~/.bash_project_${PROJECT} ]; then
-		echo -e "\n\n$LINE_BREAK\n$(tput setaf 2)Switching to project: $PROJECT$CLR_NORM\n$LINE_BREAK\n\n"
-		PROJECT="$PROJECT" bash
-	else
-		echo "$(tput setaf 1)No project file for: $PROJECT"
-	fi
-}
-
-# Track user login/out activity.
-
-TRACK_WHO=""
-function track_who {
-	local WHO="$(who | cut -d ' ' -f 1 | sort -u)"
-	if [ $WHO != $TRACK_WHO ]; then
-		comm <(echo "$TRACK_WHO") <(echo "$WHO")
-	fi
-	TRACK_WHO="$WHO"
-}
+source "$(brew --prefix)/etc/profile.d/z.sh"
 
 # External autocomplete.
 
-BASH_AUTOCOMPLETE_DIR=/usr/local/etc/bash_completion.d
-source $BASH_AUTOCOMPLETE_DIR/docker
-source $BASH_AUTOCOMPLETE_DIR/tmux
-source $BASH_AUTOCOMPLETE_DIR/git-completion.bash
-source $BASH_AUTOCOMPLETE_DIR/git-prompt.sh
+BASH_AUTOCOMPLETE_DIR="$(brew --prefix)/etc/bash_completion.d"
+for autocomplete in "$BASH_AUTOCOMPLETE_DIR"/*; do
+	if (source "$autocomplete") &> /dev/null; then
+		source "$autocomplete"
+	else
+		# Try not to spew errors too often.
+		if [[ "$SHLVL" -eq 1 && $- == *i* ]]; then
+			echo "Error loading autocomplete for: $autocomplete"
+		fi
+	fi
+done
 
 # Prompt variables.
 
@@ -89,78 +68,89 @@ GIT_PS1_SHOWDIRTYSTATE='true'
 GIT_PS1_SHOWSTASHSTATE='true'
 GIT_PS1_SHOWUPSTREAM='auto'
 
-# Set status line for terminals that support it.
-if tput hs; then
-	STATUS_LINE="$(tput tsl)[ \u@\h(\$SHLVL) ]: \$PWD$(tput fsl)"
-else
-	STATUS_LINE=''
-fi
+# Common color codes.
+PROMPT_COLOR_NORM="$(tput sgr0)"
+PROMPT_COLOR_PUNC="$PROMPT_COLOR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
+PROMPT_COLOR_TEXT="$PROMPT_COLOR_NORM$(tput setaf 6)$(tput setab 4)"
+PROMPT_COLOR_USER="$PROMPT_COLOR_TEXT"
+PROMPT_COLOR_ROOT="$PROMPT_COLOR_NORM$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
+PROMPT_COLOR_OK="$PROMPT_COLOR_NORM$(tput setaf 2)"
+PROMPT_COLOR_ERR="$PROMPT_COLOR_NORM$(tput setaf 1)$(tput setab 0)"
 
-# Use now embedded in LONGDASH.
-MVTODASH="$(tput cr)"'$(tput cuf $(( $(tput cols) - ${#DASH} - 1 )) )'
-# Used directly in PS1.
-MVTOEDGE="$(tput cr)"
-CLR_NORM="$(tput sgr0)"
-CLR_PUNC="$CLR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
-CLR_TEXT="$CLR_NORM$(tput setaf 6)$(tput setab 4)"
+function dashed_line {
+	local DASH=$(eval printf ~%.0s {1..$1});
 
-# Try to make it obvious that I'm root.
-if [ "$(whoami)" == "root" ]; then
-	CLR_USER="$CLR_NORM$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
-	PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH"
-	export PATH
-else
-	CLR_USER="$CLR_TEXT"
-fi
-
-# Now for the ugly.
-OLDCOLUMNS=0
-LONGDASH_CACHE=''
-LONGDASH='
-	if [ "$OLDCOLUMNS" == "$COLUMNS" ]; then
-		echo -n "$LONGDASH_CACHE"
+	if [ "$2" = "right" ]; then
+		# Right justify.
+		local MVTOEDGE="$(tput cr)"
+		local MVTODASH="${MVTOEDGE}$(tput cuf $(( $(tput cols) - ${#DASH} - 1 )) )"
+		echo -n "${MVTOEDGE}${MVTODASH}${DASH}"
 	else
-		NODASH=$(( 3 * ($COLUMNS / 4) ));
-		DASH=$(eval printf ~%.0s {1..$NODASH})
-		echo -ne '"$MVTODASH"';
-		echo -n "$DASH";
-		LONGDASH_CACHE="$DASH";
+		# Left justify
+		echo -n "$DASH"
+	fi
+}
 
-		unset DASH;
-		unset NODASH;
-	fi;
-'
-SHRTDASH_CACHE=''
-SHRTDASH='
-	if [ "$OLDCOLUMNS" == "$COLUMNS" ]; then
-		echo -n "$SHRTDASH_CACHE"
+function prompt {
+	# Set status line for terminals that support it.
+	local STATUS_LINE=''
+	if tput hs; then
+		STATUS_LINE="$(tput tsl)[ \u@\h(\$SHLVL) ]: \$PWD$(tput fsl)"
+	fi
+
+	# Try to make it obvious that I'm root.
+	local COLOR_USER="$PROMPT_COLOR_USER"
+	if [ "$(whoami)" == "root" ]; then
+		COLOR_USER="$PROMPT_COLOR_ROOT"
+		export PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH"
+	fi
+
+	local MVTOEDGE="$(tput cr)"
+	local LONGDASH='dashed_line $COLUMNS left'
+	local INFOBLOCK="[${COLOR_USER}\\u@\\h(\$SHLVL) ${PROMPT_COLOR_TEXT}\$(__git_ps1 \"git:%s \")${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
+
+	# Time to actually set the prompt!
+	PS1="${STATUS_LINE}${PROMPT_COLOR_PUNC}\\[\$(eval ${LONGDASH})\\]${MVTOEDGE}${INFOBLOCK}${PROMPT_COLOR_NORM}\\n\\w \\!\\\$ "
+	PS2='\w \!>'
+	PS4='+ \!>'
+}
+
+prompt
+
+# Project management and switching.
+
+function project {
+	local PROJECT="$@"
+	PROJECT=${PROJECT// /_}
+	PROJECT=${PROJECT//-/_}
+
+	function dashed_line_colored {
+		echo -n "${PROMPT_COLOR_PUNC}"
+		dashed_line $COLUMNS left
+		echo -n "${PROMPT_COLOR_NORM}"
+	}
+
+	local PROJECT_FILE=~/".projects/${PROJECT}.bash"
+
+	if [ -r "$PROJECT_FILE" ]; then
+		echo -ne '\n\n'
+		dashed_line_colored
+		echo "${PROMPT_COLOR_OK}Switching to project: $PROJECT"
+		dashed_line_colored
+		echo -ne '\n\n'
+		bash --init-file <(echo "source ~/.bashrc && source \"$PROJECT_FILE\"")
 	else
-		if [ $COLUMNS -lt 80 ]; then
-			DASH="~";
-		else
-			NODASH=$(( $COLUMNS / 4 ));
-			DASH=$(eval printf ~%.0s {1..$NODASH})
-		fi;
-		echo -n "$DASH";
-		SHRTDASH_CACHE="$DASH"
+		echo "${PROMPT_COLOR_ERR}No project file for: $PROJECT"
+	fi
+}
 
-		unset DASH;
-		unset NODASH;
+# Track user login/out activity.
 
-		OLDCOLUMNS="$COLUMNS"
-	fi;
-'
-
-# Time to actually set the prompt!
-PS1="$STATUS_LINE$CLR_PUNC\\[\$(eval $LONGDASH)\\]$MVTOEDGE[$CLR_USER\\u@\\h(\$SHLVL) $CLR_TEXT\$(__git_ps1 \"git:%s \")$CLR_PUNC|$CLR_TEXT \\@ \\d$CLR_PUNC]\$(eval $SHRTDASH)$CLR_NORM\\n\\w \\!\\\$ "
-PS2='\w \!>'
-PS4='+ \!>'
-
-unset SHRTDASH
-unset LONGDASH
-unset MVTODASH
-unset MVTOEDGE
-unset CLR_PUNC
-unset CLR_TEXT
-unset CLR_NORM
-unset CLR_USER
+TRACK_WHO=""
+function track_who {
+	local WHO="$(who | cut -d ' ' -f 1 | sort -u)"
+	if [ "$WHO" != "$TRACK_WHO" ]; then
+		comm <(echo "$TRACK_WHO") <(echo "$WHO")
+	fi
+	TRACK_WHO="$WHO"
+}
