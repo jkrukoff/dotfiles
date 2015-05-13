@@ -31,6 +31,7 @@ alias pstree='pstree -g3'
 alias tree='tree -FA'
 alias info='info --vi-keys'
 alias have='which -s'
+alias hl='source-highlight --failsafe -f esc256 -n -i'
 
 # History variables.
 
@@ -55,6 +56,7 @@ for autocomplete in "$BASH_AUTOCOMPLETE_DIR"/*; do
 		fi
 	fi
 done
+complete -C aws_completer aws
 
 # Prompt variables.
 

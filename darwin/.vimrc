@@ -13,10 +13,17 @@ Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'guns/vim-clojure-static'
 Plugin 'jpythonfold.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'vim-flake8'
+"Disabled plugins.
+" Plugin 'guns/vim-sexp'
+" Plugin 'tpope/vim-surround'
 
 "Finalize plugin setup.
 call vundle#end()

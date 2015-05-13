@@ -27,10 +27,15 @@ function cd_project {
 function start_docker {
 	boot2docker -s 80000 -m 4096 init
 	boot2docker up
-	source <(boot2docker shellinit)
 	trap stop_docker_containers 0
+
+	source <(boot2docker shellinit)
+	boot2docker ssh sudo sh -c "\"echo -e \\\"DOCKER_TLS=no\\\" > /var/lib/boot2docker/profile\""
 }
 
 function stop_docker_containers {
-	docker stop $(docker ps -q)
+	local containers="$(docker ps -q)"
+	if [ "$containers" ]; then
+		docker stop $containers
+	fi
 }
