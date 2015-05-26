@@ -12,6 +12,7 @@ export PATH="$PATH:/usr/local/bin:$HOME/bin"
 export INPUTRC="$HOME/.inputrc"
 export BASH_ENV="$HOME/.bashrc"
 export EDITOR=`which vim`
+export CLICOLOR=true
 #export HOMEBREW_GITHUB_API_TOKEN=
 
 # Development environment variables.
