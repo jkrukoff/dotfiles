@@ -15,7 +15,6 @@ Plugin 'fatih/vim-go'
 Plugin 'fs111/pydoc.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'saltstack/salt-vim'
@@ -23,11 +22,19 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-flake8'
 Plugin 'vim-scripts/TaskList.vim'
 "Disabled plugins
+"Elixir
+" Plugin 'elixir-lang/vim-elixir'
+"Erlang
+" Plugin 'jimenezrick/vimerl'
+"Rust
+" Plugin 'rust-lang/rust.vim'
+"Clojure
+" Plugin 'guns/vim-clojure-static'
 " Plugin 'guns/vim-sexp'
-" Plugin 'tpope/vim-surround'
 
 "Finalize plugin setup
 call vundle#end()
@@ -38,10 +45,10 @@ filetype plugin on
 set visualbell			"Use visual bell instead of beep
 
 set ts=8			"Default tab for 8
-set lcs=tab:>-,eol:$,extends:\	"Make tab characters and others visible
 set list			"Display invisible characters
+set listchars=tab:>-,nbsp:-,eol:$,extends:\	"How to display invisible characters
 
-set showmatch			"Show matching parenthese
+set showmatch			"Show matching parentheses
 
 set backspace=2			"Backspace should delete everything
 
@@ -74,6 +81,7 @@ set history=1000		"Save 1000 lines of history
 set updatecount=80		"Characters typed before update
 set updatetime=1000		"Milliseconds before update
 set viminfo='100,\"500		"Remember filemarks for 100 files and 500 registers
+set directory=~/tmp//,.		"Prefer to store swap file under home directory
 
 set spelllang=en		"Set spell language to english
 set tags=./tags,tags		"Search for tags in both versions of current directory
@@ -84,10 +92,16 @@ endif
 let mapleader=" "		"Rebind <leader> to space bar
 set timeoutlen=3000		"Wait 3 seconds for key sequence to complete
 
+let g:netrw_banner=0		"Suppress file browser help banner
+let g:netrw_use_errorwindow=0	"Display errors using standard handler
+let g:netrw_liststyle=1		"Display files in columns
+let g:netrw_preview=1		"Display file previews in vertical splits
+let g:netrw_winsize=30		"Display opened files a bit larger
+
 
 "Binds
 map <ESC><ESC><ESC> ZQ		"Exit vi
-map <leader>do <Plug>TaskList
+map <leader>do <Plug>TaskList	"Launch tasklist plugin
 
 
 "Change the default color scheme to something readable
@@ -109,11 +123,8 @@ endif
 
 
 if has("autocmd")
-	filetype on					"Enable filetype detection
-
 	"Always open all folds, on read or file type change
-	autocmd FileType * normal zR
-	autocmd BufRead * normal zR
+	autocmd BufNewFile,BufRead,FileType * normal zR
 
 	"JSON specific settings
 	let g:vim_json_syntax_conceal = 0

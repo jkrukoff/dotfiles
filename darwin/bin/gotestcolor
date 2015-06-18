@@ -1,0 +1,17 @@
+#!/bin/bash
+COLOR_RESET=$(tput sgr0)
+COLOR_RUN=$(tput setaf 6)
+COLOR_PASS=$(tput setaf 2)
+COLOR_FAIL=$(tput setaf 1)
+COLOR_UNKNOWN=$(tput setaf 3)
+
+sed -le '
+s/^\(?\)\([ 	].*\)$/'$COLOR_UNKNOWN'\1'$COLOR_RESET'\2/
+s/^\(ok\)\([ 	].*\)$/'$COLOR_PASS'\1'$COLOR_RESET'\2/
+s/^\(FAIL\)\([ 	].*\)$/'$COLOR_FAIL'\1'$COLOR_RESET'\2/
+s/^\(=== RUN\)\(.*\)$/'$COLOR_RUN'\1'$COLOR_RESET'\2/
+s/^\(--- PASS\)\(.*\)$/'$COLOR_PASS'\1'$COLOR_RESET'\2/
+s/^\(--- FAIL\)\(.*\)$/'$COLOR_FAIL'\1'$COLOR_RESET'\2/
+s/^\(PASS\)$/'$COLOR_PASS'\1'$COLOR_RESET'/
+s/^\(FAIL\)$/'$COLOR_FAIL'\1'$COLOR_RESET'/
+'
