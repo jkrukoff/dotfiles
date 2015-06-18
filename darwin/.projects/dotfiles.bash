@@ -15,6 +15,8 @@ function save {
 	# Make sure github token stays private.
 	sed -i '' 's/^\(export HOMEBREW_GITHUB_API_TOKEN=\).*$/#\1/' .bash_profile
 	sed -i '' 's/jkrukoff@itriagehealth.com/john@krukoff.us/' .gitconfig
+	# Backup brew installed packages.
+	brew list > .brew-list
 }
 
 function restore {
