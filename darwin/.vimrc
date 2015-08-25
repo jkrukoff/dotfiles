@@ -134,24 +134,25 @@ if has("autocmd")
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
-	autocmd FileType go nmap <leader>i <Plug>(go-info)
-	autocmd FileType go nmap <leader>o <Plug>(go-implements)
-	autocmd FileType go nmap <leader>p <Plug>(go-callees)
-	autocmd FileType go nmap <leader>gd <Plug>(go-doc)
-	autocmd FileType go nmap <leader>gb <Plug>(go-doc-browser)
-	autocmd FileType go nmap <leader>gs <Plug>(go-doc-split)
-	autocmd FileType go nmap <leader>gv <Plug>(go-doc-vertical)
-	autocmd FileType go nmap <leader>gt <Plug>(go-doc-tab)
-	autocmd FileType go nmap <leader>r <Plug>(go-run)
-	autocmd FileType go nmap <leader>b <Plug>(go-build)
-	autocmd FileType go nmap <leader>t <Plug>(go-test)
-	autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-	autocmd FileType go nmap <leader>dd <Plug>(go-def)
-	autocmd FileType go nmap <leader>ds <Plug>(go-def-split)
-	autocmd FileType go nmap <leader>dv <Plug>(go-def-vertical)
-	autocmd FileType go nmap <leader>dt <Plug>(go-def-tab)
-	autocmd FileType go nmap <leader>e <Plug>(go-rename)
-	autocmd FileType go nmap <leader>I :GoImports<CR>
+	autocmd FileType go nmap <buffer> <localleader>i <Plug>(go-info)
+	autocmd FileType go nmap <buffer> <localleader>o <Plug>(go-implements)
+	autocmd FileType go nmap <buffer> <localleader>p <Plug>(go-callees)
+	autocmd FileType go nmap <buffer> <localleader>gd <Plug>(go-doc)
+	autocmd FileType go nmap <buffer> <localleader>gb <Plug>(go-doc-browser)
+	autocmd FileType go nmap <buffer> <localleader>gs <Plug>(go-doc-split)
+	autocmd FileType go nmap <buffer> <localleader>gv <Plug>(go-doc-vertical)
+	autocmd FileType go nmap <buffer> <localleader>gt <Plug>(go-doc-tab)
+	autocmd FileType go nmap <buffer> <localleader>r <Plug>(go-run)
+	autocmd FileType go nmap <buffer> <localleader>b <Plug>(go-build)
+	autocmd FileType go nmap <buffer> <localleader>t <Plug>(go-test)
+	autocmd FileType go nmap <buffer> <localleader>c <Plug>(go-coverage)
+	autocmd FileType go nmap <buffer> <localleader>dd <Plug>(go-def)
+	autocmd FileType go nmap <buffer> <localleader>ds <Plug>(go-def-split)
+	autocmd FileType go nmap <buffer> <localleader>dv <Plug>(go-def-vertical)
+	autocmd FileType go nmap <buffer> <localleader>dt <Plug>(go-def-tab)
+	autocmd FileType go nmap <buffer> <localleader>e <Plug>(go-rename)
+	autocmd FileType go nmap <buffer> <localleader>I :GoImports<CR>
+	autocmd FileType go nmap <buffer> <localleader>k o_ = "breakpoint"<esc>
 
 	autocmd FileType go setlocal foldnestmax=1
 
@@ -159,8 +160,8 @@ if has("autocmd")
 	let g:pydoc_perform_mappings = 0
 	let g:pydoc_open_cmd = 'vsplit'
 
-	autocmd FileType python set nocindent		"DON'T screw with my indenting
-	autocmd FileType python set nosmartindent
+	autocmd FileType python setlocal nocindent		"DON'T screw with my indenting
+	autocmd FileType python setlocal nosmartindent
 
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
@@ -178,7 +179,7 @@ if has("autocmd")
 	autocmd FileType html setlocal expandtab
 
 	"Markdown specific settings
-	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+	autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown
 
 	"Git specific settings
 	autocmd FileType gitcommit setlocal spell textwidth=72

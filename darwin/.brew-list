@@ -22,6 +22,7 @@ gawk
 gdbm
 gettext
 git
+heroku-toolbelt
 httpie
 icu4c
 jpeg
@@ -42,6 +43,7 @@ mesos
 mongodb
 neovim
 node
+oniguruma
 openssl
 pkg-config
 postgresql

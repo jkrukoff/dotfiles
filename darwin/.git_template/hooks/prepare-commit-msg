@@ -7,6 +7,6 @@ branchName=${branchPath##*/} # Get text behind the last / of the branch path
 firstLine=$(head -n1 "$1")
 if [ -z "$firstLine" ]; then 
 	# Insert branch name at the start of the commit message file
-	message=$(cat "$1")
-	echo -n "[$branchName]: " "$message" > "$1"
+	message=$(<"$1")
+	echo -n "[$branchName]: $message" > "$1"
 fi
