@@ -1,20 +1,30 @@
 #!/bin/bash
 # .bashrc
 
-# Shell options.
+# Shell options. Only set for interactive shell, leave default options for
+# scripts.
+case "$-" in
+	*i*)
+		# Interactive shell.
+		set -o notify
+		set -o ignoreeof
+		#set -o nounset
+		set -o vi
 
-set -o notify
-set -o ignoreeof
-#set -o nounset
-set -o vi
-
-shopt -s cmdhist
-shopt -s checkwinsize
-shopt -s histappend
-shopt -s hostcomplete
-#shopt -s nullglob
-shopt -s shift_verbose
-shopt -u sourcepath
+		shopt -s checkwinsize
+		shopt -s cmdhist
+		shopt -s dirspell
+		shopt -s histappend
+		shopt -s hostcomplete
+		#shopt -s nullglob
+		shopt -s globstar
+		shopt -s shift_verbose
+		shopt -u sourcepath
+	;;
+	*)
+		# Non-interactive shell.
+	;;
+esac
 
 # Aliases.
 
@@ -41,20 +51,21 @@ HISTFILESIZE=0
 
 # External directory history.
 
-source "$(brew --prefix)/etc/profile.d/z.sh"
+BREW_PREFIX="/usr/local"
+source "$BREW_PREFIX/etc/profile.d/z.sh"
 
 # External autocomplete.
 
-BASH_AUTOCOMPLETE_DIR="$(brew --prefix)/etc/bash_completion.d"
+BASH_AUTOCOMPLETE_DIR="$BREW_PREFIX/etc/bash_completion.d"
 for autocomplete in "$BASH_AUTOCOMPLETE_DIR"/*; do
-	if (source "$autocomplete") &> /dev/null; then
-		source "$autocomplete"
-	else
-		# Try not to spew errors too often.
-		if [[ "$SHLVL" -eq 1 && $- == *i* ]]; then
-			echo "Error loading autocomplete for: $autocomplete"
-		fi
-	fi
+  if (source "$autocomplete") &> /dev/null; then
+    source "$autocomplete"
+  else
+    # Try not to spew errors too often.
+    if [[ "$SHLVL" -eq 1 && $- == *i* ]]; then
+      echo "Error loading autocomplete for: $autocomplete"
+    fi
+  fi
 done
 complete -C aws_completer aws
 

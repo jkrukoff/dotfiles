@@ -7,3 +7,6 @@
 
 # Vim tag files.
 tags
+
+# Python virtual environment.
+virtualenv/

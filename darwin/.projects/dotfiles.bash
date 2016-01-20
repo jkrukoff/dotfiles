@@ -17,6 +17,8 @@ function save {
 	sed -i '' 's/jkrukoff@itriagehealth.com/john@krukoff.us/' .gitconfig
 	# Backup brew installed packages.
 	brew list > .brew-list
+	# Backup pip installed packages.
+	pip freeze > .pip-freeze
 }
 
 function restore {

@@ -14,4 +14,5 @@ s/^\(--- PASS\)\(.*\)$/'$COLOR_PASS'\1'$COLOR_RESET'\2/
 s/^\(--- FAIL\)\(.*\)$/'$COLOR_FAIL'\1'$COLOR_RESET'\2/
 s/^\(PASS\)$/'$COLOR_PASS'\1'$COLOR_RESET'/
 s/^\(FAIL\)$/'$COLOR_FAIL'\1'$COLOR_RESET'/
+s/^\(testing: warning: no tests to run\)$/'$COLOR_UNKNOWN'\1'$COLOR_RESET'/
 '

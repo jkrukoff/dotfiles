@@ -16,6 +16,7 @@ Plugin 'fs111/pydoc.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'moll/vim-node'
 Plugin 'majutsushi/tagbar'
 Plugin 'saltstack/salt-vim'
 Plugin 'tmhedberg/SimpylFold'
@@ -90,6 +91,7 @@ if !empty($VIM_TAGS)		"Use environment tags file, if provided
 endif
 
 let mapleader=" "		"Rebind <leader> to space bar
+let maplocalleader=" "		"Rebind the <localleader> too.
 set timeoutlen=3000		"Wait 3 seconds for key sequence to complete
 
 let g:netrw_banner=0		"Suppress file browser help banner
@@ -134,6 +136,7 @@ if has("autocmd")
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
+	let g:go_metalinter_command = "gometalinter ./..."
 	autocmd FileType go nmap <buffer> <localleader>i <Plug>(go-info)
 	autocmd FileType go nmap <buffer> <localleader>o <Plug>(go-implements)
 	autocmd FileType go nmap <buffer> <localleader>p <Plug>(go-callees)
@@ -151,6 +154,7 @@ if has("autocmd")
 	autocmd FileType go nmap <buffer> <localleader>dv <Plug>(go-def-vertical)
 	autocmd FileType go nmap <buffer> <localleader>dt <Plug>(go-def-tab)
 	autocmd FileType go nmap <buffer> <localleader>e <Plug>(go-rename)
+	autocmd FileType go nmap <buffer> <localleader>L <Plug>(go-metalinter)
 	autocmd FileType go nmap <buffer> <localleader>I :GoImports<CR>
 	autocmd FileType go nmap <buffer> <localleader>k o_ = "breakpoint"<esc>
 
@@ -171,6 +175,19 @@ if has("autocmd")
 	autocmd FileType python setlocal shiftwidth=4
 	autocmd FileType python setlocal smarttab
 	autocmd FileType python setlocal expandtab
+
+	"Bash specific settings
+	autocmd FileType sh setlocal makeprg=shellcheck\ -f\ gcc\ %:S
+	autocmd FileType sh setlocal tabstop=2
+	autocmd FileType sh setlocal softtabstop=2
+	autocmd FileType sh setlocal shiftwidth=2
+	autocmd FileType sh setlocal expandtab
+
+	"Javascript specific settings
+	autocmd FileType javascript setlocal tabstop=2
+	autocmd FileType javascript setlocal softtabstop=2
+	autocmd FileType javascript setlocal shiftwidth=2
+	autocmd FileType javascript setlocal expandtab
 
 	"HTML specific settings
 	autocmd FileType html setlocal tabstop=4
