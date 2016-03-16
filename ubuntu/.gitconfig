@@ -1,0 +1,11 @@
+[user]
+	name = John Krukoff
+	email = john@krukoff.us
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore_global
+[merge]
+	tool = vimdiff
+[init]
+	templatedir = ~/.git_template
