@@ -52,6 +52,10 @@ alias info='info --vi-keys'
 alias have='which -s'
 alias hl='source-highlight --failsafe -f esc256 -n -i'
 
+# External functions.
+
+source ~/bin/z.sh
+
 # History variables.
 
 HISTIGNORE="[ 	]*:&:bg:fg"

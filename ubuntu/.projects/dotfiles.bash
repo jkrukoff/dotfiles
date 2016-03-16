@@ -24,5 +24,11 @@ function restore {
 	done
 	cp -va .ssh/config ~/.ssh/config
 	cp -va .bash* ~/
+
+	# Install and initialize vundle.
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
+
+	# Install Z directory jump utility.
+	curl https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 }
