@@ -24,13 +24,15 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-flake8'
 Plugin 'vim-scripts/TaskList.vim'
 "Disabled plugins
 "Elixir
 " Plugin 'elixir-lang/vim-elixir'
-"Erlang
-" Plugin 'jimenezrick/vimerl'
 "Rust
 " Plugin 'rust-lang/rust.vim'
 "Clojure
@@ -128,8 +130,12 @@ if has("autocmd")
 	"Always open all folds, on read or file type change
 	autocmd BufNewFile,BufRead,FileType * normal zR
 
-	"JSON specific settings
-	let g:vim_json_syntax_conceal = 0
+	"Erlang specific settings
+	let g:erlang_show_errors = 1
+	let g:erlang_highlight_bifs = 1
+	let g:erlang_highlight_special_atoms = 1
+
+	autocmd FileType erlang setlocal foldnestmax=2
 
 	"Go specific settings
 	let g:go_def_mapping_enabled = 0
@@ -188,6 +194,9 @@ if has("autocmd")
 	autocmd FileType javascript setlocal softtabstop=2
 	autocmd FileType javascript setlocal shiftwidth=2
 	autocmd FileType javascript setlocal expandtab
+
+	"JSON specific settings
+	let g:vim_json_syntax_conceal = 0
 
 	"HTML specific settings
 	autocmd FileType html setlocal tabstop=4
