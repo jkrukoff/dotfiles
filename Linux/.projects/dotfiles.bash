@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ~/.projects/lib.bash
-cd_project ~/Documents/Personal/dotfiles
+cd_project ~/Documents/Personal/dotfiles/"$(uname)"
 
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
@@ -12,8 +12,12 @@ function save {
 	mkdir .ssh 
 	cp -va ~/.ssh/config .ssh/config
 	cp -va ~/.bash* ./
+
+	# Backup installed packages.
+	dpkg --get-selections > .deb-installed
+
 	# Backup pip installed packages.
-	pip freeze > .pip-freeze
+	pip freeze > .pip-installed
 }
 
 function restore {
@@ -30,5 +34,8 @@ function restore {
 	vim +PluginInstall +qall
 
 	# Install Z directory jump utility.
-	curl https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
+	curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
+
+	# Install kerl, an erlang environment build tool.
+	curl -#L https://raw.githubusercontent.com/yrashk/kerl/master/kerl -o ~/bin/kerl
 }
