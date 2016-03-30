@@ -29,6 +29,9 @@ function restore {
 	cp -va .ssh/config ~/.ssh/config
 	cp -va .bash* ~/
 
+	# Remember some gnome settings.
+	gsettings set org.gnome.desktop.wm.preferences focus-mode sloppy
+
 	# Install and initialize vundle.
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall

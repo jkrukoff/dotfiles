@@ -24,6 +24,13 @@ function cd_project {
 	fi
 }
 
+function activate_virtualenv {
+	if [ -d .virtualenv ]; then
+		source .virtualenv/bin/activate
+		echo "Python virtualenv found and activated: $(python --version)"
+	fi
+}
+
 function start_docker {
 	exit 1
 }

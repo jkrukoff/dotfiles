@@ -79,6 +79,7 @@ PROMPT_COLOR_NORM="$(tput sgr0)"
 PROMPT_COLOR_PUNC="$PROMPT_COLOR_NORM$(tput bold)$(tput setaf 4)$(tput setab 4)"
 PROMPT_COLOR_TEXT="$PROMPT_COLOR_NORM$(tput setaf 6)$(tput setab 4)"
 PROMPT_COLOR_USER="$PROMPT_COLOR_TEXT"
+PROMPT_COLOR_DIRSTATUS="$PROMPT_COLOR_NORM$(tput sgr0)$(tput setaf 5)$(tput setab 4)"
 PROMPT_COLOR_ROOT="$PROMPT_COLOR_NORM$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
 PROMPT_COLOR_OK="$PROMPT_COLOR_NORM$(tput setaf 2)"
 PROMPT_COLOR_ERR="$PROMPT_COLOR_NORM$(tput setaf 1)$(tput setab 0)"
@@ -97,9 +98,17 @@ function dashed_line {
 	fi
 }
 
+function prompt_virtualenv {
+	# Check if I've activated a python virtualenv.
+	if [ -n "$VIRTUAL_ENV" ]; then
+		local version="$(python --version)"
+		echo "venv:${version#* }"
+	fi
+}
+
 function prompt {
 	# Set status line for terminals that support it.
-	local STATUS_LINE=''
+	local STATUS_LINE
 	if tput hs; then
 		STATUS_LINE="$(tput tsl)[ \u@\h(\$SHLVL) ]: \$PWD$(tput fsl)"
 	fi
@@ -113,7 +122,7 @@ function prompt {
 
 	local MVTOEDGE="$(tput cr)"
 	local LONGDASH='dashed_line $COLUMNS left'
-	local INFOBLOCK="[${COLOR_USER}\\u@\\h(\$SHLVL) ${PROMPT_COLOR_TEXT}\$(__git_ps1 \"git:%s \")${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
+	local INFOBLOCK="[${COLOR_USER}\\u@\\h(\$SHLVL) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")\$(prompt_virtualenv)${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
 
 	# Time to actually set the prompt!
 	PS1="${STATUS_LINE}${PROMPT_COLOR_PUNC}\\[\$(eval ${LONGDASH})\\]${MVTOEDGE}${INFOBLOCK}${PROMPT_COLOR_NORM}\\n\\w \\!\\\$ "

@@ -15,18 +15,20 @@ Plugin 'fatih/vim-go'
 Plugin 'fs111/pydoc.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'moll/vim-node'
 Plugin 'majutsushi/tagbar'
+Plugin 'moll/vim-node'
+Plugin 'pignacio/vim-yapf-format'
 Plugin 'saltstack/salt-vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-flake8'
 Plugin 'vim-scripts/TaskList.vim'
@@ -109,7 +111,7 @@ map <leader>do <Plug>TaskList	"Launch tasklist plugin
 
 
 "Change the default color scheme to something readable
-set guifont=Consolas:h14
+set guifont=Consolas\ 14
 set background=dark
 highlight clear
 if exists("syntax_on")
@@ -169,13 +171,21 @@ if has("autocmd")
 	"Python specific settings
 	let g:pydoc_perform_mappings = 0
 	let g:pydoc_open_cmd = 'vsplit'
-
-	autocmd FileType python setlocal nocindent		"DON'T screw with my indenting
-	autocmd FileType python setlocal nosmartindent
-
+	let g:flake8_show_quickfix = 1
+	let g:flake8_show_in_file = 1
+	let g:yapf_format_allow_out_of_range_changes = 0
+	let g:yapf_format_move_to_error = 0
+	let g:virtualenv_directory = '.'
+	autocmd FileType python nmap <buffer> <localleader>L :call Flake8()<CR>
+	autocmd FileType python nmap <buffer> <localleader>f :YapfFullFormat<CR>
+	autocmd FileType python vmap <buffer> <localleader>f :YapfFormat<CR>
+	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+
+	autocmd FileType python setlocal encoding=utf-8
 	autocmd FileType python setlocal foldnestmax=2
+	autocmd FileType python setlocal nocindent
 	autocmd FileType python setlocal tabstop=8
 	autocmd FileType python setlocal softtabstop=4
 	autocmd FileType python setlocal shiftwidth=4
