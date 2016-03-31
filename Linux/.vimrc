@@ -1,9 +1,9 @@
 "John Krukoff's vim configuration
 
-set nocompatible		"Not vi compatible (No matter how vim was invoked)
+set nocompatible "Not vi compatible (No matter how vim was invoked)
 
 "Vundle plugins configuration
-filetype off			"Required by vundle
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -21,6 +21,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'moll/vim-node'
 Plugin 'pignacio/vim-yapf-format'
 Plugin 'saltstack/salt-vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -30,7 +31,6 @@ Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-tags'
-Plugin 'vim-flake8'
 Plugin 'vim-scripts/TaskList.vim'
 "Disabled plugins
 "Elixir
@@ -44,6 +44,23 @@ Plugin 'vim-scripts/TaskList.vim'
 "Finalize plugin setup
 call vundle#end()
 filetype plugin on
+
+"Change the default color scheme to something readable
+set guifont=Consolas\ 14
+set background=dark
+highlight clear
+if exists("syntax_on")
+  syntax reset
+endif
+if has("gui_running")
+  colorscheme desert
+endif
+
+
+"Enable syntax highlighting if the terminal supports color
+if &t_Co > 2 || has("gui_running")
+	syntax on
+endif
 
 
 "Global settings
@@ -98,34 +115,35 @@ let mapleader=" "		"Rebind <leader> to space bar
 let maplocalleader=" "		"Rebind the <localleader> too.
 set timeoutlen=3000		"Wait 3 seconds for key sequence to complete
 
+
+"Global plugin configuration
 let g:netrw_banner=0		"Suppress file browser help banner
 let g:netrw_use_errorwindow=0	"Display errors using standard handler
 let g:netrw_liststyle=1		"Display files in columns
 let g:netrw_preview=1		"Display file previews in vertical splits
 let g:netrw_winsize=30		"Display opened files a bit larger
 
-
-"Binds
-map <ESC><ESC><ESC> ZQ		"Exit vi
-map <leader>do <Plug>TaskList	"Launch tasklist plugin
-
-
-"Change the default color scheme to something readable
-set guifont=Consolas\ 14
-set background=dark
-highlight clear
-if exists("syntax_on")
-  syntax reset
-endif
-if has("gui_running")
-  colorscheme desert
-endif
+let g:syntastic_aggregate_error = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_jump = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cursor_column = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_signs = 0
+let g:syntastic_id_checkers = 1
+let g:syntastic_sort_aggregated_errors = 1
+let g:syntastic_mode_map = {"mode": "passive"}
 
 
-"Enable syntax highlighting if the terminal supports color
-if &t_Co > 2 || has("gui_running")
-	syntax on
-endif
+"Global bindings
+map <ESC><ESC><ESC> ZQ			"Exit vi
+map <leader>/ :noh<CR>			"Clear search highlighting
+map <leader>L :SyntasticCheck<CR>	"Check file for syntax errors
+map <leader>T :TagbarToggle<CR>		"Display tag sidebar
+map <leader>do <Plug>TaskList		"Launch tasklist plugin
 
 
 if has("autocmd")
@@ -136,6 +154,7 @@ if has("autocmd")
 	let g:erlang_show_errors = 1
 	let g:erlang_highlight_bifs = 1
 	let g:erlang_highlight_special_atoms = 1
+	let g:syntastic_erlang_checkers = ["escript"]
 
 	autocmd FileType erlang setlocal foldnestmax=2
 
@@ -144,7 +163,7 @@ if has("autocmd")
 	let g:go_highlight_functions = 1
 	let g:go_highlight_methods = 1
 	let g:go_highlight_structs = 1
-	let g:go_metalinter_command = "gometalinter ./..."
+	let g:syntastic_go_checkers = ["gometalinter"]
 	autocmd FileType go nmap <buffer> <localleader>i <Plug>(go-info)
 	autocmd FileType go nmap <buffer> <localleader>o <Plug>(go-implements)
 	autocmd FileType go nmap <buffer> <localleader>p <Plug>(go-callees)
@@ -162,7 +181,7 @@ if has("autocmd")
 	autocmd FileType go nmap <buffer> <localleader>dv <Plug>(go-def-vertical)
 	autocmd FileType go nmap <buffer> <localleader>dt <Plug>(go-def-tab)
 	autocmd FileType go nmap <buffer> <localleader>e <Plug>(go-rename)
-	autocmd FileType go nmap <buffer> <localleader>L <Plug>(go-metalinter)
+	autocmd FileType go nmap <buffer> <localleader>f :GoFmt<CR>
 	autocmd FileType go nmap <buffer> <localleader>I :GoImports<CR>
 	autocmd FileType go nmap <buffer> <localleader>k o_ = "breakpoint"<esc>
 
@@ -171,12 +190,10 @@ if has("autocmd")
 	"Python specific settings
 	let g:pydoc_perform_mappings = 0
 	let g:pydoc_open_cmd = 'vsplit'
-	let g:flake8_show_quickfix = 1
-	let g:flake8_show_in_file = 1
+	let g:syntastic_python_checkers = ["flake8", "prospector"]
 	let g:yapf_format_allow_out_of_range_changes = 0
 	let g:yapf_format_move_to_error = 0
 	let g:virtualenv_directory = '.'
-	autocmd FileType python nmap <buffer> <localleader>L :call Flake8()<CR>
 	autocmd FileType python nmap <buffer> <localleader>f :YapfFullFormat<CR>
 	autocmd FileType python vmap <buffer> <localleader>f :YapfFormat<CR>
 	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
@@ -192,7 +209,8 @@ if has("autocmd")
 	autocmd FileType python setlocal smarttab
 	autocmd FileType python setlocal expandtab
 
-	"Bash specific settings
+	"Shell specific settings
+	let g:syntastic_sh_checkers = ["shellcheck"]
 	autocmd FileType sh setlocal makeprg=shellcheck\ -f\ gcc\ %:S
 	autocmd FileType sh setlocal tabstop=2
 	autocmd FileType sh setlocal softtabstop=2
@@ -200,19 +218,46 @@ if has("autocmd")
 	autocmd FileType sh setlocal expandtab
 
 	"Javascript specific settings
+	let g:syntastic_javascript_checkers = ["gjslint"]
 	autocmd FileType javascript setlocal tabstop=2
 	autocmd FileType javascript setlocal softtabstop=2
 	autocmd FileType javascript setlocal shiftwidth=2
 	autocmd FileType javascript setlocal expandtab
 
+	"XML specific settings
+	let g:syntastic_xml_chekcers = ["xmllint"]
+	autocmd FileType xml setlocal tabstop=2
+	autocmd FileType xml setlocal softtabstop=2
+	autocmd FileType xml setlocal shiftwidth=2
+	autocmd FileType xml setlocal expandtab
+
 	"JSON specific settings
+	let g:syntastic_json_checkers = ["jsonlint"]
 	let g:vim_json_syntax_conceal = 0
 
+	"YAML specific settings
+	let g:syntastic_yaml_checkers = ["yamllint"]
+
 	"HTML specific settings
+	let g:syntastic_html_checkers = ["tidy"]
 	autocmd FileType html setlocal tabstop=4
 	autocmd FileType html setlocal softtabstop=4
 	autocmd FileType html setlocal shiftwidth=4
 	autocmd FileType html setlocal expandtab
+
+	"XHTML specific settings
+	let g:syntastic_xhtml_checkers = ["tidy"]
+	autocmd FileType xhtml setlocal tabstop=4
+	autocmd FileType xhtml setlocal softtabstop=4
+	autocmd FileType xhtml setlocal shiftwidth=4
+	autocmd FileType xhtml setlocal expandtab
+
+	"CSS specific settings
+	let g:syntastic_css_checkers = ["recess"]
+	autocmd FileType css setlocal tabstop=4
+	autocmd FileType css setlocal softtabstop=4
+	autocmd FileType css setlocal shiftwidth=4
+	autocmd FileType css setlocal expandtab
 
 	"Markdown specific settings
 	autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown

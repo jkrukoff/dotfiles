@@ -74,6 +74,7 @@ cheese-common					install
 chromium-browser				install
 chromium-browser-l10n				install
 chromium-codecs-ffmpeg-extra			install
+closure-linter					install
 colord						install
 colord-data					install
 command-not-found				install
@@ -198,6 +199,7 @@ evolution-data-server				install
 evolution-data-server-common			install
 evolution-data-server-online-accounts		install
 evolution-plugins				install
+exuberant-ctags					install
 fakeroot					install
 ffmpeg						install
 file						install
@@ -513,6 +515,7 @@ iucode-tool					install
 iw						install
 java-common					install
 javascript-common				install
+jq						install
 kbd						install
 kerneloops-daemon				install
 keyboard-configuration				install
@@ -1415,6 +1418,7 @@ libtext-wrapi18n-perl				install
 libthai-data					install
 libthai0:amd64					install
 libtheora0:amd64				install
+libtidy-0.99-0					install
 libtie-ixhash-perl				install
 libtiff5:amd64					install
 libtimedate-perl				install
@@ -1666,6 +1670,7 @@ node-ansi-color-table				install
 node-archy					install
 node-async					install
 node-block-stream				install
+node-colors					install
 node-combined-stream				install
 node-cookie-jar					install
 node-delayed-stream				install
@@ -1680,6 +1685,7 @@ node-gyp					install
 node-inherits					install
 node-ini					install
 node-json-stringify-safe			install
+node-less					install
 node-lockfile					install
 node-lru-cache					install
 node-mime					install
@@ -1740,6 +1746,10 @@ pep8						install
 perl						install
 perl-base					install
 perl-modules					install
+php5-cli					deinstall
+php5-common					deinstall
+php5-json					deinstall
+php5-readline					deinstall
 pidgin						install
 pidgin-data					install
 pidgin-libnotify				install
@@ -1819,6 +1829,7 @@ python-egenix-mxtools				install
 python-enum34					install
 python-flake8					install
 python-gconf					install
+python-gflags					install
 python-gi					install
 python-gi-cairo					install
 python-glade2					install
@@ -2077,6 +2088,7 @@ telepathy-mission-control-5			install
 telepathy-salut					install
 telnet						install
 thermald					install
+tidy						install
 time						install
 tk						install
 tk8.6						install
@@ -2095,6 +2107,7 @@ ttf-ancient-fonts-symbola			install
 ttf-indic-fonts-core				install
 ttf-mscorefonts-installer			install
 ttf-ubuntu-font-family				install
+twitter-recess					install
 tzdata						install
 tzdata-java					install
 ubuntu-drivers-common				install
@@ -2190,6 +2203,7 @@ xkb-data					install
 xml-core					install
 xorg						install
 xorg-docs-core					install
+xsel						install
 xserver-common					install
 xserver-xephyr					install
 xserver-xorg					install

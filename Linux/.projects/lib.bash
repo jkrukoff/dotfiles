@@ -32,7 +32,9 @@ function activate_virtualenv {
 }
 
 function start_docker {
-	exit 1
+	if ! docker version > /dev/null; then
+		sudo systemctl start docker
+	fi
 }
 
 function stop_docker_containers {

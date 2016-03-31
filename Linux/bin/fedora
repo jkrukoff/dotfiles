@@ -1,4 +1,4 @@
 #!/bin/bash
 source ~/.projects/lib.bash
 start_docker
-docker run -i -t centos /bin/sh
+docker run -i -t fedora /bin/sh

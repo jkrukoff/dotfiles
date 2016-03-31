@@ -11,6 +11,7 @@ boto==2.38.0
 cffi==1.1.2
 characteristic==14.3.0
 chardet==2.3.0
+closure-linter==2.3.13
 colorama==0.3.3
 cryptography==1.0.1
 debtags==2.0
@@ -53,6 +54,7 @@ pyserial==2.7
 python-apt===1.0.1-ubuntu0.1
 python-cloudfiles==1.7.10
 python-debian==0.1.27
+python-gflags==1.5.1
 pyxdg==0.25
 requests==2.9.1
 requests-oauthlib==0.6.1
