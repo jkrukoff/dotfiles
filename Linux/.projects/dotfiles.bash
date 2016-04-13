@@ -6,12 +6,15 @@ cd_project ~/Documents/Personal/dotfiles/"$(uname)"
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
 	local path
-	for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .projects; do
+	for path in bin .vimrc .gitconfig .gitignore_global .git_template .inputrc .projects; do
 		cp -va ~/"$path" ./
 	done
 	mkdir .ssh 
 	cp -va ~/.ssh/config .ssh/config
 	cp -va ~/.bash* ./
+
+	# Sanitize some secrets.
+	sed -i '/^export .*TOKEN/d' .bash_profile
 
 	# Backup installed packages.
 	dpkg --get-selections > .deb-installed

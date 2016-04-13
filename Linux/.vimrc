@@ -50,10 +50,10 @@ set guifont=Consolas\ 14
 set background=dark
 highlight clear
 if exists("syntax_on")
-  syntax reset
+	syntax reset
 endif
 if has("gui_running")
-  colorscheme desert
+	colorscheme desert
 endif
 
 
@@ -124,9 +124,9 @@ let g:netrw_preview=1		"Display file previews in vertical splits
 let g:netrw_winsize=30		"Display opened files a bit larger
 
 let g:syntastic_aggregate_error = 1
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_jump = 0
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cursor_column = 0
@@ -139,11 +139,11 @@ let g:syntastic_mode_map = {"mode": "passive"}
 
 
 "Global bindings
-map <ESC><ESC><ESC> ZQ			"Exit vi
-map <leader>/ :noh<CR>			"Clear search highlighting
-map <leader>L :SyntasticCheck<CR>	"Check file for syntax errors
-map <leader>T :TagbarToggle<CR>		"Display tag sidebar
-map <leader>do <Plug>TaskList		"Launch tasklist plugin
+map <ESC><ESC><ESC> ZQ					"Exit vim unconditionally
+map <leader>/ :noh<CR>					"Clear search highlighting
+map <leader>L :write<CR>:SyntasticCheck<CR>:Errors<CR>	"Check file for syntax errors
+map <leader>T :TagbarToggle<CR>				"Display tag sidebar
+map <leader>do <Plug>TaskList				"Launch tasklist plugin
 
 
 if has("autocmd")
@@ -197,6 +197,7 @@ if has("autocmd")
 	autocmd FileType python nmap <buffer> <localleader>f :YapfFullFormat<CR>
 	autocmd FileType python vmap <buffer> <localleader>f :YapfFormat<CR>
 	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
+	autocmd FileType python nmap <buffer> <localleader>k oimport pdb; pdb.set_trace()<esc>
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 

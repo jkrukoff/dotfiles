@@ -1,2 +1,6 @@
-bin/kerl
-bin/z.sh
+/bin/hub
+/bin/jet
+/bin/kerl
+/bin/otto
+/bin/vault
+/bin/z.sh
