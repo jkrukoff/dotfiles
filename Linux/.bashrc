@@ -101,7 +101,7 @@ function dashed_line {
 function prompt_virtualenv {
 	# Check if I've activated a python virtualenv.
 	if [ -n "$VIRTUAL_ENV" ]; then
-		local version="$(python --version)"
+		local version="$(python --version 2>&1)"
 		echo "venv:${version#* }"
 	fi
 }

@@ -183,7 +183,7 @@ if has("autocmd")
 	autocmd FileType go nmap <buffer> <localleader>e <Plug>(go-rename)
 	autocmd FileType go nmap <buffer> <localleader>f :GoFmt<CR>
 	autocmd FileType go nmap <buffer> <localleader>I :GoImports<CR>
-	autocmd FileType go nmap <buffer> <localleader>k o_ = "breakpoint"<esc>
+	autocmd FileType go nmap <buffer> <localleader>k o_ = "breakpoint"  //TODO: Breakpoint.<esc>
 
 	autocmd FileType go setlocal foldnestmax=1
 
@@ -197,7 +197,7 @@ if has("autocmd")
 	autocmd FileType python nmap <buffer> <localleader>f :YapfFullFormat<CR>
 	autocmd FileType python vmap <buffer> <localleader>f :YapfFormat<CR>
 	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
-	autocmd FileType python nmap <buffer> <localleader>k oimport pdb; pdb.set_trace()<esc>
+	autocmd FileType python nmap <buffer> <localleader>k oimport pdb; pdb.set_trace()  # TODO: Breakpoint.<esc>
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
