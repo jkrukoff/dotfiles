@@ -3,5 +3,5 @@
 source ~/.projects/lib.bash
 cd_project ~/Documents/UBIC/app-unifi-sdn
 
-export PATH="~/.rbenv/bin:$(npm bin):node${PATH}"
+export PATH="$(npm bin):${PATH}"
 eval "$(rbenv init -)"
