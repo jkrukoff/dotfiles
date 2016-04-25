@@ -6,7 +6,7 @@ cd_project ~/Documents/Personal/dotfiles/"$(uname)"
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
 	local path
-	for path in bin .vimrc .gitconfig .gitignore_global .git_template .inputrc .projects; do
+	for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .projects; do
 		cp -va ~/"$path" ./
 	done
 	mkdir .ssh 

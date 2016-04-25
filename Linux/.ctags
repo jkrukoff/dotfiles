@@ -1,0 +1,5 @@
+--exclude=.git
+--exclude=.svn
+--exclude=.hg
+--exclude=node_modules
+--exclude=tags
