@@ -147,6 +147,15 @@ function project {
 
 	local PROJECT_FILE=~/".projects/${PROJECT}.bash"
 
+	# If no match, look for something close.
+	if [ ! -r "$PROJECT_FILE" ]; then
+		local CLOSEST=$(
+			basename -a -s '.bash' ~/.projects/*.bash |
+			fgrep "$PROJECT" |
+			awk '(NR==1 || length<shortest){shortest=length; line=$0} END {print line}')
+			PROJECT_FILE=~/".projects/${CLOSEST}.bash"
+	fi
+
 	if [ -r "$PROJECT_FILE" ]; then
 		echo -ne '\n\n'
 		dashed_line_colored
