@@ -135,36 +135,47 @@ prompt
 # Project management and switching.
 
 function project {
-	local PROJECT="$@"
+	local PROJECT="$*"
 	PROJECT=${PROJECT// /_}
 	PROJECT=${PROJECT//-/_}
 
+	# If no arguments, display current project.
+	if [ -z "${PROJECT}" ]; then
+		if [ -z "${ACTIVE_PROJECT}" ]; then
+			return 1
+		else
+			printf "%s\n" "${ACTIVE_PROJECT}"
+			return
+		fi
+	fi
+
 	function dashed_line_colored {
 		echo -n "${PROMPT_COLOR_PUNC}"
-		dashed_line $COLUMNS left
+		dashed_line "${COLUMNS}" left
 		echo -n "${PROMPT_COLOR_NORM}"
 	}
 
 	local PROJECT_FILE=~/".projects/${PROJECT}.bash"
 
 	# If no match, look for something close.
-	if [ ! -r "$PROJECT_FILE" ]; then
-		local CLOSEST=$(
+	if [ ! -r "${PROJECT_FILE}" ]; then
+		local CLOSEST="$(
 			basename -a -s '.bash' ~/.projects/*.bash |
-			fgrep "$PROJECT" |
-			awk '(NR==1 || length<shortest){shortest=length; line=$0} END {print line}')
-			PROJECT_FILE=~/".projects/${CLOSEST}.bash"
+			fgrep "${PROJECT}" |
+			awk '(NR==1 || length<shortest){shortest=length; line=$0} END {print line}')"
+		PROJECT_FILE=~/".projects/${CLOSEST}.bash"
 	fi
 
-	if [ -r "$PROJECT_FILE" ]; then
+	if [ -r "${PROJECT_FILE}" ]; then
+		PROJECT="$(basename -a -s '.bash' ${PROJECT_FILE})"
 		echo -ne '\n\n'
 		dashed_line_colored
-		echo "${PROMPT_COLOR_OK}Switching to project: $PROJECT"
+		echo "${PROMPT_COLOR_OK}Switching to project: ${PROJECT}"
 		dashed_line_colored
 		echo -ne '\n\n'
-		bash --init-file <(echo "source ~/.bashrc && source \"$PROJECT_FILE\"")
+		ACTIVE_PROJECT="${PROJECT}" bash --init-file <(echo "source ~/.bashrc && source \"${PROJECT_FILE}\"")
 	else
-		echo "${PROMPT_COLOR_ERR}No project file for: $PROJECT"
+		echo "${PROMPT_COLOR_ERR}No project file for: ${PROJECT}"
 	fi
 }
 
