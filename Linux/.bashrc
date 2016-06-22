@@ -106,6 +106,16 @@ function prompt_virtualenv {
 	fi
 }
 
+function prompt_kerl {
+	# Check if I've activated an erlang install.
+	if type -t kerl_deactivate > /dev/null; then
+		local prompt="$(kerl prompt)"
+		local prompt="${prompt# (}"
+		local prompt="${prompt%)}"
+		echo "kerl:${prompt}"
+	fi
+}
+
 function prompt {
 	# Set status line for terminals that support it.
 	local STATUS_LINE
@@ -122,7 +132,7 @@ function prompt {
 
 	local MVTOEDGE="$(tput cr)"
 	local LONGDASH='dashed_line $COLUMNS left'
-	local INFOBLOCK="[${COLOR_USER}\\u@\\h(\$SHLVL) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")\$(prompt_virtualenv)${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
+	local INFOBLOCK="[${COLOR_USER}\\u@\\h(\$SHLVL) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")\$(prompt_virtualenv)\$(prompt_kerl)${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
 
 	# Time to actually set the prompt!
 	PS1="${STATUS_LINE}${PROMPT_COLOR_PUNC}\\[\$(eval ${LONGDASH})\\]${MVTOEDGE}${INFOBLOCK}${PROMPT_COLOR_NORM}\\n\\w \\!\\\$ "
