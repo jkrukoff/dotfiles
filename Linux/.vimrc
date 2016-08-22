@@ -30,6 +30,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'vim-erlang/vim-erlang-skeletons'
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-scripts/TaskList.vim'
 "Disabled plugins
@@ -157,6 +158,11 @@ if has("autocmd")
 	let g:syntastic_erlang_checkers = ["escript"]
 
 	autocmd FileType erlang setlocal foldnestmax=2
+	autocmd FileType erlang setlocal tabstop=8
+	autocmd FileType erlang setlocal softtabstop=4
+	autocmd FileType erlang setlocal shiftwidth=4
+	autocmd FileType erlang setlocal smarttab
+	autocmd FileType erlang setlocal expandtab
 
 	"Go specific settings
 	let g:go_def_mapping_enabled = 0

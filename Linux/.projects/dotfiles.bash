@@ -19,6 +19,9 @@ function save {
 	# Backup installed packages.
 	dpkg --get-selections > .deb-installed
 
+	# Backup sources.
+	cp -va /etc/apt/sources.list.d ./sources.list.d
+
 	# Backup pip installed packages.
 	pip freeze > .pip-installed
 }
