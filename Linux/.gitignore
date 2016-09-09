@@ -1,6 +1,9 @@
+/bin/ecs-cli
+/bin/flynn
 /bin/hub
 /bin/jet
 /bin/kerl
 /bin/otto
+/bin/terraform
 /bin/vault
 /bin/z.sh

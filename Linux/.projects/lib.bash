@@ -1,6 +1,18 @@
 #!/bin/bash
 # Shared functions for bash project files.
 
+COLOR_RESET="$(tput sgr0)"
+COLOR_OK="${COLOR_RESET}$(tput setaf 2)"
+COLOR_ERROR="${COLOR_RESET}$(tput setaf 1)$(tput setab 0)"
+
+function print_ok {
+	printf "%s%s%s\n" "${COLOR_OK}" "$*" "${COLOR_RESET}"
+}
+
+function print_error {
+	printf "%s%s%s\n" "${COLOR_ERROR}" "$*" "${COLOR_RESET}" 1>&2
+}
+
 function cd_project {
 	export PROJECT_PATH="$1"
 	export VIM_TAGS="$PROJECT_PATH/tags"
