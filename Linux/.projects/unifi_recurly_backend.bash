@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source ~/.projects/lib.bash
+cd_project ~/Documents/Services/unifi-recurly-backend
+activate_virtualenv
+
+function mysql.dev {
+  mysql --host=??? --user=??? --password=??? ??? "$@"
+}
+
+function mysql.stg {
+  mysql --host=??? --user=??? --password=??? ??? "$@"
+}
+
+function mysql.prd {
+  mysql --host=??? --user=??? --password=??? ??? "$@"
+}

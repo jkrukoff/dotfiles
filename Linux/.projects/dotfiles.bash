@@ -12,6 +12,7 @@ function save {
 	mkdir .ssh 
 	cp -va ~/.ssh/config .ssh/config
 	cp -va ~/.bash* ./
+	cp -va ~/.vim-erlang-skeletons-templates ./
 
 	# Sanitize some secrets.
 	sed -i '/^export .*TOKEN/d' .bash_profile
@@ -20,7 +21,7 @@ function save {
 	dpkg --get-selections > .deb-installed
 
 	# Backup sources.
-	cp -va /etc/apt/sources.list.d ./sources.list.d
+	cp -va /etc/apt/sources.list.d ./
 
 	# Backup pip installed packages.
 	pip freeze > .pip-installed
@@ -34,6 +35,7 @@ function restore {
 	done
 	cp -va .ssh/config ~/.ssh/config
 	cp -va .bash* ~/
+	cp -va .vim-erlang-skeletons-templates/* ~/
 
 	# Remember some gnome settings.
 	gsettings set org.gnome.desktop.wm.preferences focus-mode sloppy

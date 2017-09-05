@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+import sys
+import uuid
+
+assert len(sys.argv) == 2
+print(uuid.UUID(sys.argv[1]))

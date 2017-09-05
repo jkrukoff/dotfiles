@@ -2,8 +2,7 @@
 /bin/flynn
 /bin/hub
 /bin/jet
-/bin/kerl
-/bin/otto
+/bin/rg
 /bin/terraform
 /bin/vault
 /bin/z.sh

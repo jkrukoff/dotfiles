@@ -37,10 +37,32 @@ function cd_project {
 }
 
 function activate_virtualenv {
-	if [ -d .virtualenv ]; then
-		source .virtualenv/bin/activate
+	local virtualenv_dir="${1:-.virtualenv}"
+	if [ -d "$virtualenv_dir" ]; then
+		source "$virtualenv_dir"/bin/activate
 		echo "Python virtualenv found and activated: $(python --version)"
 	fi
+}
+
+function activate_nvm {
+	local nvm_version="${1:-v6.11.0}"
+	local nvm_dir="${2:-${HOME}/.nvm}"
+	export NVM_DIR="${nvm_dir}"
+	source "${nvm_dir}/nvm.sh"
+	nvm use "${nvm_version}"
+	export PATH="$(npm bin):${PATH}"
+}
+
+function activate_rbenv {
+	local rbenv_version="${1:-2.4.0}"
+	eval "$(rbenv init -)"
+	rbenv local "${rbenv_version}"
+	rbenv version
+}
+
+function activate_gcloud {
+	GCLOUD_PATH="$(gcloud info --format=flattened | grep '^installation.sdk_root: ' | tr -s ' ' | cut -f 2 -d ' ')"
+	export PATH="${GCLOUD_PATH}/bin:$PATH"
 }
 
 function start_docker {

@@ -26,7 +26,7 @@ function terraform.ubnt {(
   sudo chown jkrukoff:jkrukoff /aws
   ln -st /aws ~/.aws/credentials
   eval "$(ssh-agent)"
-  ssh-add "~/.ssh/*.pem"
+  ssh-add ~/.ssh/*.pem
 
   terraform get && terraform "$@"
 )}

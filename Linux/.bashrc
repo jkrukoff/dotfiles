@@ -46,7 +46,7 @@ alias ls='ls -b -F'
 alias lsd='ls -d */'
 alias md='mkdir'
 alias rd='rmdir'
-alias pstree='pstree -g3'
+alias pstree='pstree -g'
 alias tree='tree -FA'
 alias info='info --vi-keys'
 alias have='which -s'
@@ -64,9 +64,12 @@ HISTFILESIZE=0
 
 # Prompt variables.
 
-# Provide default column width.
-if [ -z "$COLUMNS" ]; then
-	COLUMNS=80
+# Some defaults for minimal environments.
+if [ -z "${COLUMNS}" ]; then
+  export COLUMNS=80
+fi
+if [ -z "${TERM}" ]; then
+  export TERM=vt100
 fi
 
 # Git prompt variables.
@@ -102,7 +105,7 @@ function prompt_virtualenv {
 	# Check if I've activated a python virtualenv.
 	if [ -n "$VIRTUAL_ENV" ]; then
 		local version="$(python --version 2>&1)"
-		echo "venv:${version#* }"
+		echo "venv:${version#* } "
 	fi
 }
 
@@ -112,7 +115,7 @@ function prompt_kerl {
 		local prompt="$(kerl prompt)"
 		local prompt="${prompt# (}"
 		local prompt="${prompt%)}"
-		echo "kerl:${prompt}"
+		echo "kerl:${prompt} "
 	fi
 }
 

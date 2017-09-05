@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git grep -E 'TODO' 1>&2
+exit 0
