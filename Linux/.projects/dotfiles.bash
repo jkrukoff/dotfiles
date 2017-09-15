@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Personal/dotfiles/"$(uname)"
+tags
 
 function save {
 	echo "Copying dotfiles from ~/ to ${PWD}."
@@ -12,7 +13,7 @@ function save {
 	mkdir .ssh 
 	cp -va ~/.ssh/config .ssh/config
 	cp -va ~/.bash* ./
-	cp -va ~/.vim-erlang-skeletons-templates ./
+	cp -va ~/.vim-templates ./
 
 	# Sanitize some secrets.
 	sed -i '/^export .*TOKEN/d' .bash_profile
@@ -35,7 +36,7 @@ function restore {
 	done
 	cp -va .ssh/config ~/.ssh/config
 	cp -va .bash* ~/
-	cp -va .vim-erlang-skeletons-templates/* ~/
+	cp -va .vim-templates/* ~/
 
 	# Remember some gnome settings.
 	gsettings set org.gnome.desktop.wm.preferences focus-mode sloppy

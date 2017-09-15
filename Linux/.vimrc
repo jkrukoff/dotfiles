@@ -25,6 +25,7 @@ Plugin 'nginx/nginx'
 Plugin 'saltstack/salt-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'sergei-dyshel/vim-yapf-format'
+Plugin 'tibabit/vim-templates'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -34,7 +35,6 @@ Plugin 'vim-erlang/erlang-motions.vim'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'vim-erlang/vim-erlang-skeletons'
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-scripts/TaskList.vim'
 "Disabled plugins
@@ -152,6 +152,11 @@ let g:syntastic_id_checkers = 1
 let g:syntastic_sort_aggregated_errors = 1
 let g:syntastic_mode_map = {"mode": "passive"}
 
+let g:tmpl_auto_initialize = 0
+let g:tmpl_search_paths = ['~/.vim-templates']
+let g:tmpl_author_name = 'John Krukoff'
+let g:tmpl_author_email = 'john@krukoff.us'
+
 
 "Global bindings
 map <ESC><ESC><ESC> ZQ					"Exit vim unconditionally
@@ -169,8 +174,6 @@ if has("autocmd")
 	let g:erlang_show_errors = 1
 	let g:erlang_highlight_bifs = 1
 	let g:erlang_highlight_special_atoms = 1
-	let g:erl_author='John Krukoff'
-	let g:erl_tpl_dir=expand('~/.vim-erlang-skeletons-templates')
 	let g:syntastic_erlang_checkers = ['escript', 'syntaxerl']
 
 	autocmd FileType erlang setlocal textwidth=70

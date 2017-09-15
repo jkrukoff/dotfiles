@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Services/unifi-recurly-backend
+tags
 activate_virtualenv
 
 function mysql.dev {

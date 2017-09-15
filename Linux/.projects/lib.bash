@@ -24,16 +24,27 @@ function cd_project {
 		CDPATH=".:$PROJECT_PATH"
 	fi
 
-	if [ -n "$(find . -maxdepth 2 -name '*.go' -print -quit)" ]; then
-		gotags -R=true . > tags
-	else
-		ctags --recurse=yes -f - > tags 2> /dev/null
-	fi
-
 	if [ -d "$PROJECT_PATH/.git" ]; then
 		git fetch
 		git status
 	fi
+}
+
+function tags {
+	local kind="${1:ctags}"
+	case "${kind}" in
+	ctags)
+		ctags --recurse=yes -f tags 2> /dev/null
+		;;
+	erltags)
+		~/.vim/bundle/vim-erlang-tags/bin/vim-erlang-tags.erl -p -o tags
+		ctags --append --recurse=yes -f tags 2> /dev/null
+		;;
+	gotags)
+		gotags -R=true . > tags
+		ctags --append --recurse=yes -f tags 2> /dev/null
+		;;
+	esac
 }
 
 function activate_virtualenv {

@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Services/firmware-update
+tags
 activate_virtualenv
 
 function firmware-update-up {

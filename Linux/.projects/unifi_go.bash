@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Services/unifi-go
+tags
 activate_gcloud
 activate_virtualenv
 

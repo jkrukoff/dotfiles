@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Operations/ubnt_terraform
+tags
 
 function terraform.ubnt-cleanup {
   kill "${SSH_AGENT_PID}"

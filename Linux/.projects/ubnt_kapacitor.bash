@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Operations/ubnt-kapacitor
+tags
 
 export INFLUX_USERNAME=???
 export INFLUX_PASSWORD=???

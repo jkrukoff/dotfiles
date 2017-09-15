@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/Minimal\ WebRTC\ Test
+tags
 
 export NVM_DIR=~/.nvm
 source "${NVM_DIR}/nvm.sh"

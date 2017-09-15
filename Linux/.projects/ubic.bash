@@ -2,6 +2,7 @@
 
 source ~/.projects/lib.bash
 cd_project ~/Documents/UBIC/ubic
+tags
 
 source ~/.kerl/releases/R16B02/activate
 activate_virtualenv .
