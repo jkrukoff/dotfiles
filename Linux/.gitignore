@@ -2,6 +2,8 @@
 /bin/flynn
 /bin/hub
 /bin/jet
+/bin/kerl
+/bin/rebar3
 /bin/rg
 /bin/terraform
 /bin/vault

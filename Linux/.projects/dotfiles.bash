@@ -50,4 +50,7 @@ function restore {
 
 	# Install kerl, an erlang environment build tool.
 	curl -#L https://raw.githubusercontent.com/yrashk/kerl/master/kerl -o ~/bin/kerl
+
+	# Install rebar3, an erlang build tool.
+	curl -#L https://s3.amazonaws.com/rebar3/rebar3 -o ~/bin/rebar3
 }
