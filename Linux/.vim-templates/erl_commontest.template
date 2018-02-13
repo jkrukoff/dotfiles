@@ -17,7 +17,7 @@
          init_per_testcase/2,
          end_per_testcase/2]).
 
-%% test cases
+%% Test Cases
 -export([
          %% TODO: test case names go here
         ]).
@@ -33,22 +33,21 @@ all() ->
     ].
 
 suite() ->
-    [{ct_hooks,[cth_surefire]}, {timetrap, {seconds, 30}}].
+    [{ct_hooks, [cth_surefire]}, {timetrap, {seconds, 30}}].
 
 groups() ->
     [
-        %% TODO: group definitions here e.g.
-        %% {crud, [], [
-        %%          t_create_resource,
-        %%          t_read_resource,
-        %%          t_update_resource,
-        %%          t_delete_resource
-        %%         ]}
-
+     %% TODO: group definitions here e.g.
+     %% {crud, [], [
+     %%          t_create_resource,
+     %%          t_read_resource,
+     %%          t_update_resource,
+     %%          t_delete_resource
+     %%         ]}
     ].
 
 %%%===================================================================
-%%% Overall setup/teardown
+%%% Overall Setup/Teardown
 %%%===================================================================
 init_per_suite(Config) ->
     Config.
@@ -57,7 +56,7 @@ end_per_suite(_Config) ->
     ok.
 
 %%%===================================================================
-%%% Group specific setup/teardown
+%%% Group Specific Setup/Teardown
 %%%===================================================================
 group(_Groupname) ->
     [].
@@ -66,11 +65,10 @@ init_per_group(_Groupname, Config) ->
     Config.
 
 end_per_group(_Groupname, _Config) ->
-
     ok.
 
 %%%===================================================================
-%%% Testcase specific setup/teardown
+%%% Test Case Specific Setup/Teardown
 %%%===================================================================
 init_per_testcase(_TestCase, Config) ->
     Config.
@@ -82,3 +80,8 @@ end_per_testcase(_TestCase, _Config) ->
 %%% Individual Test Cases (from groups() definition)
 %%%===================================================================
 {{CURSOR}}
+
+%%%===================================================================
+%%% Internal Functions
+%%%===================================================================
+

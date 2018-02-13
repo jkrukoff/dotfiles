@@ -1,0 +1,3 @@
+deb [arch=amd64] https://download.docker.com/linux/ubuntu artful edge
+# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu artful stable
+# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu artful edge

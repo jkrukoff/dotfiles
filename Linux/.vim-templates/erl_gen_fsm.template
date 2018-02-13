@@ -10,6 +10,8 @@
 %% API
 -export([start_link/0]).
 
+-ignore_xref([start_link/0]).
+
 %% gen_fsm callbacks
 -export([init/1,
          state_name/2,
@@ -179,6 +181,6 @@ code_change(_OldVsn, StateName, State, _Extra) ->
     {ok, StateName, State}.
 
 %%%===================================================================
-%%% Internal functions
+%%% Internal Functions
 %%%===================================================================
 

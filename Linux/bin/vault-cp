@@ -1,0 +1,39 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n'
+
+source="${1:-}"
+dest="${2:-}"
+
+source_path="${source%/*}"
+source_pattern="${source##*/}"
+source_pattern="${source_pattern:-*}"
+
+usage() {
+  cat <<-EOF
+		vault-cp source/[pattern] destination
+		
+		Copy all secrets from one vault path to another. Source must end with a
+		shell pattern or a trailing slash.
+EOF
+  exit 1
+}
+
+if [[ -z "${source_path}" || -z "${dest}" ]]; then
+  usage
+fi
+
+echo "Copying from ${source_path} to ${dest}"
+
+keys="$(vault list -format=json "${source_path}" | jq -r '.[]')"
+for key in ${keys}; do
+  # shellcheck disable=SC2053
+  if [[ "${key}" == ${source_pattern} ]]; then
+    echo "Copying ${key}"
+    vault read -format=json "${source_path}/${key}" | jq '.data' | vault write "${dest}/${key}" -
+  else
+    echo "Skipping ${key}"
+  fi
+done
+
+echo "Done."

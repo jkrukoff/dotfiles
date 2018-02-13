@@ -1,1 +1,1 @@
-deb https://packages.cloud.google.com/apt cloud-sdk-zesty main
+deb https://packages.cloud.google.com/apt cloud-sdk-artful main # disabled on upgrade to artful

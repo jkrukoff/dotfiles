@@ -1,1 +1,1 @@
-deb-src https://deb.nodesource.com/node_6.x zesty main
+deb-src https://deb.nodesource.com/node_6.x artful main # disabled on upgrade to artful

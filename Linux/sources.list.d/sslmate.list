@@ -1,2 +1,2 @@
-deb http://packages.sslmate.com/ubuntu zesty main
-deb-src http://packages.sslmate.com/ubuntu zesty main
+deb http://packages.sslmate.com/debian stretch main
+deb-src http://packages.sslmate.com/debian stretch main
