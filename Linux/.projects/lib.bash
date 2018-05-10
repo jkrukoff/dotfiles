@@ -76,6 +76,20 @@ function activate_gcloud {
 	export PATH="${GCLOUD_PATH}/bin:$PATH"
 }
 
+function activate_awsume {
+	#Auto-Complete function for AWSume
+	_awsume() {
+		local cur prev opts
+		COMPREPLY=()
+		cur="${COMP_WORDS[COMP_CWORD]}"
+		prev="${COMP_WORDS[COMP_CWORD-1]}"
+		opts=$(awsumepy --rolesusers)
+		COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+		return 0
+	}
+	complete -F _awsume awsume
+}
+
 function start_docker {
 	if ! docker version > /dev/null; then
 		sudo systemctl start docker

@@ -13,8 +13,9 @@ Plugin 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'fs111/pydoc.vim'
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'hashivim/vim-terraform'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ludovicchabant/vim-gutentags'
@@ -257,6 +258,14 @@ if has("autocmd")
 	autocmd FileType java setlocal softtabstop=4
 	autocmd FileType java setlocal shiftwidth=4
 	autocmd FileType java setlocal expandtab
+
+	"Terraform specific settings
+	autocmd FileType terraform nmap <buffer> <localleader>f :TerraformFmt<CR>
+	autocmd FileType terraform nmap <buffer> <localleader>L :Terraform validate<CR>
+	autocmd FileType terraform setlocal tabstop=2
+	autocmd FileType terraform setlocal softtabstop=2
+	autocmd FileType terraform setlocal shiftwidth=2
+	autocmd FileType terraform setlocal expandtab
 
 	"TICK script specific settings
 	let g:tick_fmt_autosave = 0

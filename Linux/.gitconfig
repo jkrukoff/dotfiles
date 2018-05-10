@@ -9,7 +9,3 @@
 	tool = meld
 [init]
 	templatedir = ~/.git_template
-[http "https://git.demo.localflynn.com"]
-	sslCAInfo = /home/jkrukoff/.flynn/ca-certs/demo-virtualbox.pem
-[credential "https://git.demo.localflynn.com"]
-	helper = /home/jkrukoff/bin/flynn git-credentials

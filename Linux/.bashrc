@@ -1,14 +1,13 @@
 #!/bin/bash
 # .bashrc
 
-# Pull in system defaults.
-if [ -f /etc/bash.bashrc ]; then
-	source /etc/bash.bashrc
-fi
-
-if [ -f /etc/skel/.bashrc ]; then
-	source /etc/skel/.bashrc
-fi
+# Pull in system defaults from known fedora and ubuntu directories.
+for DEFAULT_FILE in /etc/bashrc /etc/bash.bashrc /etc/skel/.bashrc /usr/share/git-core/contrib/completion/git-prompt.sh; do
+	if [ -f "$DEFAULT_FILE" ]; then
+		source "$DEFAULT_FILE"
+	fi
+done
+unset DEFAULT_FILE
 
 # Shell options. Only set for interactive shell, leave default options for
 # scripts.
@@ -146,6 +145,10 @@ function prompt {
 prompt
 
 # Project management and switching.
+
+function projects {
+	find ~/.projects/*.bash -type f -name lib.bash -prune -o -exec basename -s .bash \{\} \; | sort
+}
 
 function project {
 	local PROJECT="$*"
