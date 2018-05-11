@@ -1,22 +1,21 @@
 #!/bin/bash
-# .bash_profile
+# ~/.bash_profile
 
 # User specific environment and startup programs.
-
-export PATH="$PATH:/usr/local/bin:$HOME/bin:$HOME/.local/bin"
-export INPUTRC="$HOME/.inputrc"
-export BASH_ENV="$HOME/.bashrc"
-export EDITOR=`which vim`
+export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
+export INPUTRC="${HOME}/.inputrc"
+export BASH_ENV="${HOME}/.bashrc"
+EDITOR="$(which vim)"
+export EDITOR
 export CLICOLOR=true
 
 # Development environment variables.
-
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 export VAGRANT_HOME=/data/jkrukoff/.vagrant.d
-export GOPATH="$HOME/Documents/go"
-export PATH="$PATH:$GOPATH/bin"
+export GOPATH="${HOME}/Documents/go"
+export PATH="${PATH}:${GOPATH}/bin"
 
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
+  source ~/.bashrc
 fi
