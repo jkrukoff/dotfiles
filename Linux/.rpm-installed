@@ -430,6 +430,7 @@ git-core.x86_64                            2.17.0-3.fc28                @updates
 git-core-doc.noarch                        2.17.0-3.fc28                @updates
 gitg.x86_64                                3.26.0-5.fc28                @fedora 
 gitg-libs.x86_64                           3.26.0-5.fc28                @fedora 
+gitk.noarch                                2.17.0-3.fc28                @updates
 gjs.x86_64                                 1.52.2-1.fc28                @fedora 
 glib-networking.x86_64                     2.56.0-1.fc28                @fedora 
 glib2.x86_64                               2.56.1-1.fc28                @fedora 
@@ -513,6 +514,9 @@ gnuplot-common.x86_64                      5.0.6-8.fc28                 @fedora
 gnutls.x86_64                              3.6.2-1.fc28                 @fedora 
 go-srpm-macros.noarch                      2-16.fc28                    @fedora 
 gobject-introspection.x86_64               1.56.1-1.fc28                @fedora 
+golang.x86_64                              1.10.1-1.fc28                @fedora 
+golang-bin.x86_64                          1.10.1-1.fc28                @fedora 
+golang-src.noarch                          1.10.1-1.fc28                @fedora 
 gom.x86_64                                 0.3.3-5.fc28                 @fedora 
 google-android-emoji-fonts.noarch          1.01-0.9.20120228git.fc28    @fedora 
 google-chrome-stable.x86_64                66.0.3359.139-1              @google-chrome
@@ -990,6 +994,7 @@ libselinux.x86_64                          2.7-13.fc28                  @fedora
 libselinux-utils.x86_64                    2.7-13.fc28                  @fedora 
 libsemanage.x86_64                         2.7-12.fc28                  @fedora 
 libsepol.x86_64                            2.7-6.fc28                   @fedora 
+libserf.x86_64                             1.3.9-6.fc28                 @fedora 
 libshout.x86_64                            2.2.2-18.fc28                @fedora 
 libsigc++20.x86_64                         2.10.0-5.fc28                @fedora 
 libsigsegv.x86_64                          2.11-5.fc28                  @fedora 
@@ -1147,6 +1152,7 @@ mcelog.x86_64                              3:153-1.fc28                 @fedora
 mcpp.x86_64                                2.7.2-20.fc28                @fedora 
 mdadm.x86_64                               4.0-5.fc27                   @fedora 
 meld.noarch                                3.18.0-2.fc28                @fedora 
+mercurial.x86_64                           4.4.2-4.fc28                 @fedora 
 mesa-dri-drivers.x86_64                    18.0.2-1.fc28                @updates
 mesa-filesystem.x86_64                     18.0.2-1.fc28                @updates
 mesa-libEGL.x86_64                         18.0.2-1.fc28                @updates
@@ -1584,6 +1590,8 @@ startup-notification.x86_64                0.12-15.fc28                 @fedora
 stix-fonts.noarch                          1.1.0-12.fc28                @fedora 
 stoken-libs.x86_64                         0.91-5.fc28                  @fedora 
 strace.x86_64                              4.22-1.fc28                  @fedora 
+subversion.x86_64                          1.10.0-2.fc28                @updates
+subversion-libs.x86_64                     1.10.0-2.fc28                @updates
 sudo.x86_64                                1.8.22-0.2.b1.fc28           @fedora 
 suitesparse.x86_64                         4.4.6-11.fc28                @fedora 
 sushi.x86_64                               3.28.3-1.fc28                @updates
@@ -1654,6 +1662,7 @@ usbredir.x86_64                            0.7.1-7.fc28                 @fedora
 usbutils.x86_64                            009-2.fc28                   @fedora 
 usermode.x86_64                            1.112-1.fc28                 @fedora 
 userspace-rcu.x86_64                       0.10.1-2.fc28                @fedora 
+utf8proc.x86_64                            2.1.1-2.fc28                 @updates
 util-linux.x86_64                          2.32-2.fc28                  @fedora 
 util-linux-user.x86_64                     2.32-2.fc28                  @fedora 
 uuid.x86_64                                1.6.2-40.fc28                @fedora 

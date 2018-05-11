@@ -54,7 +54,7 @@ alias hl='source-highlight --failsafe -f esc256 -n -i'
 source ~/bin/z.sh
 
 # History variables.
-HISTIGNORE="[   ]*:&:bg:fg"
+HISTIGNORE='[	 ]*:&:bg:fg'
 HISTCONTROL=ignoredups
 HISTFILESIZE=0
 

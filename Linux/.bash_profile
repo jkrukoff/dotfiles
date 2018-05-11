@@ -15,6 +15,8 @@ export VAGRANT_HOME=/data/jkrukoff/.vagrant.d
 export GOPATH="${HOME}/Documents/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
+# Secrets.
+
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then
   source ~/.bashrc
