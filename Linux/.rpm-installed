@@ -74,6 +74,9 @@ alsa-plugins-pulseaudio.x86_64             1.1.6-3.fc28                 @updates
 alsa-ucm.x86_64                            1.1.6-2.fc28                 @fedora 
 alsa-utils.x86_64                          1.1.6-1.fc28                 @fedora 
 annobin.x86_64                             5.2-1.fc28                   @fedora 
+apache-commons-codec.noarch                1.11-3.fc28                  @fedora 
+apache-commons-io.noarch                   1:2.6-3.fc28                 @fedora 
+apache-commons-logging.noarch              1.2-13.fc28                  @fedora 
 appstream-data.noarch                      28-7.fc28                    @fedora 
 apr.x86_64                                 1.6.3-5.fc28                 @fedora 
 apr-util.x86_64                            1.6.1-5.fc28                 @fedora 
@@ -81,8 +84,11 @@ argyllcms.x86_64                           1.9.2-5.fc28                 @fedora
 aspell.x86_64                              12:0.60.6.1-21.fc28          @fedora 
 at.x86_64                                  3.1.20-10.fc28               @fedora 
 at-spi2-atk.x86_64                         2.26.2-1.fc28                @fedora 
+at-spi2-atk-devel.x86_64                   2.26.2-1.fc28                @fedora 
 at-spi2-core.x86_64                        2.28.0-1.fc28                @fedora 
+at-spi2-core-devel.x86_64                  2.28.0-1.fc28                @fedora 
 atk.x86_64                                 2.28.1-1.fc28                @fedora 
+atk-devel.x86_64                           2.28.1-1.fc28                @fedora 
 atkmm.x86_64                               2.24.2-6.fc28                @fedora 
 atlas.x86_64                               3.10.3-5.fc28                @updates
 atmel-firmware.noarch                      1.3-18.fc28                  @fedora 
@@ -93,11 +99,15 @@ augeas-libs.x86_64                         1.10.1-2.fc28                @fedora
 authselect.x86_64                          0.4-2.fc28                   @updates
 authselect-compat.x86_64                   0.4-2.fc28                   @updates
 authselect-libs.x86_64                     0.4-2.fc28                   @updates
+autoconf.noarch                            2.69-27.fc28                 @fedora 
 autocorr-en.noarch                         1:6.0.3.2-5.fc28             @updates
 autogen-libopts.x86_64                     5.18.12-7.fc28               @fedora 
+automake.noarch                            1.15.1-5.fc28                @fedora 
 avahi.x86_64                               0.7-12.fc28                  @fedora 
 avahi-glib.x86_64                          0.7-12.fc28                  @fedora 
 avahi-libs.x86_64                          0.7-12.fc28                  @fedora 
+avalon-framework.noarch                    4.3-19.fc28                  @fedora 
+avalon-logkit.noarch                       2.1-29.fc28                  @fedora 
 awscli.noarch                              1.14.50-2.fc28               @fedora 
 b43-fwcutter.x86_64                        019-12.fc28                  @fedora 
 b43-openfwwf.noarch                        5.2-17.fc28                  @fedora 
@@ -106,6 +116,8 @@ baobab.x86_64                              3.28.0-1.fc28                @fedora
 basesystem.noarch                          11-5.fc28                    @fedora 
 bash.x86_64                                4.4.19-2.fc28                @fedora 
 bash-completion.noarch                     1:2.7-4.fc28                 @fedora 
+batik.noarch                               1.9-6.fc28                   @fedora 
+batik-css.noarch                           1.9-6.fc28                   @fedora 
 bc.x86_64                                  1.07.1-5.fc28                @fedora 
 bind-export-libs.x86_64                    32:9.11.3-6.fc28             @fedora 
 bind-libs.x86_64                           32:9.11.3-6.fc28             @fedora 
@@ -132,11 +144,14 @@ brotli.x86_64                              1.0.1-3.fc28                 @fedora
 btrfs-progs.x86_64                         4.15.1-1.fc28                @fedora 
 bubblewrap.x86_64                          0.2.0-3.fc28                 @fedora 
 bzip2.x86_64                               1.0.6-26.fc28                @fedora 
+bzip2-devel.x86_64                         1.0.6-26.fc28                @fedora 
 bzip2-libs.x86_64                          1.0.6-26.fc28                @fedora 
 c-ares.x86_64                              1.13.0-4.fc28                @fedora 
 ca-certificates.noarch                     2018.2.22-3.fc28             @fedora 
 cairo.x86_64                               1.15.12-2.fc28               @updates
+cairo-devel.x86_64                         1.15.12-2.fc28               @updates
 cairo-gobject.x86_64                       1.15.12-2.fc28               @updates
+cairo-gobject-devel.x86_64                 1.15.12-2.fc28               @updates
 cairomm.x86_64                             1.12.0-7.fc28                @fedora 
 capstone.x86_64                            3.0.4-14.fc28                @fedora 
 caribou.x86_64                             0.4.21-9.fc28                @updates
@@ -157,6 +172,7 @@ clucene-core.x86_64                        2.3.3.4-31.20130812.e8e3d20git.fc28
 clutter.x86_64                             1.26.2-6.fc28                @fedora 
 clutter-gst3.x86_64                        3.0.26-1.fc28                @fedora 
 clutter-gtk.x86_64                         1.8.4-3.fc28                 @fedora 
+cmake-filesystem.x86_64                    3.11.0-1.fc28                @fedora 
 cogl.x86_64                                1.22.2-10.fc28               @fedora 
 color-filesystem.noarch                    1-20.fc28                    @fedora 
 colord.x86_64                              1.4.2-1.fc28                 @fedora 
@@ -171,7 +187,7 @@ coreutils.x86_64                           8.29-6.fc28                  @updates
 coreutils-common.x86_64                    8.29-6.fc28                  @updates
 corosynclib.x86_64                         2.4.4-1.fc28                 @fedora 
 cpio.x86_64                                2.12-7.fc28                  @fedora 
-cpp.x86_64                                 8.0.1-0.20.fc28              @fedora 
+cpp.x86_64                                 8.1.1-1.fc28                 @updates
 cracklib.x86_64                            2.9.6-13.fc28                @fedora 
 cracklib-dicts.x86_64                      2.9.6-13.fc28                @fedora 
 crda.x86_64                                3.18_2016.02.08-7.fc28       @fedora 
@@ -195,6 +211,7 @@ cyrus-sasl-gssapi.x86_64                   2.1.27-0.1rc7.fc28           @fedora
 cyrus-sasl-lib.x86_64                      2.1.27-0.1rc7.fc28           @fedora 
 cyrus-sasl-plain.x86_64                    2.1.27-0.1rc7.fc28           @fedora 
 dbus.x86_64                                1:1.12.8-1.fc28              @updates
+dbus-devel.x86_64                          1:1.12.8-1.fc28              @updates
 dbus-glib.x86_64                           0.110-2.fc28                 @fedora 
 dbus-libs.x86_64                           1:1.12.8-1.fc28              @updates
 dbus-x11.x86_64                            1:1.12.8-1.fc28              @updates
@@ -319,6 +336,7 @@ exempi.x86_64                              2.4.5-1.fc28                 @fedora
 exiv2.x86_64                               0.26-8.fc28                  @fedora 
 exiv2-libs.x86_64                          0.26-8.fc28                  @fedora 
 expat.x86_64                               2.2.5-3.fc28                 @fedora 
+expat-devel.x86_64                         2.2.5-3.fc28                 @fedora 
 f27-backgrounds-base.noarch                27.0.1-3.fc28                @fedora 
 f27-backgrounds-gnome.noarch               27.0.1-3.fc28                @fedora 
 f28-backgrounds-base.noarch                28.1.4-1.fc28                @updates
@@ -348,18 +366,23 @@ firewalld-filesystem.noarch                0.5.2-2.fc28                 @fedora
 flac-libs.x86_64                           1.3.2-6.fc28                 @fedora 
 flatpak.x86_64                             0.11.3-1.fc28                @fedora 
 flatpak-libs.x86_64                        0.11.3-1.fc28                @fedora 
+fontbox.noarch                             2.0.9-2.fc28                 @updates
 fontconfig.x86_64                          2.13.0-3.fc28                @fedora 
+fontconfig-devel.x86_64                    2.13.0-3.fc28                @fedora 
 fontpackages-filesystem.noarch             1.44-21.fc28                 @fedora 
 foomatic.x86_64                            4.0.12-23.fc28               @fedora 
 foomatic-db.noarch                         4.0-57.20180102.fc28         @fedora 
 foomatic-db-filesystem.noarch              4.0-57.20180102.fc28         @fedora 
 foomatic-db-ppds.noarch                    4.0-57.20180102.fc28         @fedora 
+fop.noarch                                 2.0-9.fc28                   @fedora 
 fpaste.noarch                              0.3.9.1-3.fc28               @fedora 
 fpc-srpm-macros.noarch                     1.1-4.fc28                   @fedora 
 fprintd.x86_64                             0.8.0-2.fc28                 @fedora 
 fprintd-pam.x86_64                         0.8.0-2.fc28                 @fedora 
 freetype.x86_64                            2.8-10.fc28                  @fedora 
+freetype-devel.x86_64                      2.8-10.fc28                  @fedora 
 fribidi.x86_64                             0.19.7-7.fc28                @fedora 
+fribidi-devel.x86_64                       0.19.7-7.fc28                @fedora 
 fros.noarch                                1.1-15.fc28                  @fedora 
 fros-gnome.noarch                          1.1-15.fc28                  @fedora 
 fuse.x86_64                                2.9.7-11.fc28                @fedora 
@@ -372,7 +395,8 @@ fwupdate-libs.x86_64                       10-6.fc28                    @fedora
 gamin.x86_64                               0.1.10-30.fc28               @fedora 
 gawk.x86_64                                4.2.1-1.fc28                 @fedora 
 gc.x86_64                                  7.6.4-3.fc28                 @fedora 
-gcc.x86_64                                 8.0.1-0.20.fc28              @fedora 
+gcc.x86_64                                 8.1.1-1.fc28                 @updates
+gcc-c++.x86_64                             8.1.1-1.fc28                 @updates
 gcr.x86_64                                 3.28.0-1.fc28                @fedora 
 gd.x86_64                                  2.2.5-3.fc28                 @fedora 
 gdb-headless.x86_64                        8.1-11.fc28                  @fedora 
@@ -380,6 +404,7 @@ gdbm.x86_64                                1:1.14.1-4.fc28              @fedora
 gdbm-libs.x86_64                           1:1.14.1-4.fc28              @fedora 
 gdisk.x86_64                               1.0.3-6.fc28                 @fedora 
 gdk-pixbuf2.x86_64                         2.36.12-1.fc28               @fedora 
+gdk-pixbuf2-devel.x86_64                   2.36.12-1.fc28               @fedora 
 gdk-pixbuf2-modules.x86_64                 2.36.12-1.fc28               @fedora 
 gdm.x86_64                                 1:3.28.1-1.fc28              @fedora 
 gdouros-symbola-fonts.noarch               10.24-2.fc28                 @fedora 
@@ -432,8 +457,10 @@ gitg.x86_64                                3.26.0-5.fc28                @fedora
 gitg-libs.x86_64                           3.26.0-5.fc28                @fedora 
 gitk.noarch                                2.17.0-3.fc28                @updates
 gjs.x86_64                                 1.52.2-1.fc28                @fedora 
+gl-manpages.noarch                         1.1-15.20161227.fc28         @fedora 
 glib-networking.x86_64                     2.56.0-1.fc28                @fedora 
 glib2.x86_64                               2.56.1-1.fc28                @fedora 
+glib2-devel.x86_64                         2.56.1-1.fc28                @fedora 
 glibc.x86_64                               2.27-8.fc28                  @fedora 
 glibc-all-langpacks.x86_64                 2.27-8.fc28                  @fedora 
 glibc-common.x86_64                        2.27-8.fc28                  @fedora 
@@ -537,6 +564,7 @@ gpgme.x86_64                               1.10.0-4.fc28                @fedora
 gpgmepp.x86_64                             1.10.0-4.fc28                @fedora 
 gpm-libs.x86_64                            1.20.7-15.fc28               @fedora 
 graphite2.x86_64                           1.3.10-5.fc28                @fedora 
+graphite2-devel.x86_64                     1.3.10-5.fc28                @fedora 
 graphviz.x86_64                            2.40.1-20.fc28               @fedora 
 grep.x86_64                                3.1-5.fc28                   @fedora 
 grilo.x86_64                               0.3.4-3.fc28                 @fedora 
@@ -567,6 +595,7 @@ gtk-update-icon-cache.x86_64               3.22.30-1.fc28               @fedora
 gtk-vnc2.x86_64                            0.7.2-1.fc28                 @fedora 
 gtk2.x86_64                                2.24.32-2.fc28               @fedora 
 gtk3.x86_64                                3.22.30-1.fc28               @fedora 
+gtk3-devel.x86_64                          3.22.30-1.fc28               @fedora 
 gtkmm30.x86_64                             3.22.2-2.fc28                @fedora 
 gtksourceview3.x86_64                      3.24.7-1.fc28                @fedora 
 gtkspell3.x86_64                           3.0.9-5.fc28                 @fedora 
@@ -592,7 +621,9 @@ gvnc.x86_64                                0.7.2-1.fc28                 @fedora
 gzip.x86_64                                1.9-3.fc28                   @fedora 
 hardlink.x86_64                            1:1.3-6.fc28                 @fedora 
 harfbuzz.x86_64                            1.7.5-3.fc28                 @fedora 
+harfbuzz-devel.x86_64                      1.7.5-3.fc28                 @fedora 
 harfbuzz-icu.x86_64                        1.7.5-3.fc28                 @fedora 
+hawtjni-runtime.noarch                     1.15-3.fc28                  @fedora 
 hicolor-icon-theme.noarch                  0.17-2.fc28                  @fedora 
 hostname.x86_64                            3.20-3.fc28                  @fedora 
 hplip.x86_64                               3.18.4-1.fc28                @updates
@@ -668,13 +699,21 @@ iwl6000g2b-firmware.noarch                 18.168.6.1-83.fc28.1         @fedora
 iwl6050-firmware.noarch                    41.28.5.1-83.fc28.1          @fedora 
 iwl7260-firmware.noarch                    1:25.30.13.0-83.fc28.1       @fedora 
 jack-audio-connection-kit.x86_64           1.9.12-4.fc28                @fedora 
+jai-imageio-core.noarch                    1.2-0.22.20100217cvs.fc28    @fedora 
+jakarta-commons-httpclient.noarch          1:3.1-28.fc28                @fedora 
+jansi.noarch                               1.16-3.fc28                  @fedora 
+jansi-native.x86_64                        1.7-5.fc28                   @fedora 
 jansson.x86_64                             2.11-1.fc28                  @fedora 
 jasper-libs.x86_64                         2.0.14-3.fc28                @fedora 
 java-1.8.0-openjdk-headless.x86_64         1:1.8.0.171-4.b10.fc28       @updates
+java-openjdk.x86_64                        1:10.0.1.10-3.fc28           @updates
+java-openjdk-devel.x86_64                  1:10.0.1.10-3.fc28           @updates
+java-openjdk-headless.x86_64               1:10.0.1.10-3.fc28           @updates
 javapackages-tools.noarch                  5.0.0-12.fc28                @fedora 
 jbig2dec-libs.x86_64                       0.14-2.fc28                  @fedora 
 jbigkit-libs.x86_64                        2.1-12.fc28                  @fedora 
 jimtcl.x86_64                              0.77-5.fc28                  @fedora 
+jline.noarch                               2.13-11.fc28                 @fedora 
 jomolhari-fonts.noarch                     0.003-24.fc28                @fedora 
 jq.x86_64                                  1.5-12.fc28                  @fedora 
 js-jquery.noarch                           3.2.1-3.fc28                 @fedora 
@@ -686,28 +725,28 @@ jwhois.x86_64                              4.0-51.fc28                  @fedora
 kbd.x86_64                                 2.0.4-5.fc28                 @fedora 
 kbd-legacy.noarch                          2.0.4-5.fc28                 @fedora 
 kbd-misc.noarch                            2.0.4-5.fc28                 @fedora 
-kernel.x86_64                              4.15.14-300.fc27             @updates
 kernel.x86_64                              4.15.16-300.fc27             @updates
 kernel.x86_64                              4.15.17-300.fc27             @updates
 kernel.x86_64                              4.16.6-302.fc28              @updates
-kernel-core.x86_64                         4.15.14-300.fc27             @updates
 kernel-core.x86_64                         4.15.16-300.fc27             @updates
 kernel-core.x86_64                         4.15.17-300.fc27             @updates
 kernel-core.x86_64                         4.16.6-302.fc28              @updates
+kernel-devel.x86_64                        4.16.7-300.fc28              @updates
 kernel-headers.x86_64                      4.16.6-302.fc28              @updates
-kernel-modules.x86_64                      4.15.14-300.fc27             @updates
 kernel-modules.x86_64                      4.15.16-300.fc27             @updates
 kernel-modules.x86_64                      4.15.17-300.fc27             @updates
 kernel-modules.x86_64                      4.16.6-302.fc28              @updates
 kexec-tools.x86_64                         2.0.17-2.fc28                @updates
 keyutils.x86_64                            1.5.10-6.fc28                @fedora 
 keyutils-libs.x86_64                       1.5.10-6.fc28                @fedora 
+keyutils-libs-devel.x86_64                 1.5.10-6.fc28                @fedora 
 khmeros-base-fonts.noarch                  5.0-24.fc28                  @fedora 
 khmeros-fonts-common.noarch                5.0-24.fc28                  @fedora 
 kmod.x86_64                                25-2.fc28                    @fedora 
 kmod-libs.x86_64                           25-2.fc28                    @fedora 
 kpartx.x86_64                              0.7.4-2.git07e7bd5.fc28      @fedora 
-krb5-libs.x86_64                           1.16-26.fc28                 @updates
+krb5-devel.x86_64                          1.16.1-2.fc28                @updates
+krb5-libs.x86_64                           1.16.1-2.fc28                @updates
 kyotocabinet-libs.x86_64                   1.2.76-17.fc28               @fedora 
 lame-libs.x86_64                           3.100-3.fc28                 @fedora 
 langpacks-en.noarch                        1.0-12.fc28                  @fedora 
@@ -719,25 +758,37 @@ libIDL.x86_64                              0.8.14-15.fc28               @fedora
 libSM.x86_64                               1.2.2-8.fc28                 @fedora 
 libX11.x86_64                              1.6.5-7.fc28                 @fedora 
 libX11-common.noarch                       1.6.5-7.fc28                 @fedora 
+libX11-devel.x86_64                        1.6.5-7.fc28                 @fedora 
 libX11-xcb.x86_64                          1.6.5-7.fc28                 @fedora 
 libXScrnSaver.x86_64                       1.2.2-14.fc28                @fedora 
 libXau.x86_64                              1.0.8-11.fc28                @fedora 
+libXau-devel.x86_64                        1.0.8-11.fc28                @fedora 
 libXaw.x86_64                              1.0.13-8.fc28                @fedora 
 libXcomposite.x86_64                       0.4.4-12.fc28                @fedora 
+libXcomposite-devel.x86_64                 0.4.4-12.fc28                @fedora 
 libXcursor.x86_64                          1.1.15-1.fc28                @fedora 
+libXcursor-devel.x86_64                    1.1.15-1.fc28                @fedora 
 libXdamage.x86_64                          1.1.4-12.fc28                @fedora 
+libXdamage-devel.x86_64                    1.1.4-12.fc28                @fedora 
 libXdmcp.x86_64                            1.1.2-9.fc28                 @fedora 
 libXext.x86_64                             1.3.3-8.fc28                 @fedora 
+libXext-devel.x86_64                       1.3.3-8.fc28                 @fedora 
 libXfixes.x86_64                           5.0.3-5.fc28                 @fedora 
+libXfixes-devel.x86_64                     5.0.3-5.fc28                 @fedora 
 libXfont.x86_64                            1.5.4-1.fc28                 @fedora 
 libXfont2.x86_64                           2.0.3-1.fc28                 @fedora 
 libXft.x86_64                              2.3.2-8.fc28                 @fedora 
+libXft-devel.x86_64                        2.3.2-8.fc28                 @fedora 
 libXi.x86_64                               1.7.9-6.fc28                 @fedora 
+libXi-devel.x86_64                         1.7.9-6.fc28                 @fedora 
 libXinerama.x86_64                         1.1.3-10.fc28                @fedora 
+libXinerama-devel.x86_64                   1.1.3-10.fc28                @fedora 
 libXmu.x86_64                              1.1.2-8.fc28                 @fedora 
 libXpm.x86_64                              3.5.12-5.fc28                @fedora 
 libXrandr.x86_64                           1.5.1-5.fc28                 @fedora 
+libXrandr-devel.x86_64                     1.5.1-5.fc28                 @fedora 
 libXrender.x86_64                          0.9.10-5.fc28                @fedora 
+libXrender-devel.x86_64                    0.9.10-5.fc28                @fedora 
 libXres.x86_64                             1.2.0-2.fc28                 @fedora 
 libXt.x86_64                               1.1.5-7.fc28                 @fedora 
 libXtst.x86_64                             1.2.3-5.fc28                 @fedora 
@@ -746,6 +797,7 @@ libXvMC.x86_64                             1.0.10-5.fc28                @fedora
 libXxf86dga.x86_64                         1.1.4-10.fc28                @fedora 
 libXxf86misc.x86_64                        1.0.3-15.fc28                @fedora 
 libXxf86vm.x86_64                          1.1.4-7.fc28                 @fedora 
+libXxf86vm-devel.x86_64                    1.1.4-7.fc28                 @fedora 
 liba52.x86_64                              0.7.4-32.fc28                @fedora 
 libacl.x86_64                              2.2.52-20.fc28               @fedora 
 libaio.x86_64                              0.3.110-11.fc28              @fedora 
@@ -787,6 +839,7 @@ libcgroup.x86_64                           0.41-17.fc28                 @updates
 libcmis.x86_64                             0.5.1-11.fc28                @fedora 
 libcollection.x86_64                       0.7.0-38.fc28                @fedora 
 libcom_err.x86_64                          1.43.8-2.fc28                @fedora 
+libcom_err-devel.x86_64                    1.43.8-2.fc28                @fedora 
 libcomps.x86_64                            0.1.8-11.fc28                @fedora 
 libconfig.x86_64                           1.5-9.fc28                   @fedora 
 libcroco.x86_64                            0.6.12-4.fc28                @fedora 
@@ -804,12 +857,14 @@ libdmx.x86_64                              1.1.3-10.fc28                @fedora
 libdnet.x86_64                             1.12-25.fc28                 @fedora 
 libdnf.x86_64                              0.11.1-3.fc28                @fedora 
 libdrm.x86_64                              2.4.91-1.fc28                @fedora 
+libdrm-devel.x86_64                        2.4.91-1.fc28                @fedora 
 libdv.x86_64                               1.0.0-27.fc28                @fedora 
 libdvdnav.x86_64                           5.0.3-8.fc28                 @fedora 
 libdvdread.x86_64                          5.0.3-9.fc28                 @fedora 
 libedit.x86_64                             3.1-23.20170329cvs.fc28      @fedora 
 libeot.x86_64                              0.01-9.fc28                  @fedora 
 libepoxy.x86_64                            1.5.0-1.fc28                 @fedora 
+libepoxy-devel.x86_64                      1.5.0-1.fc28                 @fedora 
 liberation-fonts-common.noarch             1:1.07.4-11.fc28             @fedora 
 liberation-mono-fonts.noarch               1:1.07.4-11.fc28             @fedora 
 liberation-sans-fonts.noarch               1:1.07.4-11.fc28             @fedora 
@@ -830,7 +885,7 @@ libfontenc.x86_64                          1.1.3-7.fc28                 @fedora
 libfprint.x86_64                           0.7.0-5.fc28                 @fedora 
 libfreehand.x86_64                         0.1.2-2.fc28                 @fedora 
 libgcab1.x86_64                            1.1-1.fc28                   @fedora 
-libgcc.x86_64                              8.0.1-0.20.fc28              @fedora 
+libgcc.x86_64                              8.1.1-1.fc28                 @updates
 libgcrypt.x86_64                           1.8.2-2.fc28                 @fedora 
 libgdata.x86_64                            0.17.9-2.fc28                @fedora 
 libgee.x86_64                              0.20.1-1.fc28                @fedora 
@@ -841,15 +896,21 @@ libgit2-glib.x86_64                        0.26.4-1.fc28                @fedora
 libgltf.x86_64                             0.1.0-9.fc28                 @fedora 
 libglvnd.x86_64                            1:1.0.1-0.5.20180327git5baa1e5.fc28
                                                                         @fedora 
+libglvnd-core-devel.x86_64                 1:1.0.1-0.5.20180327git5baa1e5.fc28
+                                                                        @fedora 
+libglvnd-devel.x86_64                      1:1.0.1-0.5.20180327git5baa1e5.fc28
+                                                                        @fedora 
 libglvnd-egl.x86_64                        1:1.0.1-0.5.20180327git5baa1e5.fc28
                                                                         @fedora 
 libglvnd-gles.x86_64                       1:1.0.1-0.5.20180327git5baa1e5.fc28
                                                                         @fedora 
 libglvnd-glx.x86_64                        1:1.0.1-0.5.20180327git5baa1e5.fc28
                                                                         @fedora 
+libglvnd-opengl.x86_64                     1:1.0.1-0.5.20180327git5baa1e5.fc28
+                                                                        @fedora 
 libgnome.x86_64                            2.32.1-16.fc28               @fedora 
 libgnomekbd.x86_64                         3.26.0-4.fc28                @fedora 
-libgomp.x86_64                             8.0.1-0.20.fc28              @fedora 
+libgomp.x86_64                             8.1.1-1.fc28                 @updates
 libgovirt.x86_64                           0.3.4-7.fc28                 @fedora 
 libgpg-error.x86_64                        1.29-1.fc28                  @fedora 
 libgphoto2.x86_64                          2.5.16-3.fc28                @fedora 
@@ -865,6 +926,7 @@ libhangul.x86_64                           0.1.0-16.fc28                @fedora
 libibverbs.x86_64                          16.2-3.fc28                  @fedora 
 libical.x86_64                             3.0.3-2.fc28                 @fedora 
 libicu.x86_64                              60.2-2.fc28                  @fedora 
+libicu-devel.x86_64                        60.2-2.fc28                  @fedora 
 libidn.x86_64                              1.34-1.fc28                  @fedora 
 libidn2.x86_64                             2.0.4-7.fc28                 @fedora 
 libiec61883.x86_64                         1.2.0-18.fc28                @fedora 
@@ -881,6 +943,7 @@ libiptcdata.x86_64                         1.0.4-20.fc28                @fedora
 libiscsi.x86_64                            1.18.0-3.fc28                @fedora 
 libjoedog.x86_64                           0.1.2-9.fc28                 @fedora 
 libjpeg-turbo.x86_64                       1.5.3-3.fc28                 @fedora 
+libkadm5.x86_64                            1.16.1-2.fc28                @updates
 libkkc.x86_64                              0.3.5-8.fc28                 @fedora 
 libkkc-common.noarch                       0.3.5-8.fc28                 @fedora 
 libkkc-data.x86_64                         1:0.2.7-10.fc28              @fedora 
@@ -931,6 +994,7 @@ libpaper.x86_64                            1.1.24-21.fc28               @fedora
 libpath_utils.x86_64                       0.2.1-38.fc28                @fedora 
 libpcap.x86_64                             14:1.8.1-8.fc28              @fedora 
 libpciaccess.x86_64                        0.13.4-8.fc28                @fedora 
+libpciaccess-devel.x86_64                  0.13.4-8.fc28                @fedora 
 libpeas.x86_64                             1.22.0-5.fc28                @fedora 
 libpeas-gtk.x86_64                         1.22.0-5.fc28                @fedora 
 libpeas-loader-python3.x86_64              1.22.0-5.fc28                @fedora 
@@ -941,6 +1005,7 @@ libpipeline.x86_64                         1.5.0-2.fc28                 @fedora
 libpkgconf.x86_64                          1.4.2-1.fc28                 @fedora 
 libplist.x86_64                            2.0.0-7.fc28                 @fedora 
 libpng.x86_64                              2:1.6.34-3.fc28              @fedora 
+libpng-devel.x86_64                        2:1.6.34-3.fc28              @fedora 
 libproxy.x86_64                            0.4.15-5.fc28                @fedora 
 libproxy-mozjs.x86_64                      0.4.15-5.fc28                @fedora 
 libpskc.x86_64                             2.6.1-6.fc28                 @fedora 
@@ -991,9 +1056,11 @@ libsane-hpaio.x86_64                       3.18.4-1.fc28                @updates
 libseccomp.x86_64                          2.3.3-2.fc28                 @fedora 
 libsecret.x86_64                           0.18.6-1.fc28                @fedora 
 libselinux.x86_64                          2.7-13.fc28                  @fedora 
+libselinux-devel.x86_64                    2.7-13.fc28                  @fedora 
 libselinux-utils.x86_64                    2.7-13.fc28                  @fedora 
 libsemanage.x86_64                         2.7-12.fc28                  @fedora 
 libsepol.x86_64                            2.7-6.fc28                   @fedora 
+libsepol-devel.x86_64                      2.7-6.fc28                   @fedora 
 libserf.x86_64                             1.3.9-6.fc28                 @fedora 
 libshout.x86_64                            2.2.2-18.fc28                @fedora 
 libsigc++20.x86_64                         2.10.0-5.fc28                @fedora 
@@ -1017,7 +1084,8 @@ libsss_idmap.x86_64                        1.16.1-3.fc28                @updates
 libsss_nss_idmap.x86_64                    1.16.1-3.fc28                @updates
 libsss_sudo.x86_64                         1.16.1-3.fc28                @updates
 libstaroffice.x86_64                       0.0.6-1.fc28                 @updates
-libstdc++.x86_64                           8.0.1-0.20.fc28              @fedora 
+libstdc++.x86_64                           8.1.1-1.fc28                 @updates
+libstdc++-devel.x86_64                     8.1.1-1.fc28                 @updates
 libstemmer.x86_64                          0-10.585svn.fc28             @fedora 
 libsysfs.x86_64                            2.1.0-23.fc28                @fedora 
 libtalloc.x86_64                           2.1.13-1.fc28                @fedora 
@@ -1040,10 +1108,12 @@ libusbx.x86_64                             1.0.21-6.fc28                @fedora
 libuser.x86_64                             0.62-13.fc28                 @fedora 
 libutempter.x86_64                         1.1.6-14.fc28                @fedora 
 libuuid.x86_64                             2.32-2.fc28                  @fedora 
+libuuid-devel.x86_64                       2.32-2.fc28                  @fedora 
 libuv.x86_64                               1:1.19.2-1.fc28              @fedora 
 libv4l.x86_64                              1.14.2-2.fc28                @updates
 libvdpau.x86_64                            1.1.1-7.fc28                 @fedora 
 libverto.x86_64                            0.3.0-5.fc28                 @fedora 
+libverto-devel.x86_64                      0.3.0-5.fc28                 @fedora 
 libverto-libev.x86_64                      0.3.0-5.fc28                 @fedora 
 libvirt-daemon.x86_64                      4.1.0-2.fc28                 @fedora 
 libvirt-daemon-config-network.x86_64       4.1.0-2.fc28                 @fedora 
@@ -1092,9 +1162,11 @@ libwpg.x86_64                              0.3.2-1.fc28                 @fedora
 libwsman1.x86_64                           2.6.5-2.fc28                 @fedora 
 libwvstreams.x86_64                        4.6.1-23.fc28                @fedora 
 libxcb.x86_64                              1.13-1.fc28                  @fedora 
+libxcb-devel.x86_64                        1.13-1.fc28                  @fedora 
 libxcrypt.x86_64                           4.0.0-5.fc28                 @fedora 
 libxcrypt-devel.x86_64                     4.0.0-5.fc28                 @fedora 
 libxkbcommon.x86_64                        0.8.0-2.fc28                 @fedora 
+libxkbcommon-devel.x86_64                  0.8.0-2.fc28                 @fedora 
 libxkbcommon-x11.x86_64                    0.8.0-2.fc28                 @fedora 
 libxkbfile.x86_64                          1.0.9-7.fc28                 @fedora 
 libxklavier.x86_64                         5.4-10.fc28                  @fedora 
@@ -1156,8 +1228,11 @@ mercurial.x86_64                           4.4.2-4.fc28                 @fedora
 mesa-dri-drivers.x86_64                    18.0.2-1.fc28                @updates
 mesa-filesystem.x86_64                     18.0.2-1.fc28                @updates
 mesa-libEGL.x86_64                         18.0.2-1.fc28                @updates
+mesa-libEGL-devel.x86_64                   18.0.2-1.fc28                @updates
 mesa-libGL.x86_64                          18.0.2-1.fc28                @updates
+mesa-libGL-devel.x86_64                    18.0.2-1.fc28                @updates
 mesa-libGLU.x86_64                         9.0.0-14.fc28                @fedora 
+mesa-libGLU-devel.x86_64                   9.0.0-14.fc28                @fedora 
 mesa-libgbm.x86_64                         18.0.2-1.fc28                @updates
 mesa-libglapi.x86_64                       18.0.2-1.fc28                @updates
 mesa-libxatracker.x86_64                   18.0.2-1.fc28                @updates
@@ -1187,7 +1262,9 @@ naver-nanum-fonts-common.noarch            3.020-20.20140930.fc28.1     @fedora
 naver-nanum-gothic-fonts.noarch            3.020-20.20140930.fc28.1     @fedora 
 ncurses.x86_64                             6.1-4.20180224.fc28          @fedora 
 ncurses-base.noarch                        6.1-4.20180224.fc28          @fedora 
+ncurses-c++-libs.x86_64                    6.1-4.20180224.fc28          @fedora 
 ncurses-compat-libs.x86_64                 6.1-4.20180224.fc28          @fedora 
+ncurses-devel.x86_64                       6.1-4.20180224.fc28          @fedora 
 ncurses-libs.x86_64                        6.1-4.20180224.fc28          @fedora 
 neon.x86_64                                0.30.2-5.fc28                @fedora 
 net-snmp-libs.x86_64                       1:5.7.3-36.fc28              @fedora 
@@ -1234,6 +1311,7 @@ openssh.x86_64                             7.7p1-3.fc28                 @updates
 openssh-clients.x86_64                     7.7p1-3.fc28                 @updates
 openssh-server.x86_64                      7.7p1-3.fc28                 @updates
 openssl.x86_64                             1:1.1.0h-3.fc28              @fedora 
+openssl-devel.x86_64                       1:1.1.0h-3.fc28              @fedora 
 openssl-libs.x86_64                        1:1.1.0h-3.fc28              @fedora 
 openssl-pkcs11.x86_64                      0.4.7-6.fc28                 @fedora 
 openvpn.x86_64                             2.4.6-1.fc28                 @updates
@@ -1252,6 +1330,7 @@ paktype-naskh-basic-fonts.noarch           4.1-9.fc28                   @fedora
 pam.x86_64                                 1.3.0-10.fc28                @fedora 
 pam_krb5.x86_64                            2.4.13-9.fc28                @fedora 
 pango.x86_64                               1.42.1-1.fc28                @fedora 
+pango-devel.x86_64                         1.42.1-1.fc28                @fedora 
 pangomm.x86_64                             2.40.1-5.fc28                @fedora 
 paps.x86_64                                0.6.8-41.fc28                @fedora 
 paps-libs.x86_64                           0.6.8-41.fc28                @fedora 
@@ -1264,8 +1343,14 @@ patch.x86_64                               2.7.6-3.fc28                 @fedora
 pciutils.x86_64                            3.5.6-3.fc28                 @fedora 
 pciutils-libs.x86_64                       3.5.6-3.fc28                 @fedora 
 pcre.x86_64                                8.42-1.fc28                  @fedora 
+pcre-cpp.x86_64                            8.42-1.fc28                  @fedora 
+pcre-devel.x86_64                          8.42-1.fc28                  @fedora 
+pcre-utf16.x86_64                          8.42-1.fc28                  @fedora 
+pcre-utf32.x86_64                          8.42-1.fc28                  @fedora 
 pcre2.x86_64                               10.31-4.fc28                 @fedora 
+pcre2-devel.x86_64                         10.31-4.fc28                 @fedora 
 pcre2-utf16.x86_64                         10.31-4.fc28                 @fedora 
+pcre2-utf32.x86_64                         10.31-4.fc28                 @fedora 
 pcsc-lite-libs.x86_64                      1.8.23-2.fc28                @fedora 
 perf.x86_64                                4.16.0-1.fc28                @fedora 
 perl-Carp.noarch                           1.42-395.fc28                @fedora 
@@ -1300,6 +1385,7 @@ perl-Term-Cap.noarch                       1.17-395.fc28                @fedora
 perl-TermReadKey.x86_64                    2.37-7.fc28                  @fedora 
 perl-Text-ParseWords.noarch                3.30-395.fc28                @fedora 
 perl-Text-Tabs+Wrap.noarch                 2013.0523-395.fc28           @fedora 
+perl-Thread-Queue.noarch                   3.12-395.fc28                @fedora 
 perl-Time-Local.noarch                     1:1.250-395.fc28             @fedora 
 perl-URI.noarch                            1.73-2.fc28                  @fedora 
 perl-Unicode-Normalize.x86_64              1.25-396.fc28                @fedora 
@@ -1320,7 +1406,8 @@ pinentry-gtk.x86_64                        1.1.0-2.fc28                 @fedora
 pinfo.x86_64                               0.6.10-17.fc28               @fedora 
 pipewire.x86_64                            0.1.9-1.fc28                 @fedora 
 pipewire-libs.x86_64                       0.1.9-1.fc28                 @fedora 
-pixman.x86_64                              0.34.0-7.fc28                @updates
+pixman.x86_64                              0.34.0-8.fc28                @updates
+pixman-devel.x86_64                        0.34.0-8.fc28                @updates
 pkcs11-helper.x86_64                       1.22-5.fc28                  @fedora 
 pkgconf.x86_64                             1.4.2-1.fc28                 @fedora 
 pkgconf-m4.noarch                          1.4.2-1.fc28                 @fedora 
@@ -1505,6 +1592,7 @@ redhat-menus.noarch                        12.0.2-13.fc28               @fedora
 redhat-rpm-config.noarch                   107-1.fc28                   @updates
 redland.x86_64                             1.0.17-14.fc28               @fedora 
 rest.x86_64                                0.8.1-2.fc28                 @fedora 
+rhino.noarch                               1.7.7.1-4.fc28               @fedora 
 ripgrep.x86_64                             0.8.1-2.fc28                 @fedora 
 rlwrap.x86_64                              0.42-8.fc28                  @fedora 
 rng-tools.x86_64                           6.1-4.fc28                   @fedora 
@@ -1633,6 +1721,7 @@ transmission-gtk.x86_64                    2.94-2.fc28                  @updates
 tree.x86_64                                1.7.0-14.fc28                @fedora 
 trousers.x86_64                            0.3.13-10.fc28               @fedora 
 trousers-lib.x86_64                        0.3.13-10.fc28               @fedora 
+ttmkfdir.x86_64                            3.0.9-54.fc28                @fedora 
 twolame-libs.x86_64                        0.3.13-11.fc28               @fedora 
 tzdata.noarch                              2018d-1.fc28                 @fedora 
 tzdata-java.noarch                         2018d-1.fc28                 @fedora 
@@ -1640,6 +1729,7 @@ u2f-hidraw-policy.x86_64                   1.0.2-6.fc28                 @fedora
 udisks2.x86_64                             2.7.6-1.fc28                 @fedora 
 unicode-ucd.noarch                         10.0.0-3.fc28                @fedora 
 unixODBC.x86_64                            2.3.5-3.fc28                 @fedora 
+unixODBC-devel.x86_64                      2.3.5-3.fc28                 @fedora 
 unzip.x86_64                               6.0-38.fc28                  @fedora 
 upower.x86_64                              0.99.7-3.fc28                @fedora 
 urw-base35-bookman-fonts.noarch            20170801-9.fc28              @fedora 
@@ -1666,6 +1756,8 @@ utf8proc.x86_64                            2.1.1-2.fc28                 @updates
 util-linux.x86_64                          2.32-2.fc28                  @fedora 
 util-linux-user.x86_64                     2.32-2.fc28                  @fedora 
 uuid.x86_64                                1.6.2-40.fc28                @fedora 
+valgrind.x86_64                            1:3.13.0-18.fc28             @fedora 
+valgrind-devel.x86_64                      1:3.13.0-18.fc28             @fedora 
 vconfig.x86_64                             1.9-23.fc28                  @fedora 
 vim-X11.x86_64                             2:8.0.1704-1.fc28            @fedora 
 vim-common.x86_64                          2:8.0.1704-1.fc28            @fedora 
@@ -1682,6 +1774,8 @@ vpnc-script.noarch                         20171004-2.git6f87b0f.fc28   @fedora
 vte-profile.x86_64                         0.52.1-1.fc28                @fedora 
 vte291.x86_64                              0.52.1-1.fc28                @fedora 
 wavpack.x86_64                             5.1.0-7.fc28                 @fedora 
+wayland-devel.x86_64                       1.15.0-1.fc28                @fedora 
+wayland-protocols-devel.noarch             1.13-1.fc28                  @fedora 
 web-assets-filesystem.noarch               5-7.fc28                     @fedora 
 webkit2gtk3.x86_64                         2.20.1-1.fc28                @fedora 
 webkit2gtk3-jsc.x86_64                     2.20.1-1.fc28                @fedora 
@@ -1696,12 +1790,17 @@ woff2.x86_64                               1.0.2-2.fc28                 @fedora
 words.noarch                               3.0-28.fc28                  @fedora 
 wpa_supplicant.x86_64                      1:2.6-14.fc28                @fedora 
 wvdial.x86_64                              1.61-19.fc28                 @fedora 
+wxBase.x86_64                              2.8.12-30.fc28               @fedora 
 wxBase3.x86_64                             3.0.4-1.fc28                 @fedora 
+wxBase3-devel.x86_64                       3.0.4-1.fc28                 @fedora 
 wxGTK3.x86_64                              3.0.4-1.fc28                 @fedora 
+wxGTK3-devel.x86_64                        3.0.4-1.fc28                 @fedora 
 wxGTK3-gl.x86_64                           3.0.4-1.fc28                 @fedora 
 wxGTK3-i18n.noarch                         3.0.4-1.fc28                 @fedora 
+wxGTK3-media.x86_64                        3.0.4-1.fc28                 @fedora 
 wxGTK3-webview.x86_64                      3.0.4-1.fc28                 @fedora 
 wxMaxima.x86_64                            17.10.1-3.fc28               @fedora 
+xalan-j2.noarch                            2.7.1-34.fc28                @fedora 
 xcb-util.x86_64                            0.4.0-9.fc28                 @fedora 
 xcb-util-image.x86_64                      0.4.0-9.fc28                 @fedora 
 xcb-util-keysyms.x86_64                    0.4.0-7.fc28                 @fedora 
@@ -1716,9 +1815,13 @@ xemacs-filesystem.noarch                   21.5.34-29.20171230hg92757c2b8239.fc2
                                                                         @fedora 
 xen-libs.x86_64                            4.10.0-9.fc28                @updates
 xen-licenses.x86_64                        4.10.0-9.fc28                @updates
+xerces-j2.noarch                           2.11.0-31.fc28               @fedora 
 xfsprogs.x86_64                            4.15.1-1.fc28                @fedora 
 xkeyboard-config.noarch                    2.23.1-1.fc28                @fedora 
 xml-common.noarch                          0.6.3-48.fc28                @fedora 
+xml-commons-apis.noarch                    1.4.01-25.fc28               @fedora 
+xml-commons-resolver.noarch                1.2-24.fc28                  @fedora 
+xmlgraphics-commons.noarch                 2.0.1-6.fc28                 @fedora 
 xmlrpc-c.x86_64                            1.51.0-5.fc28                @fedora 
 xmlrpc-c-client.x86_64                     1.51.0-5.fc28                @fedora 
 xmlsec1.x86_64                             1.2.25-3.fc28                @fedora 
@@ -1738,6 +1841,8 @@ xorg-x11-drv-wacom.x86_64                  0.36.1-2.fc28                @fedora
 xorg-x11-drv-wacom-serial-support.x86_64   0.36.1-2.fc28                @fedora 
 xorg-x11-font-utils.x86_64                 1:7.5-37.fc28                @fedora 
 xorg-x11-fonts-ISO8859-1-100dpi.noarch     7.5-19.fc28                  @fedora 
+xorg-x11-fonts-Type1.noarch                7.5-19.fc28                  @fedora 
+xorg-x11-proto-devel.noarch                2018.4-1.fc28                @fedora 
 xorg-x11-server-Xorg.x86_64                1.19.6-8.fc28                @updates
 xorg-x11-server-Xwayland.x86_64            1.19.6-8.fc28                @updates
 xorg-x11-server-common.x86_64              1.19.6-8.fc28                @updates
@@ -1760,4 +1865,5 @@ zeromq.x86_64                              4.1.6-7.fc28                 @fedora
 zfs-fuse.x86_64                            0.7.2.2-6.fc27               @fedora 
 zip.x86_64                                 3.0-21.fc28                  @fedora 
 zlib.x86_64                                1.2.11-8.fc28                @updates
+zlib-devel.x86_64                          1.2.11-8.fc28                @updates
 zsh.x86_64                                 5.5.1-1.fc28                 @updates

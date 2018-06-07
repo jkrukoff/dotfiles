@@ -2,56 +2,52 @@
 
 set nocompatible "Not vi compatible (No matter how vim was invoked)
 
-"Vundle plugins configuration
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"Plugin configuration
+"Using vim-plug: https://github.com/junegunn/vim-plug
+call plug#begin()
 
 "Actual plugin list
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
-Plugin 'elzr/vim-json'
-Plugin 'fatih/vim-go'
-Plugin 'fs111/pydoc.vim'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'hashivim/vim-terraform'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'majutsushi/tagbar'
-Plugin 'moll/vim-node'
-Plugin 'nathanielc/vim-tickscript'
-Plugin 'nginx/nginx'
-Plugin 'saltstack/salt-vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'sergei-dyshel/vim-yapf-format'
-Plugin 'tibabit/vim-templates'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-erlang/erlang-motions.vim'
-Plugin 'vim-erlang/vim-erlang-compiler'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'vim-erlang/vim-erlang-tags'
-Plugin 'vim-scripts/TaskList.vim'
+Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
+Plug 'elixir-lang/vim-elixir'
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'fs111/pydoc.vim'
+Plug 'godlygeek/tabular'
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-sexp'
+Plug 'hashivim/vim-terraform'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
+Plug 'moll/vim-node'
+Plug 'nginx/nginx'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/syntastic'
+Plug 'sergei-dyshel/vim-yapf-format'
+Plug 'tibabit/vim-templates'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-erlang/erlang-motions.vim'
+Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'vim-erlang/vim-erlang-omnicomplete'
+Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'vim-erlang/vim-erlang-tags'
+Plug 'vim-scripts/TaskList.vim'
 "Disabled plugins
-"Elixir
-" Plugin 'elixir-lang/vim-elixir'
-"Rust
-" Plugin 'rust-lang/rust.vim'
-"Clojure
-" Plugin 'guns/vim-clojure-static'
-" Plugin 'guns/vim-sexp'
+"Salt Plugins
+" Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'saltstack/salt-vim'
+"Kapacitor Plugins
+" Plug 'nathanielc/vim-tickscript'
 "Python 2 only
-" Plugin 'pignacio/vim-yapf-format'
+" Plug 'pignacio/vim-yapf-format'
 
 "Finalize plugin setup
-call vundle#end()
-filetype plugin on
+call plug#end()
 
 "Change the default color scheme to something readable
 set guifont=Consolas\ 14

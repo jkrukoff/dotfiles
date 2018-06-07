@@ -51,11 +51,11 @@ function restore {
   # Remember some gnome settings.
   gsettings set org.gnome.desktop.wm.preferences focus-mode sloppy
 
-  # Install and initialize vundle.
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  vim +PluginInstall +qall
+  # Install and initialize vim-plug, a vim plugin manager.
+  curl -#L --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.vim/autoload/plug.vim
+  vim +PlugInstall
 
-  # Install Z directory jump utility.
+  # Install Z, a directory jump utility.
   curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 
   # Install kerl, an erlang environment build tool.
