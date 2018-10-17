@@ -54,7 +54,7 @@ Plug 'vim-scripts/bats.vim'
 call plug#end()
 
 "Change the default color scheme to something readable
-set guifont=Consolas\ 14
+set guifont=Consolas:h16:cANSI:qDRAFT
 set background=dark
 highlight clear
 if exists('syntax_on')
