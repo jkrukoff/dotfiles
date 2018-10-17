@@ -17,9 +17,11 @@ Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-sexp'
 Plug 'hashivim/vim-terraform'
 Plug 'jmcantrell/vim-virtualenv'
+Plug 'jparise/vim-graphql'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
+Plug 'mhinz/vim-mix-format'
 Plug 'moll/vim-node'
 Plug 'nginx/nginx'
 Plug 'rust-lang/rust.vim'
@@ -37,6 +39,7 @@ Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'vim-erlang/vim-erlang-tags'
 Plug 'vim-scripts/TaskList.vim'
+Plug 'vim-scripts/bats.vim'
 "Disabled plugins
 "Salt Plugins
 " Plug 'Glench/Vim-Jinja2-Syntax'
@@ -156,11 +159,12 @@ let g:tmpl_author_email = 'john@krukoff.us'
 
 
 "Global bindings
-map <ESC><ESC><ESC> ZQ					"Exit vim unconditionally
-map <leader>/ :noh<CR>					"Clear search highlighting
-map <leader>L :write<CR>:SyntasticCheck<CR>:Errors<CR>	"Check file for syntax errors
-map <leader>T :TagbarToggle<CR>				"Display tag sidebar
-map <leader>do <Plug>TaskList				"Launch tasklist plugin
+map <ESC><ESC><ESC> ZQ								"Exit vim unconditionally
+map <leader>/ :noh<CR>								"Clear search highlighting
+map <leader>L :write<CR>:SyntasticCheck<CR>:Errors<CR>				"Check file for syntax errors
+map <leader>T :TagbarToggle<CR>							"Display tag sidebar
+map <leader>do <Plug>TaskList							"Launch tasklist plugin
+vmap <leader>sw d:execute 'normal a' . join(sort(split(getreg('"'))), ' ')<CR>	"Sort selected words
 
 
 if has("autocmd")
@@ -172,7 +176,6 @@ if has("autocmd")
 	let g:erlang_highlight_bifs = 1
 	let g:erlang_highlight_special_atoms = 1
 	let g:syntastic_erlang_checkers = ['escript', 'syntaxerl']
-
 	autocmd FileType erlang setlocal textwidth=70
 	autocmd FileType erlang setlocal foldnestmax=2
 	autocmd FileType erlang setlocal tabstop=8
@@ -180,6 +183,18 @@ if has("autocmd")
 	autocmd FileType erlang setlocal shiftwidth=4
 	autocmd FileType erlang setlocal smarttab
 	autocmd FileType erlang setlocal expandtab
+
+	"Elixir specific settings
+	let g:syntastic_elixir_checkers = ['elixir']
+	let g:syntastic_enable_elixir_checker = 1
+	autocmd FileType elixir vmap <buffer> <localleader>f :MixFormat<CR>
+	autocmd FileType elixir setlocal textwidth=70
+	autocmd FileType elixir setlocal foldnestmax=2
+	autocmd FileType elixir setlocal tabstop=8
+	autocmd FileType elixir setlocal softtabstop=2
+	autocmd FileType elixir setlocal shiftwidth=2
+	autocmd FileType elixir setlocal smarttab
+	autocmd FileType elixir setlocal expandtab
 
 	"Go specific settings
 	let g:go_def_mapping_enabled = 0

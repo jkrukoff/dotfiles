@@ -53,7 +53,7 @@ function restore {
 
   # Install and initialize vim-plug, a vim plugin manager.
   curl -#L --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.vim/autoload/plug.vim
-  vim +PlugInstall
+  vim +PlugInstall +qall
 
   # Install Z, a directory jump utility.
   curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh

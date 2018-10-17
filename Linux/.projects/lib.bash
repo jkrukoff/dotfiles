@@ -68,7 +68,7 @@ function activate_nvm {
 function activate_rbenv {
   local rbenv_version="${1}"
   eval "$(rbenv init -)"
-  rbenv local "${rbenv_version}"
+  rbenv shell "${rbenv_version}"
   rbenv version
 }
 
@@ -78,6 +78,11 @@ function activate_gcloud {
 }
 
 function activate_awsume {
+  local aws_profile="${1}"
+  if [ -n "${aws_profile}" ]; then
+    eval "$(awsume ${aws_profile} -s)"
+  fi
+
   #Auto-Complete function for AWSume
   _awsume() {
     local cur prev opts
@@ -89,6 +94,8 @@ function activate_awsume {
     return 0
   }
   complete -F _awsume awsume
+
+  alias awsume="source $(which awsume)"
 }
 
 function start_docker {

@@ -1,11 +1,15 @@
 [user]
 	name = John Krukoff
 	email = john@krukoff.us
+
 [push]
 	default = simple
+
 [core]
 	excludesfile = ~/.gitignore_global
+
 [merge]
 	tool = meld
+
 [init]
 	templatedir = ~/.git_template
