@@ -52,6 +52,8 @@ alias hl='source-highlight --failsafe -f esc256 -n -i'
 
 # External functions.
 source ~/bin/z.sh
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # History variables.
 HISTIGNORE='[	 ]*:&:bg:fg'
@@ -99,33 +101,6 @@ function dashed_line {
   fi
 }
 
-function prompt_virtualenv {
-  # Check if I've activated a python virtualenv.
-  if [ -n "${VIRTUAL_ENV}" ]; then
-    local version
-    version="$(python --version 2>&1)"
-    echo "venv:${version#* } "
-  fi
-}
-
-function prompt_kerl {
-  # Check if I've activated an erlang install.
-  if type -t kerl_deactivate > /dev/null; then
-    local prompt
-    prompt="$(kerl prompt)"
-    prompt="${prompt# (}"
-    prompt="${prompt%)}"
-    echo "kerl:${prompt} "
-  fi
-}
-
-function prompt_rbenv {
-  # Check if I've activated an rbenv shell.
-  if [ -n "${RBENV_VERSION}" ]; then
-    echo "rbenv:${RBENV_VERSION} "
-  fi
-}
-
 function prompt {
   # Set status line for terminals that support it.
   local status_line
@@ -143,7 +118,7 @@ function prompt {
   local move_to_edge
   move_to_edge="$(tput cr)"
   local long_dash='dashed_line ${COLUMNS} left'
-  local info_block="[${color_user}\\u@\\h(\${SHLVL}) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")\$(prompt_virtualenv)\$(prompt_kerl)\$(prompt_rbenv)${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
+  local info_block="[${color_user}\\u@\\h(\${SHLVL}) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
 
   # Time to actually set the prompt!
   PS1="${status_line}${PROMPT_COLOR_PUNC}\\[\$(eval ${long_dash})\\]${move_to_edge}${info_block}${PROMPT_COLOR_NORM}\\n\\w \\!\\\$ "
