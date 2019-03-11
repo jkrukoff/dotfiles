@@ -154,7 +154,7 @@ let g:syntastic_sort_aggregated_errors = 1
 let g:syntastic_mode_map = {"mode": "passive"}
 
 let g:tmpl_auto_initialize = 0
-let g:tmpl_search_paths = ['~/.vim-templates']
+let g:tmpl_search_paths = ['~\Documents\vim-templates']
 let g:tmpl_author_name = 'John Krukoff'
 let g:tmpl_author_email = 'john@krukoff.us'
 

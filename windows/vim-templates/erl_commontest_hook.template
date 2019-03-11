@@ -1,0 +1,186 @@
+%%%-------------------------------------------------------------------
+%%% @doc
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+-module({{FILE}}).
+
+%% Callbacks
+-export([id/1,
+         init/2,
+
+         pre_init_per_suite/3,
+         post_init_per_suite/4,
+         pre_end_per_suite/3,
+         post_end_per_suite/4,
+
+         pre_init_per_group/3,
+         post_init_per_group/4,
+         pre_end_per_group/3,
+         post_end_per_group/4,
+
+         pre_init_per_testcase/3,
+         post_init_per_testcase/4,
+         pre_end_per_testcase/3,
+         post_end_per_testcase/4,
+
+         on_tc_fail/3,
+         on_tc_skip/3,
+
+         terminate/1]).
+
+{{CURSOR}}-record(state, {file_handle, total, suite_total, ts, tcs, data}).
+
+%%%===================================================================
+%%% Hook Callbacks
+%%%===================================================================
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Return a unique id for this CTH.
+%% @end
+%%--------------------------------------------------------------------
+id(Opts) ->
+  proplists:get_value(filename, Opts, "/tmp/file.log").
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Always called before any other callback function. Use this to
+%% initiate any common state.
+%% @end
+%%--------------------------------------------------------------------
+init(Id, Opts) ->
+    {ok,D} = file:open(Id,[write]),
+    {ok, #state{ file_handle = D, total = 0, data = [] }}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before init_per_suite is called.
+%% @end
+%%--------------------------------------------------------------------
+pre_init_per_suite(Suite,Config,State) ->
+    {Config, State#state{ suite_total = 0, tcs = [] }}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after init_per_suite.
+%% @end
+%%--------------------------------------------------------------------
+post_init_per_suite(Suite,Config,Return,State) ->
+    {Return, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before end_per_suite.
+%% @end
+%%--------------------------------------------------------------------
+pre_end_per_suite(Suite,Config,State) ->
+    {Config, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after end_per_suite.
+%% @end
+%%--------------------------------------------------------------------
+post_end_per_suite(Suite,Config,Return,State) ->
+    Data = {suites, Suite, State#state.suite_total, lists:reverse(State#state.tcs)},
+    {Return, State#state{data = [Data | State#state.data],
+                         total = State#state.total + State#state.suite_total}}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before each init_per_group.
+%% @end
+%%--------------------------------------------------------------------
+pre_init_per_group(Group,Config,State) ->
+    {Config, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after each init_per_group.
+%% @end
+%%--------------------------------------------------------------------
+post_init_per_group(Group,Config,Return,State) ->
+    {Return, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before each end_per_group.
+%% @end
+%%--------------------------------------------------------------------
+pre_end_per_group(Group,Config,State) ->
+    {Config, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after each end_per_group.
+%% @end
+%%--------------------------------------------------------------------
+post_end_per_group(Group,Config,Return,State) ->
+    {Return, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before each init_per_testcase.
+%% @end
+%%--------------------------------------------------------------------
+pre_init_per_testcase(TC,Config,State) ->
+    {Config, State#state{ ts = now(), total = State#state.suite_total + 1 } }.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after each init_per_testcase (immediately before the test
+%% case).
+%% @end
+%%--------------------------------------------------------------------
+post_init_per_testcase(TC,Config,Return,State) ->
+    {Return, State}
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called before each end_per_testcase (immediately after the test
+%% case).
+%% @end
+%%--------------------------------------------------------------------
+pre_end_per_testcase(TC,Config,State) ->
+    {Config, State}.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after each end_per_testcase.
+%% @end
+%%--------------------------------------------------------------------
+post_end_per_testcase(TC,Config,Return,State) ->
+    TCInfo = {testcase, TC, Return, timer:now_diff(now(), State#state.ts)},
+    {Return, State#state{ ts = undefined, tcs = [TCInfo | State#state.tcs] } }.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called after post_init_per_suite, post_end_per_suite,
+%% post_init_per_group, post_end_per_group and post_end_per_testcase
+%% if the suite, group or test case failed.
+%% @end
+%%--------------------------------------------------------------------
+on_tc_fail(TC, Reason, State) ->
+    State.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called when a test case is skipped by either user action or due to
+%% an init function failing.
+%% @end
+%%--------------------------------------------------------------------
+on_tc_skip(TC, Reason, State) ->
+    State.
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Called when the scope of the CTH is done.
+%% @end
+%%--------------------------------------------------------------------
+terminate(State) ->
+    io:format(State#state.file_handle,
+              "~p.~n",
+              [{test_run, State#state.total, State#state.data}]),
+    file:close(State#state.file_handle),
+    ok.
