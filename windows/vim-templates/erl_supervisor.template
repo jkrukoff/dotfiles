@@ -1,0 +1,72 @@
+%%%-------------------------------------------------------------------
+%%% @doc
+%%%
+%%% @end
+%%%-------------------------------------------------------------------
+-module({{FILE}}).
+
+-behaviour(supervisor).
+
+%% API
+-export([start_link/0]).
+
+%% Supervisor callbacks
+-export([init/1]).
+
+-define(SERVER, ?MODULE).
+
+%%%===================================================================
+%%% API Functions
+%%%===================================================================
+
+%%--------------------------------------------------------------------
+%% @doc
+%% Starts the supervisor
+%%
+%% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
+%% @end
+%%--------------------------------------------------------------------
+start_link() ->
+    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+
+%%%===================================================================
+%%% Supervisor Callbacks
+%%%===================================================================
+
+%%--------------------------------------------------------------------
+%% @private
+%% @doc
+%% Whenever a supervisor is started using supervisor:start_link/[2,3],
+%% this function is called by the new process to find out about
+%% restart strategy, maximum restart frequency and child
+%% specifications.
+%%
+%% @spec init(Args) -> {ok, {SupFlags, [ChildSpec]}} |
+%%                     ignore |
+%%                     {error, Reason}
+%% @end
+%%--------------------------------------------------------------------
+{{CURSOR}}init([]) ->
+    RestartStrategy = one_for_one,
+    MaxRestarts = 1,
+    MaxSecondsBetweenRestarts = 5,
+
+    SupFlags = #{strategy => RestartStrategy,
+                 intensity => MaxRestarts,
+                 period => MaxSecondsBetweenRestarts},
+
+    AChild = #{id => a_name,
+               start => {a_module,
+                         start_link,
+                         []},
+               restart => permanent,
+               shutdown => timer:seconds(5),
+               type => worker,
+               [a_module]},
+
+    {ok, {SupFlags, [AChild]}}.
+
+%%%===================================================================
+%%% Internal Functions
+%%%===================================================================
+
