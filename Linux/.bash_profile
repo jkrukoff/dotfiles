@@ -11,14 +11,16 @@ export CLICOLOR=true
 
 # Development environment variables.
 export GOPATH="${HOME}/Documents/go"
-export PATH="${PATH}:${GOPATH}/bin:${HOME}/.rbenv/bin"
+export PATH="${PATH}:${GOPATH}/bin"
 export KUBECONFIG="${KUBECONFIG}:${HOME}/.kube/config"
-export VAGRANT_HOME=/data/jkrukoff/.vagrant.d
+export VAGRANT_HOME="${HOME}/.vagrant.d"
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
+export PIPENV_DONT_USE_PYENV=yes
+export PIPENV_VENV_IN_PROJECT=yes
 
 # Secrets.
-# export GITHUB_TOKEN=""  # Personal token.
-export GITHUB_ORGANIZATION="carbonblack"
+# export GITHUB_TOKEN=""
+# export GITHUB_ORGANIZATION=""
 
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then

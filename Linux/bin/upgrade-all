@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+download_dir="$(mktemp -d -t "$(basename "$0")-XXXXXXXXXX")"
+
+function cleanup {
+  rm -rf "${download_dir}"
+}
+
+trap cleanup EXIT
+
+function upgrade-argbash {
+  local version
+  local download_to="${download_dir}/argbash.tar.gz"
+  version="$(curl -Ls -o /dev/null -w '%{url_effective}' https://github.com/matejak/argbash/releases/latest | sed 's~^.*\/~~')"
+
+  curl -#L "https://github.com/matejak/argbash/archive/${version}/${version}.tar.gz" -o "${download_to}"
+  tar -zxvf "${download_to}" --directory "${download_dir}"
+  make --directory "${download_dir}/argbash-${version}/resources" install
+}
+
+function upgrade-jp {
+  local version
+  version="$(curl -Ls -o /dev/null -w '%{url_effective}' https://github.com/jmespath/jp/releases/latest | sed 's~^.*\/~~')"
+  curl -#L "https://github.com/jmespath/jp/releases/download/${version}/jp-linux-amd64" -o ~/bin/jp
+  chmod 755 ~/bin/jp
+}
+
+function upgrade-ripgrep {
+  local version
+  local download_to="${download_dir}/ripgrep.deb"
+  version="$(curl -Ls -o /dev/null -w '%{url_effective}' https://github.com/BurntSushi/ripgrep/releases/latest | sed 's~^.*\/~~')"
+  curl -#L "https://github.com/BurntSushi/ripgrep/releases/download/${version}/ripgrep_${version}_amd64.deb" -o "${download_to}"
+  sudo dpkg -i "${download_to}"
+}
+
+function upgrade-terraform-docs {
+  local version
+  version="$(curl -Ls -o /dev/null -w '%{url_effective}' https://github.com/segmentio/terraform-docs/releases/latest | sed 's~^.*\/~~')"
+  curl -#L "https://github.com/segmentio/terraform-docs/releases/download/${version}/terraform-docs-${version}-linux-amd64" -o ~/bin/terraform-docs
+  chmod 755 ~/bin/terraform-docs
+}
+
+# Upgrade Ubuntu packages.
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo apt-file update
+
+# Upgrade asdf. Doesn't upgrade the installed versions.
+asdf update
+asdf plugin-update --all
+
+# Upgrade vim plugins.
+vim +PlugUpgrade +PlugUpdate +PlugClean +BlackUpgrade +qall
+
+# Upgrade global python packages. Intended for use with an asdf python version
+# active.
+pip install --upgrade pip
+pip install --user --upgrade awscli black pipenv poetry
+
+# Upgrade z.sh directory switcher.
+curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
+
+# More complicated upgrades.
+upgrade-argbash
+upgrade-jp
+upgrade-ripgrep
+upgrade-terraform-docs

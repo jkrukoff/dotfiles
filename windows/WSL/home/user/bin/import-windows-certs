@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+function usage {
+  cat >&2 <<EOF
+Usage: $0 <directory>
+Import windows CA certificates into the WSL Ubuntu certificate store.
+
+Arguments:
+  directory: Directory name under /usr/local/share/ca-certificates to create.
+EOF
+  exit 1
+}
+
+if [[ $# -ne 1 ]]; then
+  usage
+fi
+
+DEST_DIR="/usr/local/share/ca-certificates/$1"
+
+echo 'Exporting certificates from windows.'
+CERT_DIR="$(powershell.exe -Command '
+function New-TemporaryDirectory {
+  $name = New-Guid
+  New-Item -ItemType Directory -Path (Join-Path $env:TEMP $name)
+}
+
+$tmpdir = New-TemporaryDirectory
+
+Get-ChildItem Cert:\LocalMachine\CA,Cert:\LocalMachine\Root |
+  ForEach-Object {Export-Certificate -Cert $_ -Type CERT -FilePath (Join-Path $tmpdir ($_.thumbprint + ".cer"))} |
+  Out-Null
+
+Write-Output $tmpdir.FullName
+' | sed '
+s~C:~/c~
+s~\\~/~g
+s~\r~~
+')"
+
+function copy_certs {
+  local certificate
+
+  sudo mkdir "${DEST_DIR}" || true
+  for certificate in "${CERT_DIR}"/*; do
+    sudo openssl x509 -inform DER -outform PEM -in "${certificate}" -out "${DEST_DIR}/$(basename ${certificate} ".cer").crt"
+  done
+}
+
+echo 'Importing and converting certificates.'
+copy_certs
+echo 'Updating certificate store.'
+sudo update-ca-certificates -f
+echo 'Certificates imported.'

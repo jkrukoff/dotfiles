@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+function usage {
+  cat >&2 <<EOF
+Usage: $0 <image> [tag]
+Run a shell in a docker container.
+
+Arguments:
+  image: The docker image to run.
+  tag: The docker image tag to run. Defaults to latest.
+
+Image Suggestions:
+  alpine
+  centos
+  debian
+  fedora
+  ubuntu
+EOF
+  exit 1
+}
+
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+  usage
+fi
+
+DOCKER_IMAGE=$1
+DOCKER_TAG=${2:-latest}
+DOCKER_COMMAND=/bin/sh
+
+# Whitelist of images known to include bash.
+case "${DOCKER_IMAGE}" in
+  centos|debian|fedora|ubuntu)
+    DOCKER_COMMAND=/bin/bash
+    ;;
+esac
+
+docker run -it "${DOCKER_IMAGE}:${DOCKER_TAG}" "${DOCKER_COMMAND}"

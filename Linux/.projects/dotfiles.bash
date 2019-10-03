@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ~/.projects/lib.bash
-cd_project ~/Documents/Personal/dotfiles/"$(uname)"
+cd_project ~/Documents/dotfiles/"$(uname)"
 tags
 
 function save {
@@ -59,7 +59,7 @@ function restore {
   curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 
   # Install asdf, a generic version management tool.
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.2
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
 
   # Install terraform-docs, a terraform documentation generation tool.
   curl -#L https://github.com/segmentio/terraform-docs/releases/download/v0.6.0/terraform-docs_linux_amd64 -o ~/bin/terraform-docs

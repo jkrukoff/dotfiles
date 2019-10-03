@@ -1,6 +1,6 @@
 [user]
 	name = John Krukoff
-	email = jkrukoff@carbonblack.com
+	email = john@krukoff.us
 
 [push]
 	default = simple
@@ -13,3 +13,7 @@
 
 [init]
 	templatedir = ~/.git_template
+
+[http]
+	version = HTTP/1.1
+	userAgent = curl/7.58.0

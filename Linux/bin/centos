@@ -1,8 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-
-DOCKER_TAG=":${1:-latest}"
-
-source ~/.projects/lib.bash
-start_docker
-docker run -i -t "centos${DOCKER_TAG}" /bin/sh

@@ -7,6 +7,7 @@ set nocompatible "Not vi compatible (No matter how vim was invoked)
 call plug#begin()
 
 "Actual plugin list
+Plug 'Hans-Guenter/TaskList.vim'      "Not really maintained, this is best looking fork of 'vim-scripts/Tasklist.vim'.
 Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
 Plug 'elixir-lang/vim-elixir'
 Plug 'elzr/vim-json'
@@ -24,6 +25,8 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-mix-format'
 Plug 'moll/vim-node'
 Plug 'nginx/nginx'
+Plug 'psf/black'
+Plug 'reedes/vim-colors-pencil'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
 Plug 'tibabit/vim-templates'
@@ -37,8 +40,8 @@ Plug 'vim-erlang/vim-erlang-compiler'
 Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'vim-erlang/vim-erlang-tags'
-Plug 'vim-scripts/TaskList.vim'
 Plug 'vim-scripts/bats.vim'
+Plug 'zigford/vim-powershell'
 "Disabled plugins
 "Salt Plugins
 " Plug 'Glench/Vim-Jinja2-Syntax'
@@ -47,21 +50,28 @@ Plug 'vim-scripts/bats.vim'
 " Plug 'nathanielc/vim-tickscript'
 "Python 2 only
 " Plug 'pignacio/vim-yapf-format'
-"Python dependency unmet on windows
-" Plug 'sergei-dyshel/vim-yapf-format'
+" let g:yapf_format_allow_out_of_range_changes = 0
+" let g:yapf_format_move_to_error = 0
 
 "Finalize plugin setup
 call plug#end()
 
+"Change the default GUI font to Consolas, which must be installed into the
+"system fonts.
+if has('win32')
+	set guifont=Consolas:h12:cANSI:qDRAFT
+else
+	set guifont=Consolas\ 12
+endif
+
 "Change the default color scheme to something readable
-set guifont=Consolas:h16:cANSI:qDRAFT
 set background=dark
 highlight clear
 if exists('syntax_on')
 	syntax reset
 endif
 if has('gui_running')
-	colorscheme desert
+	colorscheme pencil
 endif
 
 
@@ -125,6 +135,12 @@ set timeoutlen=3000		"Wait 3 seconds for key sequence to complete
 
 
 "Global plugin configuration
+if has('win32')
+	let g:black_virtualenv='~/vimfiles/black'	"Plugin doesn't understand default vim paths on windows.
+else
+	let g:black_virtualenv='~/.vim/black'
+endif
+
 let g:gutentags_ctags_tagfile='tags'
 let g:gutentags_ctags_auto_set_tags=0	"Only update tags when requested.
 let g:gutentags_generate_on_missing=0
@@ -153,18 +169,24 @@ let g:syntastic_id_checkers = 1
 let g:syntastic_sort_aggregated_errors = 1
 let g:syntastic_mode_map = {"mode": "passive"}
 
+if has('win32')
+	let g:tmpl_search_paths = ['~\Documents\vim-templates']
+else
+	let g:tmpl_search_paths = ['~/.vim-templates']
+endif
 let g:tmpl_auto_initialize = 0
-let g:tmpl_search_paths = ['~\Documents\vim-templates']
 let g:tmpl_author_name = 'John Krukoff'
 let g:tmpl_author_email = 'john@krukoff.us'
-
 
 "Global bindings
 map <ESC><ESC><ESC> ZQ								"Exit vim unconditionally
 map <leader>/ :noh<CR>								"Clear search highlighting
 map <leader>L :write<CR>:SyntasticCheck<CR>:Errors<CR>				"Check file for syntax errors
 map <leader>T :TagbarToggle<CR>							"Display tag sidebar
-map <leader>do <Plug>TaskList							"Launch tasklist plugin
+map <leader>do :TaskListToggle<CR>						"Display TODO list
+map <leader>x "+x								"Cut to global clipboard
+map <leader>c "+y								"Copy to global clipboard
+map <leader>v "+gp								"Paste from global clipboard
 vmap <leader>sw d:execute 'normal a' . join(sort(split(getreg('"'))), ' ')<CR>	"Sort selected words
 
 
@@ -227,14 +249,12 @@ if has("autocmd")
 	autocmd FileType go setlocal foldnestmax=1
 
 	"Python specific settings
+	let g:black_linelength = 80
 	let g:pydoc_perform_mappings = 0
 	let g:pydoc_open_cmd = 'vsplit'
 	let g:syntastic_python_checkers = ['flake8', 'prospector']
-	let g:yapf_format_allow_out_of_range_changes = 0
-	let g:yapf_format_move_to_error = 0
 	let g:virtualenv_directory = '.'
-	autocmd FileType python nmap <buffer> <localleader>f :YapfFullFormat<CR>
-	autocmd FileType python vmap <buffer> <localleader>f :YapfFormat<CR>
+	autocmd FileType python nmap <buffer> <localleader>f :Black<CR>
 	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
 	autocmd FileType python nmap <buffer> <localleader>k oimport pdb; pdb.set_trace()  # TODO: Breakpoint.<esc>
 	autocmd FileType python nmap <buffer> <localleader>n :r!python -c "import datetime; print(repr(datetime.datetime.utcnow()))"<CR>

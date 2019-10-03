@@ -9,4 +9,4 @@
 tags
 
 # Python virtual environment.
-virtualenv/
+.venv/

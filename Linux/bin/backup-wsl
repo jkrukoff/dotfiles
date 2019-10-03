@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+function usage {
+  cat >&2 <<EOF
+Usage: $0 <directory>
+Backup WSL install to tar file in <directory>.
+
+Arguments:
+  directory: The backup directory.
+
+EOF
+  exit 1
+}
+
+if [[ $# -ne 1 ]]; then
+  usage
+fi
+
+BACKUP_DIR=$1
+
+function backup {
+  local backup_file
+  backup_file="${BACKUP_DIR}/WSL-backup-$(date -I)"
+  cd /
+  tar -vjcpf "${backup_file}.tar.bz2" --exclude=/proc --exclude=/dev --exclude=/c --exclude=/d --exclude=/mnt --exclude=/media --exclude=/lost+found --exclude=/tmp --exclude=/sys --exclude=/run / > "${backup_file}.log" 2> "${backup_file}.error"
+}
+
+backup

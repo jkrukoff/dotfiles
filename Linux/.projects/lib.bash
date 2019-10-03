@@ -47,36 +47,6 @@ function tags {
   esac
 }
 
-function activate_virtualenv {
-  local virtualenv_dir="${1:-.virtualenv}"
-  if [ -d "${virtualenv_dir}" ]; then
-    source "${virtualenv_dir}"/bin/activate
-    echo "Python virtualenv found and activated: $(python --version)"
-  fi
-}
-
-function activate_nvm {
-  local nvm_version="${1}"
-  local nvm_dir="${2:-${HOME}/.nvm}"
-  export NVM_DIR="${nvm_dir}"
-  source "${nvm_dir}/nvm.sh"
-  nvm use "${nvm_version}"
-  PATH="$(npm bin):${PATH}"
-  export PATH
-}
-
-function activate_rbenv {
-  local rbenv_version="${1}"
-  eval "$(rbenv init -)"
-  rbenv shell "${rbenv_version}"
-  rbenv version
-}
-
-function activate_gcloud {
-  GCLOUD_PATH="$(gcloud info --format=flattened | grep '^installation.sdk_root: ' | tr -s ' ' | cut -f 2 -d ' ')"
-  export PATH="${GCLOUD_PATH}/bin:${PATH}"
-}
-
 function activate_awsume {
   local aws_profile="${1}"
   if [ -n "${aws_profile}" ]; then

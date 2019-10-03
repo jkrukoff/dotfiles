@@ -1,4 +1,0 @@
-#!/bin/bash
-source ~/.projects/lib.bash
-start_docker
-docker run -i -t ubuntu /bin/sh
