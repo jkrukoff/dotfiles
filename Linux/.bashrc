@@ -52,8 +52,6 @@ alias hl='source-highlight --failsafe -f esc256 -n -i'
 
 # External functions.
 source ~/bin/z.sh
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
 
 # History variables.
 HISTIGNORE='[	 ]*:&:bg:fg'

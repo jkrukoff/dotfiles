@@ -5,7 +5,7 @@
 export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
 export INPUTRC="${HOME}/.inputrc"
 export BASH_ENV="${HOME}/.bashrc"
-EDITOR="$(which vim)"
+EDITOR="$(command -v vim)"
 export EDITOR
 export CLICOLOR=true
 
@@ -21,6 +21,10 @@ export PIPENV_VENV_IN_PROJECT=yes
 # Secrets.
 # export GITHUB_TOKEN=""
 # export GITHUB_ORGANIZATION=""
+
+# asdf version manager setup.
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then
