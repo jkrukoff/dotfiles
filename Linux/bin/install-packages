@@ -5,6 +5,13 @@ IFS=$'\n\t'
 
 case "$(lsb_release --id -s)" in
   Ubuntu)
-    sudo apt install apt-file apt-transport-https autoconf automake build-essential build-essential ca-certificates crudini ctags curl dc dirmngr gettext gitg gnupg-agent gpg jq libbz2-dev libffi-dev liblzma-dev libncurses-dev libncurses5-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libssl-dev libtool libxml2-dev libxmlsec1-dev libxslt-dev libyaml-dev llvm make meld moreutils postgresql python3-docutils python3-venv rpl shellcheck software-properties-common source-highlight tk-dev tree unixodbc-dev unzip vim-gtk3 wget xz-utils zlib1g-dev
+    sudo apt install apt-file apt-transport-https autoconf automake build-essential build-essential ca-certificates crudini ctags curl dc dirmngr docker.io gettext gitg gnupg-agent gpg jq libbz2-dev libffi-dev liblzma-dev libncurses-dev libncurses5-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libssl-dev libtool libxml2-dev libxmlsec1-dev libxslt-dev libyaml-dev llvm make meld moreutils postgresql python3-docutils python3-venv rpl shellcheck software-properties-common source-highlight tk-dev timelimit tree unixodbc-dev unzip vim-gtk3 wget wslu xz-utils zlib1g-dev zip
+
+    # Check if we're in a WSL environment and install some additional
+    # utilities.
+    kernel_version=$(uname -r)
+    if [ -z "${kernel_version##*Microsoft}" ]; then
+      sudo apt install ubuntu-wsl
+    fi
     ;;
 esac

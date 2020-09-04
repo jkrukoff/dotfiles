@@ -1,19 +1,17 @@
 [user]
 	name = John Krukoff
 	email = john@krukoff.us
-
 [push]
 	default = simple
-
 [core]
 	excludesfile = ~/.gitignore_global
-
 [merge]
 	tool = meld
-
 [init]
 	templatedir = ~/.git_template
-
-[http]
-	version = HTTP/1.1
-	userAgent = curl/7.58.0
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[fetch]
+	recurseSubmodules = on-demand

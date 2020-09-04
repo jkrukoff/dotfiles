@@ -12,5 +12,8 @@ if ! git checkout "$1"; then
 	1>&2 echo -e "\n\n$(tput setaf 1)Failed to switch to branch.$(tput sgr0)"
 	exit 1
 else
+	set -euo pipefail
+	git submodule sync --recursive
+	git submodule update --init --recursive
 	git status
 fi

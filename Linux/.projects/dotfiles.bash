@@ -7,7 +7,7 @@ tags
 function save {
   echo "Copying dotfiles from ~/ to ${PWD}."
   local path
-  for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .projects; do
+  for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .tool-versions .projects; do
     cp -va ~/"${path}" ./
   done
   mkdir .ssh 
@@ -46,7 +46,7 @@ function restore {
   done
   cp -va .ssh/config ~/.ssh/config
   cp -va .bash* ~/
-  cp -va .vim-templates/* ~/
+  cp -va .vim-templates/* ~/.vim-templates/
 
   # Remember some gnome settings.
   gsettings set org.gnome.desktop.wm.preferences focus-mode sloppy

@@ -14,8 +14,6 @@ Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'fs111/pydoc.vim'
 Plug 'godlygeek/tabular'
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-sexp'
 Plug 'hashivim/vim-terraform'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'jparise/vim-graphql'
@@ -27,7 +25,6 @@ Plug 'moll/vim-node'
 Plug 'nginx/nginx'
 Plug 'psf/black'
 Plug 'reedes/vim-colors-pencil'
-Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
 Plug 'tibabit/vim-templates'
 Plug 'tmhedberg/SimpylFold'
@@ -41,13 +38,19 @@ Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'vim-erlang/vim-erlang-tags'
 Plug 'vim-scripts/bats.vim'
+Plug 'z0mbix/vim-shfmt'
 Plug 'zigford/vim-powershell'
 "Disabled plugins
+"Clojure Plugins
+" Plug 'guns/vim-clojure-static'
+" Plug 'guns/vim-sexp'
+"Kapacitor Plugins
+" Plug 'nathanielc/vim-tickscript'
+"Rust Plugins
+" Plug 'rust-lang/rust.vim'
 "Salt Plugins
 " Plug 'Glench/Vim-Jinja2-Syntax'
 " Plug 'saltstack/salt-vim'
-"Kapacitor Plugins
-" Plug 'nathanielc/vim-tickscript'
 "Python 2 only
 " Plug 'pignacio/vim-yapf-format'
 " let g:yapf_format_allow_out_of_range_changes = 0
@@ -256,7 +259,7 @@ if has("autocmd")
 	let g:virtualenv_directory = '.'
 	autocmd FileType python nmap <buffer> <localleader>f :Black<CR>
 	autocmd FileType python nmap <buffer> <localleader>V :VirtualEnvActivate .virtualenv<CR>
-	autocmd FileType python nmap <buffer> <localleader>k oimport pdb; pdb.set_trace()  # TODO: Breakpoint.<esc>
+	autocmd FileType python nmap <buffer> <localleader>k obreakpoint()  # TODO: Breakpoint.<esc>
 	autocmd FileType python nmap <buffer> <localleader>n :r!python -c "import datetime; print(repr(datetime.datetime.utcnow()))"<CR>
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
@@ -272,6 +275,8 @@ if has("autocmd")
 
 	"Shell specific settings
 	let g:syntastic_sh_checkers = ['shellcheck']
+	let g:shfmt_extra_args = '-i 2 -ci -sr'
+	autocmd FileType sh nmap <buffer> <localleader>f :Shfmt<CR>
 	autocmd FileType sh setlocal makeprg=shellcheck\ -f\ gcc\ %:S
 	autocmd FileType sh setlocal tabstop=2
 	autocmd FileType sh setlocal softtabstop=2

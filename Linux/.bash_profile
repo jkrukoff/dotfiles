@@ -16,7 +16,7 @@ export KUBECONFIG="${KUBECONFIG}:${HOME}/.kube/config"
 export VAGRANT_HOME="${HOME}/.vagrant.d"
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 export PIPENV_DONT_USE_PYENV=yes
-export PIPENV_VENV_IN_PROJECT=yes
+export AWS_RETRY_MODE=standard
 
 # Secrets.
 # export GITHUB_TOKEN=""
