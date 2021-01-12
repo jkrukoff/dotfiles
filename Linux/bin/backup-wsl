@@ -2,8 +2,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-function usage {
-  cat >&2 <<EOF
+function usage() {
+  cat >&2 << EOF
 Usage: $0 <directory>
 Backup WSL install to tar file in <directory>.
 
@@ -20,7 +20,7 @@ fi
 
 BACKUP_DIR=$1
 
-function backup {
+function backup() {
   local backup_file
   backup_file="${BACKUP_DIR}/WSL-backup-$(date -I)"
   cd /

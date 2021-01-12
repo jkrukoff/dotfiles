@@ -28,10 +28,10 @@ case "$-" in
     shopt -s globstar
     shopt -s shift_verbose
     shopt -u sourcepath
-  ;;
+    ;;
   *)
     # Non-interactive shell.
-  ;;
+    ;;
 esac
 
 # Aliases.
@@ -90,7 +90,6 @@ PROMPT_COLOR_ERR_USER="${PROMPT_COLOR_NORM}$(tput setaf 6)$(tput setab 5)"
 PROMPT_COLOR_ERR_DIRSTATUS="${PROMPT_COLOR_NORM}$(tput setaf 3)$(tput setab 5)"
 PROMPT_COLOR_ERR_ROOT="${PROMPT_COLOR_NORM}$(tput setaf 1)$(tput setab 5)"
 
-
 function prompt_colors {
   local exit_code="${1:-$?}"
 
@@ -122,7 +121,7 @@ function dashed_line {
     # Right justify.
     local move_to_edge move_to_dash
     move_to_edge="$(tput cr)"
-    move_to_dash="${move_to_edge}$(tput cuf $(( $(tput cols) - ${#dash} - 1 )) )"
+    move_to_dash="${move_to_edge}$(tput cuf $(($(tput cols) - ${#dash} - 1)))"
     printf "%s" "${move_to_edge}${move_to_dash}${dash}"
   else
     # Left justify
@@ -217,8 +216,9 @@ function project {
     local closest
     closest="$(
       basename -a -s '.bash' ~/.projects/*.bash |
-      grep -F "${project}" |
-      awk '(NR==1 || length<shortest){shortest=length; line=$0} END {print line}')"
+        grep -F "${project}" |
+        awk '(NR==1 || length<shortest){shortest=length; line=$0} END {print line}'
+    )"
     project_file=~/".projects/${closest}.bash"
   fi
 

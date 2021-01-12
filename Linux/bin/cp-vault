@@ -10,7 +10,7 @@ source_pattern="${source##*/}"
 source_pattern="${source_pattern:-*}"
 
 usage() {
-  cat <<-EOF
+  cat <<- EOF
 		vault-cp source/[pattern] destination
 		
 		Copy all secrets from one vault path to another. Source must end with a

@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+report_limits() {
+  local label="$1"
+  local s_limit="$2"
+
+  (
+    if ulimit -H -s "${s_limit}" 2> /dev/null; then
+      ulimit -S -s "${s_limit}"
+
+      echo "Argument limits for ${label}: ${s_limit}"
+      echo "ulimit -s: $(ulimit -s)"
+      if [ "$(ulimit -s)" != unlimited ]; then
+        echo "Stack limit: $(($(ulimit -s) * 1024))"
+        echo "Quarter stack limit: $((($(ulimit -s) * 1024) / 4))"
+      fi
+      echo "ARG_MAX: $(getconf ARG_MAX)"
+      echo "Environment size: $(env | wc -c)"
+      echo "xargs:"
+      echo "$(xargs --show-limits -r 2>&1 < /dev/null)"
+      echo
+    fi
+  )
+}
+
+total_memory() {
+  local mem_total
+
+  # Total memory in kilobytes, which is okay because that's also what ulimit
+  # expectes.
+  mem_total="$(grep MemTotal /proc/meminfo | tr -s ' ' | cut -d ' ' -f 2)"
+  printf "%s" "${mem_total}"
+}
+
+find_ulimit() {
+  local current increment max ulimit_status
+  local current_arg_max=0
+  local last_arg_max=0
+
+  max="$(total_memory)"
+  increment="$((max / 100))"
+  current="${increment}"
+
+  while true; do
+    ulimit -S -s "${current}" 2> /dev/null
+    ulimit_status="$?"
+
+    current_arg_max="$(getconf ARG_MAX)"
+    if [[ "${ulimit_status}" -ne 0 || "${current_arg_max}" -eq "${last_arg_max}" ]]; then
+      if [ "${increment}" -gt 1 ]; then
+        current="$((current - increment))"
+        increment="$((increment / 2))"
+      else
+        break
+      fi
+    fi
+
+    current="$((current + increment))"
+    if [ "${current}" -gt "${max}" ]; then
+      echo unlimited
+      return
+    fi
+
+    last_arg_max="${current_arg_max}"
+  done
+
+  printf "%s" "$((current - 1))"
+}
+
+find_arg_limit() {
+  local increment
+  local args=""
+  local count="$((128 * 1024))"
+
+  while [ "${count}" -gt 0 ]; do
+    increment="$(printf "A%.0s" $(seq 1 "${count}"))"
+
+    while /bin/echo "${args}" > /dev/null 2>&1; do
+      args="${args}${increment}"
+    done
+
+    count="$((count / 2))"
+  done
+
+  echo -n "Final error was: " 1>&2
+  /bin/echo "${args}A" > /dev/null
+
+  printf "%s" "$(($(wc -c <<< "$args") - 1))"
+}
+
+find_arg_max() {
+  local arg_limit="$1"
+
+  local increment
+  local args=""
+  local count="$((arg_limit - 1))"
+
+  while [ "${count}" -gt 0 ]; do
+    increment=$"$(printf "A%.0s" $(seq 1 "${count}")) "
+
+    while /bin/echo ${args} > /dev/null 2>&1; do
+      args="${args}${increment}"
+    done
+
+    count="$((count / 2))"
+  done
+
+  echo -n "Final error was: " 1>&2
+  /bin/echo ${args} A > /dev/null
+
+  printf "%s" "$(($(cat <<< "$args" | tr -d ' ' | wc -c) - 1))"
+}
+
+report_limits "current" "$(ulimit -s)"
+report_limits "unlimited" "unlimited"
+
+STACK_SIZE_LIMIT="$(find_ulimit)"
+ulimit -S -s "${STACK_SIZE_LIMIT}"
+
+report_limits "limit" "${STACK_SIZE_LIMIT}"
+echo "Found stack size limit: ${STACK_SIZE_LIMIT}"
+
+ARG_LIMIT="$(find_arg_limit)"
+echo "Found single argument limit: ${ARG_LIMIT}"
+
+ARG_MAX="$(find_arg_max "${ARG_LIMIT}")"
+echo "Found argument limit: ${ARG_MAX}"

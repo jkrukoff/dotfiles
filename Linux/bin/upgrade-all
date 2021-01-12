@@ -4,13 +4,13 @@ IFS=$'\n\t'
 
 download_dir="$(mktemp -d -t "$(basename "$0")-XXXXXXXXXX")"
 
-function cleanup {
+function cleanup() {
   rm -rf "${download_dir}"
 }
 
 trap cleanup EXIT
 
-function upgrade-argbash {
+function upgrade-argbash() {
   local version
   local download_to="${download_dir}/argbash.tar.gz"
   version="$(curl -Ls -o /dev/null -w '%{url_effective}' https://github.com/matejak/argbash/releases/latest | sed 's~^.*\/~~')"
@@ -20,15 +20,32 @@ function upgrade-argbash {
   make --directory "${download_dir}/argbash-${version}/resources" install
 }
 
+function upgrade-asdf() {
+  local plugin latest
+
+  asdf update
+  asdf plugin-update --all
+
+  for plugin in $(asdf plugin list); do
+    latest="$(asdf latest "${plugin}")"
+    if [ -z "${latest}" ]; then
+      echo "asdf plugin ${plugin} can not be upgraded, no latest version." 1>&2
+    else
+      asdf install "${plugin}" "${latest}"
+      asdf global "${plugin}" "${latest}"
+    fi
+  done
+}
+
 # Upgrade Ubuntu packages.
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
 sudo apt-file update
 
-# Upgrade asdf. Doesn't upgrade the installed versions.
-asdf update
-asdf plugin-update --all
+# Upgrade asdf. Might not upgrade some plugins that don't have a latest
+# version reported.
+upgrade-asdf
 
 # Upgrade vim plugins.
 vim +PlugUpgrade +PlugUpdate +PlugClean +BlackUpgrade +qall

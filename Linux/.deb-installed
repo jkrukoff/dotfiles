@@ -251,6 +251,7 @@ initramfs-tools					install
 initramfs-tools-bin				install
 initramfs-tools-core				install
 install-info					install
+ioping						install
 ippusbxd					install
 iproute2					install
 iptables					install
@@ -1128,10 +1129,12 @@ python3-newt:amd64				install
 python3-oauthlib				install
 python3-olefile					install
 python3-openssl					install
+python3-pexpect					install
 python3-pil:amd64				install
 python3-pkg-resources				install
 python3-problem-report				install
 python3-protobuf				install
+python3-ptyprocess				install
 python3-pyasn1					install
 python3-pyasn1-modules				install
 python3-pygments				install
