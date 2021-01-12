@@ -69,62 +69,115 @@ if [ -z "${TERM}" ]; then
 fi
 
 # Git prompt variables.
-GIT_PS1_SHOWDIRTYSTATE='true'
-GIT_PS1_SHOWSTASHSTATE='true'
-GIT_PS1_SHOWUPSTREAM='auto'
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM=auto
 
 # Common color codes.
 PROMPT_COLOR_NORM="$(tput sgr0)"
-PROMPT_COLOR_PUNC="${PROMPT_COLOR_NORM}$(tput bold)$(tput setaf 4)$(tput setab 4)"
-PROMPT_COLOR_TEXT="${PROMPT_COLOR_NORM}$(tput setaf 6)$(tput setab 4)"
-PROMPT_COLOR_USER="${PROMPT_COLOR_TEXT}"
-PROMPT_COLOR_DIRSTATUS="${PROMPT_COLOR_NORM}$(tput sgr0)$(tput setaf 3)$(tput setab 4)"
-PROMPT_COLOR_ROOT="${PROMPT_COLOR_NORM}$(tput sgr0)$(tput setaf 1)$(tput setab 4)"
-PROMPT_COLOR_OK="${PROMPT_COLOR_NORM}$(tput setaf 2)"
-PROMPT_COLOR_ERR="${PROMPT_COLOR_NORM}$(tput setaf 1)$(tput setab 0)"
+PROMPT_COLOR_OK="${PROMPT_COLOR_NORM}$(tput setaf 6)"
+PROMPT_COLOR_ERR="${PROMPT_COLOR_NORM}$(tput setaf 1)$(tput setab 5)"
+
+PROMPT_COLOR_OK_PUNC="${PROMPT_COLOR_NORM}$(tput bold)$(tput setaf 4)$(tput setab 4)"
+PROMPT_COLOR_OK_TEXT="${PROMPT_COLOR_NORM}$(tput setaf 5)$(tput setab 4)"
+PROMPT_COLOR_OK_USER="${PROMPT_COLOR_NORM}$(tput setaf 5)$(tput setab 4)"
+PROMPT_COLOR_OK_DIRSTATUS="${PROMPT_COLOR_NORM}$(tput setaf 3)$(tput setab 4)"
+PROMPT_COLOR_OK_ROOT="${PROMPT_COLOR_NORM}$(tput setaf 1)$(tput setab 4)"
+
+PROMPT_COLOR_ERR_PUNC="${PROMPT_COLOR_NORM}$(tput bold)$(tput setaf 5)$(tput setab 5)"
+PROMPT_COLOR_ERR_TEXT="${PROMPT_COLOR_NORM}$(tput setaf 6)$(tput setab 5)"
+PROMPT_COLOR_ERR_USER="${PROMPT_COLOR_NORM}$(tput setaf 6)$(tput setab 5)"
+PROMPT_COLOR_ERR_DIRSTATUS="${PROMPT_COLOR_NORM}$(tput setaf 3)$(tput setab 5)"
+PROMPT_COLOR_ERR_ROOT="${PROMPT_COLOR_NORM}$(tput setaf 1)$(tput setab 5)"
+
+
+function prompt_colors {
+  local exit_code="${1:-$?}"
+
+  if [ "${exit_code}" -eq 0 ]; then
+    PROMPT_COLOR_PUNC="${PROMPT_COLOR_OK_PUNC}"
+    PROMPT_COLOR_TEXT="${PROMPT_COLOR_OK_TEXT}"
+    PROMPT_COLOR_USER="${PROMPT_COLOR_OK_USER}"
+    PROMPT_COLOR_DIRSTATUS="${PROMPT_COLOR_OK_DIRSTATUS}"
+    PROMPT_COLOR_ROOT="${PROMPT_COLOR_OK_ROOT}"
+  else
+    PROMPT_COLOR_PUNC="${PROMPT_COLOR_ERR_PUNC}"
+    PROMPT_COLOR_TEXT="${PROMPT_COLOR_ERR_TEXT}"
+    PROMPT_COLOR_USER="${PROMPT_COLOR_ERR_USER}"
+    PROMPT_COLOR_DIRSTATUS="${PROMPT_COLOR_ERR_DIRSTATUS}"
+    PROMPT_COLOR_ROOT="${PROMPT_COLOR_ERR_ROOT}"
+  fi
+}
+
+# Ensure we've got some default color variables set, even before the prompt is
+# generated for the first time.
+prompt_colors 0
 
 function dashed_line {
   local dash
+  local justify="$2"
   dash="$(eval "printf ~%.0s {1..$1}")"
 
-  if [ "$2" = "right" ]; then
+  if [ "${justify}" = right ]; then
     # Right justify.
     local move_to_edge move_to_dash
     move_to_edge="$(tput cr)"
     move_to_dash="${move_to_edge}$(tput cuf $(( $(tput cols) - ${#dash} - 1 )) )"
-    echo -n "${move_to_edge}${move_to_dash}${dash}"
+    printf "%s" "${move_to_edge}${move_to_dash}${dash}"
   else
     # Left justify
-    echo -n "${dash}"
+    printf "%s" "${dash}"
   fi
 }
 
 function prompt {
+  local OPTIND ARG enable_git
+  while getopts "gh" ARG "$@"; do
+    case ${ARG} in
+      g)
+        enable_git="true"
+        ;;
+      h)
+        echo "prompt: -g, -h" 1>&2
+        return
+        ;;
+      ?)
+        return 1
+        ;;
+    esac
+  done
+
   # Set status line for terminals that support it.
   local status_line
   if tput hs; then
-    status_line="$(tput tsl)[ \\u@\\h(\${SHLVL}) ]: \${PWD}$(tput fsl)"
+    status_line="\\[$(tput tsl)\\][\\u@\\h(\${SHLVL})]: \${PWD}\\[$(tput fsl)\\]"
   fi
 
-  local color_user="${PROMPT_COLOR_USER}"
   # Try to make it obvious that I'm root.
-  if [ "$(whoami)" == "root" ]; then
-    color_user="${PROMPT_COLOR_ROOT}"
-    export PATH="/sbin:/usr/sbin:/usr/local/sbin:${PATH}"
+  local color_user
+  if [ "$(id -u)" -eq 0 ]; then
+    color_user="\\[\${PROMPT_COLOR_ROOT}\\]"
+  else
+    color_user="\\[\${PROMPT_COLOR_USER}\\]"
   fi
 
-  local move_to_edge
-  move_to_edge="$(tput cr)"
-  local long_dash='dashed_line ${COLUMNS} left'
-  local info_block="[${color_user}\\u@\\h(\${SHLVL}) ${PROMPT_COLOR_DIRSTATUS}\$(__git_ps1 \"git:%s \")${PROMPT_COLOR_PUNC}|${PROMPT_COLOR_TEXT} \\@ \\d${PROMPT_COLOR_PUNC}]"
+  local git_prompt
+  if [ "${enable_git}" ]; then
+    git_prompt="\$(__git_ps1 \"git:%s \")"
+  fi
+
+  local long_dash info_block
+  long_dash="\\[\${PROMPT_COLOR_PUNC}\$(dashed_line "\${COLUMNS}" left)$(tput cr)\\]"
+  info_block="[${color_user}\\u@\\h(\${SHLVL}) \\[\${PROMPT_COLOR_DIRSTATUS}\\]${git_prompt}\\[\${PROMPT_COLOR_PUNC}\\]|\\[\${PROMPT_COLOR_TEXT}\\] \\@ \\d\\[\${PROMPT_COLOR_PUNC}\\]]"
 
   # Time to actually set the prompt!
-  PS1="${status_line}${PROMPT_COLOR_PUNC}\\[\$(eval ${long_dash})\\]${move_to_edge}${info_block}${PROMPT_COLOR_NORM}\\n\\w \\!\\\$ "
+  PROMPT_COMMAND=prompt_colors
+  PS1="${status_line}${long_dash}${info_block}\\[\${PROMPT_COLOR_NORM}\\]\\n\\w \\!\\\$ "
   PS2='\w \!>'
   PS4='+ \!>'
 }
 
-prompt
+prompt -g
 
 # Project management and switching.
 
@@ -138,6 +191,8 @@ function project {
   local project="$*"
   project=${project// /_}
   project=${project//-/_}
+
+  prompt_colors 0
 
   # If no arguments, display current project.
   if [ -z "${project}" ]; then

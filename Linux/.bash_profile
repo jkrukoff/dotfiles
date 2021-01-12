@@ -3,6 +3,9 @@
 
 # User specific environment and startup programs.
 export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
+if [ "$(id -u)" -eq 0 ]; then
+  export PATH="/sbin:/usr/sbin:/usr/local/sbin:${PATH}"
+fi
 export INPUTRC="${HOME}/.inputrc"
 export BASH_ENV="${HOME}/.bashrc"
 EDITOR="$(command -v vim)"
