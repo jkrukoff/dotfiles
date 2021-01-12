@@ -46,6 +46,7 @@ function restore {
   done
   cp -va .ssh/config ~/.ssh/config
   cp -va .bash* ~/
+  mkdir ~/.vim-templates
   cp -va .vim-templates/* ~/.vim-templates/
 
   # Remember some gnome settings.
