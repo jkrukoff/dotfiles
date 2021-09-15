@@ -1,0 +1,16 @@
+#!/usr/bin/dc
+# dc macros. Only uppercase registers are used here, lowercase are reserved
+# for interactive use.
+
+# Quit caller. Utility to easily exit from another macros conditional.
+[2Q]sQ
+# Print. Utility to easily print from another macros conditional.
+[p]sP
+# Drop the value on the top of the stack. Invoke as "lDx".
+[Zd!=D]sD
+# Sum all values on the stack. Invoke as "lSxp".
+[z2>Q+lSx]sS
+# Pi. Store on the stack as "lI".
+3.141592653589793sI
+# Tau. Store on the stack as "lT".
+6.283185307179586sT

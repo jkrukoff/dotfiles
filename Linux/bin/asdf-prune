@@ -14,6 +14,7 @@ while read -r line; do
     if [[ ! " ${global_versions[@]} " =~ " ${version} " ]]; then
       # Remove the version here if you want
       echo "$tool_name version $version not found in .tool-versions"
+      asdf uninstall "${tool_name}" "${version}"
     fi
   done
 done < ~/.tool-versions

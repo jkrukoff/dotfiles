@@ -4,6 +4,7 @@ adduser						install
 adwaita-icon-theme				install
 alsa-topology-conf				install
 alsa-ucm-conf					install
+alsa-utils					install
 ant						install
 ant-optional					install
 apg						install
@@ -100,6 +101,7 @@ desktop-file-utils				install
 dictionaries-common				install
 diffutils					install
 dirmngr						install
+distro-info					install
 distro-info-data				install
 dmeventd					install
 dmidecode					install
@@ -299,6 +301,7 @@ libasound2-plugins:amd64			install
 libaspell15:amd64				install
 libassuan0:amd64				install
 libasyncns0:amd64				install
+libatasmart4:amd64				install
 libatk-bridge2.0-0:amd64			install
 libatk-wrapper-java				install
 libatk-wrapper-java-jni:amd64			install
@@ -306,6 +309,7 @@ libatk1.0-0:amd64				install
 libatk1.0-data					install
 libatm1:amd64					install
 libatomic1:amd64				install
+libatopology2:amd64				install
 libatspi2.0-0:amd64				install
 libattr1:amd64					install
 libaudit-common					install
@@ -319,6 +323,14 @@ libavc1394-0:amd64				install
 libbatik-java					install
 libbinutils:amd64				install
 libblkid1:amd64					install
+libblockdev-crypto2:amd64			install
+libblockdev-fs2:amd64				install
+libblockdev-loop2:amd64				install
+libblockdev-part-err2:amd64			install
+libblockdev-part2:amd64				install
+libblockdev-swap2:amd64				install
+libblockdev-utils2:amd64			install
+libblockdev2:amd64				install
 libbluetooth3:amd64				install
 libboost-regex1.71.0:amd64			install
 libboost-thread1.71.0:amd64			install
@@ -380,7 +392,6 @@ libdb-dev:amd64					install
 libdb5.3:amd64					install
 libdb5.3-dev					install
 libdbus-1-3:amd64				install
-libdbus-glib-1-2:amd64				install
 libdbusmenu-glib4:amd64				install
 libdbusmenu-gtk3-4:amd64			install
 libdconf1:amd64					install
@@ -430,6 +441,7 @@ libfastjson4:amd64				install
 libfdisk1:amd64					install
 libffi-dev:amd64				install
 libffi7:amd64					install
+libfftw3-single3:amd64				install
 libfido2-1:amd64				install
 libfile-fcntllock-perl				install
 libfl2:amd64					install
@@ -585,6 +597,7 @@ libjansson4:amd64				install
 libjavascriptcoregtk-4.0-18:amd64		install
 libjaxp1.3-java					install
 libjbig0:amd64					install
+libjcat1:amd64					install
 libjpeg-turbo8:amd64				install
 libjpeg8:amd64					install
 libjq1:amd64					install
@@ -607,6 +620,7 @@ libldap-common					install
 libldb2:amd64					install
 liblist-moreutils-perl				install
 libllvm10:amd64					install
+libllvm12:amd64					install
 liblmdb0:amd64					install
 liblocale-gettext-perl				install
 liblsan0:amd64					install
@@ -694,6 +708,7 @@ libpangoft2-1.0-0:amd64				install
 libpangoxft-1.0-0:amd64				install
 libpaper-utils					install
 libpaper1:amd64					install
+libparted-fs-resize0:amd64			install
 libparted2:amd64				install
 libpcap0.8:amd64				install
 libpci3:amd64					install
@@ -847,6 +862,7 @@ libuv1:amd64					install
 libv4l-0:amd64					install
 libv4lconvert0:amd64				install
 libvisual-0.4-0:amd64				install
+libvolume-key1					install
 libvorbis0a:amd64				install
 libvorbisenc2:amd64				install
 libvorbisfile3:amd64				install
@@ -876,6 +892,8 @@ libwoff1:amd64					install
 libwrap0:amd64					install
 libwxbase3.0-0v5:amd64				install
 libwxbase3.0-dev:amd64				install
+libwxgtk-webview3.0-gtk3-0v5:amd64		install
+libwxgtk-webview3.0-gtk3-dev:amd64		install
 libwxgtk3.0-gtk3-0v5:amd64			install
 libwxgtk3.0-gtk3-dev:amd64			install
 libx11-6:amd64					install
@@ -991,6 +1009,7 @@ manpages-dev					install
 mawk						install
 mdadm						install
 meld						install
+mesa-utils					install
 mesa-vulkan-drivers:amd64			install
 mime-support					install
 mobile-broadband-provider-info			install
@@ -1167,6 +1186,7 @@ python3.8					install
 python3.8-minimal				install
 python3.8-venv					install
 readline-common					install
+rhash						install
 rpl						install
 rsync						install
 rsyslog						install
@@ -1228,6 +1248,7 @@ tree						install
 tzdata						install
 ubuntu-advantage-tools				install
 ubuntu-docs					install
+ubuntu-drivers-common				deinstall
 ubuntu-fan					install
 ubuntu-keyring					install
 ubuntu-minimal					install
@@ -1241,6 +1262,7 @@ ubuntu-wallpapers-focal				install
 ubuntu-wsl					install
 ucf						install
 udev						install
+udisks2						install
 ufw						install
 unattended-upgrades				install
 unixodbc-dev:amd64				install
@@ -1267,6 +1289,7 @@ vim-tiny					install
 wamerican					install
 wget						install
 whiptail					install
+whois						install
 whoopsie-preferences				install
 wireless-regdb					install
 wpasupplicant					install

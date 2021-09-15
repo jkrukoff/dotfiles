@@ -7,7 +7,7 @@ tags
 function save {
   echo "Copying dotfiles from ~/ to ${PWD}."
   local path
-  for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .tool-versions .projects; do
+  for path in bin .vimrc .ctags .dcrc .gitconfig .gitignore_global .git_template .inputrc .tool-versions .projects; do
     cp -va ~/"${path}" ./
   done
   mkdir .ssh 
@@ -41,7 +41,7 @@ function save {
 function restore {
   echo "Copying dotfiles from $PWD to ~/."
   local path
-  for path in bin .vimrc .ctags .gitconfig .gitignore_global .git_template .inputrc .projects; do
+  for path in bin .vimrc .ctags .dcrc .gitconfig .gitignore_global .git_template .inputrc .projects; do
     cp -va "$path" ~/
   done
   cp -va .ssh/config ~/.ssh/config
