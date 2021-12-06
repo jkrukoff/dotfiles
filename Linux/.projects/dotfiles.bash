@@ -59,11 +59,15 @@ function restore {
   echo "Copying dotfiles from $PWD to ~/."
   local path
   for path in bin .vimrc .ctags .dcrc .gitconfig .gitignore_global .git_template .inputrc .projects; do
-    cp -va "$path" ~/
+    cp -va "${path}" ~/
   done
+
+  cp -va .bash* ~/
+
   mkdir ~/.ssh
   cp -va .ssh/config ~/.ssh/config
-  cp -va .bash* ~/
+  chmod 600 ~/.ssh/config
+
   mkdir ~/.vim-templates
   cp -va .vim-templates/* ~/.vim-templates/
 
