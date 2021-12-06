@@ -18,7 +18,7 @@ report_limits() {
       echo "ARG_MAX: $(getconf ARG_MAX)"
       echo "Environment size: $(env | wc -c)"
       echo "xargs:"
-      echo "$(xargs --show-limits -r 2>&1 < /dev/null)"
+      xargs --show-limits -r 2>&1 < /dev/null
       echo
     fi
   )

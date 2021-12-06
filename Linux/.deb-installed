@@ -41,6 +41,7 @@ binutils-common:amd64				install
 binutils-x86-64-linux-gnu			install
 bluez						install
 bolt						install
+bpftrace					install
 bridge-utils					install
 bsdmainutils					install
 bsdutils					install
@@ -189,6 +190,7 @@ gir1.2-vte-2.91:amd64				install
 git						install
 git-man						install
 gitg						install
+gitk						install
 gjs						install
 gkbd-capplet					install
 glib-networking:amd64				install
@@ -231,6 +233,7 @@ gstreamer1.0-plugins-good:amd64			install
 gstreamer1.0-pulseaudio:amd64			install
 gstreamer1.0-x:amd64				install
 gtk-update-icon-cache				install
+guile-2.0-libs:amd64				install
 gzip						install
 hdparm						install
 hicolor-icon-theme				install
@@ -334,6 +337,7 @@ libblockdev2:amd64				install
 libbluetooth3:amd64				install
 libboost-regex1.71.0:amd64			install
 libboost-thread1.71.0:amd64			install
+libbpfcc					install
 libbrotli1:amd64				install
 libbsd-dev:amd64				install
 libbsd0:amd64					install
@@ -360,6 +364,7 @@ libcdparanoia0:amd64				install
 libcheese-gtk25:amd64				install
 libcheese8:amd64				install
 libclang-cpp10					install
+libclang1-9					install
 libclutter-1.0-0:amd64				install
 libclutter-1.0-common				install
 libclutter-gst-3.0-0:amd64			install
@@ -462,6 +467,7 @@ libfwupdplugin1:amd64				install
 libgail-common:amd64				install
 libgail18:amd64					install
 libgbm1:amd64					install
+libgc1c2:amd64					install
 libgcab-1.0-0:amd64				install
 libgcc-9-dev:amd64				install
 libgcc-s1:amd64					install
@@ -621,6 +627,7 @@ libldb2:amd64					install
 liblist-moreutils-perl				install
 libllvm10:amd64					install
 libllvm12:amd64					install
+libllvm9:amd64					install
 liblmdb0:amd64					install
 liblocale-gettext-perl				install
 liblsan0:amd64					install
@@ -983,6 +990,7 @@ libz3-dev:amd64					install
 libzstd1:amd64					install
 linux-base					install
 linux-libc-dev:amd64				install
+linux-tools-common				install
 llvm						install
 llvm-10						install
 llvm-10-dev					install
@@ -1002,7 +1010,7 @@ lvm2						install
 lxd-agent-loader				install
 lz4						install
 m4						install
-make						install
+make-guile					install
 man-db						install
 manpages					install
 manpages-dev					install
@@ -1137,6 +1145,7 @@ python3-keyring					install
 python3-launchpadlib				install
 python3-lazr.restfulclient			install
 python3-lazr.uri				install
+python3-ldb					install
 python3-lib2to3					install
 python3-macaroonbakery				install
 python3-markupsafe				install
@@ -1296,6 +1305,7 @@ wpasupplicant					install
 wslu						install
 wx-common					install
 wx3.0-headers					install
+x11-apps					install
 x11-common					install
 x11-utils					install
 x11-xkb-utils					install

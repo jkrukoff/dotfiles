@@ -39,7 +39,7 @@ function upgrade-asdf() {
 
 # Upgrade Ubuntu packages.
 sudo apt update
-sudo apt upgrade
+sudo apt --yes dist-upgrade
 sudo apt autoremove
 sudo apt-file update
 

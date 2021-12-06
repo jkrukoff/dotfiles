@@ -31,26 +31,26 @@ function cd_project {
 }
 
 function tags {
-  local kind="${1:ctags}"
+  local kind="${1:-ctags}"
   case "${kind}" in
-  ctags)
-    ctags --recurse=yes -f tags 2> /dev/null
-    ;;
-  erltags)
-    ~/.vim/bundle/vim-erlang-tags/bin/vim-erlang-tags.erl -p -o tags
-    ctags --append --recurse=yes -f tags 2> /dev/null
-    ;;
-  gotags)
-    gotags -R=true . > tags
-    ctags --append --recurse=yes -f tags 2> /dev/null
-    ;;
+    ctags)
+      ctags --recurse=yes -f tags 2> /dev/null
+      ;;
+    erltags)
+      ~/.vim/bundle/vim-erlang-tags/bin/vim-erlang-tags.erl -p -o tags
+      ctags --append --recurse=yes -f tags 2> /dev/null
+      ;;
+    gotags)
+      gotags -R=true . > tags
+      ctags --append --recurse=yes -f tags 2> /dev/null
+      ;;
   esac
 }
 
 function activate_awsume {
   local aws_profile="${1}"
   if [ -n "${aws_profile}" ]; then
-    eval "$(awsume ${aws_profile} -s)"
+    eval "$(awsume "${aws_profile}" -s)"
   fi
 
   #Auto-Complete function for AWSume
@@ -58,14 +58,14 @@ function activate_awsume {
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
     opts=$(awsumepy --rolesusers)
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     return 0
   }
   complete -F _awsume awsume
 
-  alias awsume="source $(which awsume)"
+  alias awsume="source \"\$(which awsume)\""
 }
 
 function start_docker {

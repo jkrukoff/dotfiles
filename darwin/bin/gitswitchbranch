@@ -1,16 +1,19 @@
 #!/bin/bash
 if [ -z "$1" ]; then
-	cat <<USAGE
+  cat << USAGE
 USAGE: $0 branchname
 USAGE
-	exit 1
+  exit 1
 fi
 
 echo "Switching to git branch $1"
 git fetch
 if ! git checkout "$1"; then
-	1>&2 echo -e "\n\n$(tput setaf 1)Failed to switch to branch.$(tput sgr0)"
-	exit 1
+  echo 1>&2 -e "\n\n$(tput setaf 1)Failed to switch to branch.$(tput sgr0)"
+  exit 1
 else
-	git status
+  set -euo pipefail
+  git submodule sync --recursive
+  git submodule update --init --recursive
+  git status
 fi

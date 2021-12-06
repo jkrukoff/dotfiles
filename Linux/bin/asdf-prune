@@ -11,7 +11,7 @@ while read -r line; do
   # Loop over each version of the tool name
   for version in $(asdf list "${tool_name}"); do
     # When version not in `global_versions` array from .tool-versions file
-    if [[ ! " ${global_versions[@]} " =~ " ${version} " ]]; then
+    if [[ ! " ${global_versions[*]} " =~ " ${version} " ]]; then
       # Remove the version here if you want
       echo "$tool_name version $version not found in .tool-versions"
       asdf uninstall "${tool_name}" "${version}"

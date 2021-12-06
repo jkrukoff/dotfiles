@@ -1,6 +1,0 @@
-#!/bin/bash
-UTOPIA_API=http://utopia-deploy.prv.inf.utopia.com \
-AUTHORIA_API=http://utopia-auth.prv.inf.utopia.com \
-PUBLISH_API=http://utopia-publish.prv.inf.utopia.com \
-TASKS_API=http://utopia-tasks.prv.inf.utopia.com \
-utopia "$@"

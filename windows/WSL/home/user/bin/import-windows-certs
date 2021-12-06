@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 function usage {
-  cat >&2 <<EOF
+  cat >&2 << EOF
 Usage: $0 <directory>
 Import windows CA certificates into the WSL Ubuntu certificate store.
 
@@ -44,7 +44,7 @@ function copy_certs {
 
   sudo mkdir "${DEST_DIR}" || true
   for certificate in "${CERT_DIR}"/*; do
-    sudo openssl x509 -inform DER -outform PEM -in "${certificate}" -out "${DEST_DIR}/$(basename ${certificate} ".cer").crt"
+    sudo openssl x509 -inform DER -outform PEM -in "${certificate}" -out "${DEST_DIR}/$(basename "${certificate}" ".cer").crt"
   done
 }
 

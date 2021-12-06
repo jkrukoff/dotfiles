@@ -3,9 +3,6 @@
 
 # User specific environment and startup programs.
 export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
-if [ "$(id -u)" -eq 0 ]; then
-  export PATH="/sbin:/usr/sbin:/usr/local/sbin:${PATH}"
-fi
 export INPUTRC="${HOME}/.inputrc"
 export BASH_ENV="${HOME}/.bashrc"
 EDITOR="$(command -v vim)"
@@ -27,8 +24,8 @@ export ERL_AFLAGS="+pc unicode -kernel shell_history enabled"
 # export GITHUB_ORGANIZATION=""
 
 # asdf version manager setup.
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+source ~/.asdf/asdf.sh
+source ~/.asdf/completions/asdf.bash
 
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then

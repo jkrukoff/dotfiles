@@ -1,0 +1,3 @@
+# Disable warning about source paths, we don't replicate the run directory
+# exactly here.
+disable=SC1090

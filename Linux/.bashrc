@@ -1,5 +1,8 @@
 #!/bin/bash
 # .bashrc
+# We export plenty of values used elsewhere, doesn't help for shellcheck to
+# flag them.
+# shellcheck disable=SC2034
 
 # Pull in system defaults from known fedora and ubuntu directories.
 for DEFAULT_FILE in /etc/bashrc /etc/bash.bashrc /etc/skel/.bashrc /usr/share/git-core/contrib/completion/git-prompt.sh; do
@@ -166,7 +169,7 @@ function prompt {
   fi
 
   local long_dash info_block
-  long_dash="\\[\${PROMPT_COLOR_PUNC}\$(dashed_line "\${COLUMNS}" left)$(tput cr)\\]"
+  long_dash="\\[\${PROMPT_COLOR_PUNC}\$(dashed_line \"\${COLUMNS}\" left)$(tput cr)\\]"
   info_block="[${color_user}\\u@\\h(\${SHLVL}) \\[\${PROMPT_COLOR_DIRSTATUS}\\]${git_prompt}\\[\${PROMPT_COLOR_PUNC}\\]|\\[\${PROMPT_COLOR_TEXT}\\] \\@ \\d\\[\${PROMPT_COLOR_PUNC}\\]]"
 
   # Time to actually set the prompt!

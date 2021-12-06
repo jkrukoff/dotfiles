@@ -2,7 +2,7 @@
 set -euo pipefail
 
 function usage {
-  cat >&2 <<EOF
+  cat >&2 << EOF
 Usage: $0 <image> [tag]
 Run a shell in a docker container.
 
@@ -30,7 +30,7 @@ DOCKER_COMMAND=/bin/sh
 
 # Whitelist of images known to include bash.
 case "${DOCKER_IMAGE}" in
-  centos|debian|fedora|ubuntu)
+  centos | debian | fedora | ubuntu)
     DOCKER_COMMAND=/bin/bash
     ;;
 esac
