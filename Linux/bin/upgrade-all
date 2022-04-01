@@ -27,7 +27,7 @@ function upgrade-asdf() {
   asdf plugin-update --all
 
   for plugin in $(asdf plugin list); do
-    latest="$(asdf latest "${plugin}")"
+    latest="$(asdf latest "${plugin}" || true)"
     if [ -z "${latest}" ]; then
       echo "asdf plugin ${plugin} can not be upgraded, no latest version." 1>&2
     else

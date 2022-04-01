@@ -10,6 +10,13 @@
 [Zd!=D]sD
 # Sum all values on the stack. Invoke as "lSxp".
 [z2>Q+lSx]sS
+# Repeat a macro N times, recursive use allowed.
+# Uses register U to exit and T to store state.
+# Invoke as "2[2*]7lRx".
+[d0!<USTdSTxLTLT1-lRx]sR
+[lDxlDx2Q]sU
+# e. Store on the stack as "lE".
+2.718281828459045sE
 # Pi. Store on the stack as "lI".
 3.141592653589793sI
 # Tau. Store on the stack as "lT".
