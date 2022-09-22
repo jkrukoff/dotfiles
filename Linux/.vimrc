@@ -89,7 +89,7 @@ set visualbell			"Use visual bell instead of beep
 
 set ts=8			"Default tab for 8
 set list			"Display invisible characters
-set listchars=tab:>-,nbsp:-,eol:$,extends:\	"How to display invisible characters
+set listchars=tab:>-,nbsp:-,eol:$,extends:\\	"How to display invisible characters
 
 set showmatch			"Show matching parentheses
 
