@@ -17,7 +17,7 @@ export VAGRANT_HOME="${HOME}/.vagrant.d"
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 export PIPENV_DONT_USE_PYENV=yes
 export AWS_RETRY_MODE=standard
-export ERL_AFLAGS="+pc unicode -kernel shell_history enabled"
+export ERL_AFLAGS="+pc unicode -enable-feature maybe_expr -kernel shell_history enabled"
 
 # Secrets.
 # export GITHUB_TOKEN=""

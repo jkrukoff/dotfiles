@@ -2,6 +2,39 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+color_norm="$(tput sgr0)"
+color_ok="${color_norm}$(tput setaf 2)$(tput setab 0)"
+color_err="${color_norm}$(tput setaf 1)$(tput setab 0)"
+declare -a upgrade_failures
+
+function print-ok() {
+  local message="$1"
+  printf '%s\n' "${color_ok}${message}${color_norm}"
+}
+
+function print-err() {
+  local message="$1"
+  printf '%s\n' "${color_err}${message}${color_norm}" 1>&2
+}
+
+function fail() {
+  local message="$1"
+  upgrade_failures+=("${message}")
+  print-err "${message}"
+}
+
+function report-failures() {
+  if [ "${#upgrade_failures[@]}" -eq 0 ]; then
+    print-ok 'Upgrade successful.'
+  else
+    print-err 'Errors occured during upgrade:'
+    for message in "${upgrade_failures[@]}"; do
+      print-err " * ${message}"
+    done
+    exit 1
+  fi
+}
+
 download_dir="$(mktemp -d -t "$(basename "$0")-XXXXXXXXXX")"
 
 function cleanup() {
@@ -21,18 +54,14 @@ function upgrade-argbash() {
 }
 
 function upgrade-asdf() {
-  local plugin latest
+  local plugin
 
   asdf update
   asdf plugin-update --all
 
   for plugin in $(asdf plugin list); do
-    latest="$(asdf latest "${plugin}" || true)"
-    if [ -z "${latest}" ]; then
-      echo "asdf plugin ${plugin} can not be upgraded, no latest version." 1>&2
-    else
-      asdf install "${plugin}" "${latest}"
-      asdf global "${plugin}" "${latest}"
+    if ! (asdf install "${plugin}" latest && asdf global "${plugin}" latest); then
+      fail "Failed to update asdf plugin: ${plugin}"
     fi
   done
 }
@@ -61,3 +90,5 @@ curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 # More complicated upgrades for the couple of packages not in the system
 # package manager or asdf plugins list.
 upgrade-argbash
+
+report-failures
