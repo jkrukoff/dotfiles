@@ -7,7 +7,7 @@ set nocompatible "Not vi compatible (No matter how vim was invoked)
 call plug#begin()
 
 "Actual plugin list
-Plug 'Hans-Guenter/TaskList.vim'      "Not really maintained, this is best looking fork of 'vim-scripts/Tasklist.vim'.
+Plug 'Hans-Guenter/TaskList.vim'  "Not really maintained, this is best looking fork of 'vim-scripts/Tasklist.vim'.
 Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
 Plug 'elixir-lang/vim-elixir'
 Plug 'elzr/vim-json'
@@ -25,7 +25,6 @@ Plug 'moll/vim-node'
 Plug 'nginx/nginx'
 Plug 'psf/black'
 Plug 'reedes/vim-colors-pencil'
-Plug 'scrooloose/syntastic'
 Plug 'tibabit/vim-templates'
 Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-eunuch'
@@ -33,14 +32,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-erlang/erlang-motions.vim'
-Plug 'vim-erlang/vim-erlang-compiler'
-Plug 'vim-erlang/vim-erlang-omnicomplete'
 Plug 'vim-erlang/vim-erlang-runtime'
-Plug 'vim-erlang/vim-erlang-tags'
 Plug 'vim-scripts/bats.vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'z0mbix/vim-shfmt'
 Plug 'zigford/vim-powershell'
 "Disabled plugins
+"Erlang Plugins
+" Plug 'vim-erlang/vim-erlang-compiler'
+" Plug 'vim-erlang/vim-erlang-omnicomplete'
+" Plug 'vim-erlang/vim-erlang-tags'
 "Clojure Plugins
 " Plug 'guns/vim-clojure-static'
 " Plug 'guns/vim-sexp'
