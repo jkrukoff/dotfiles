@@ -14,10 +14,46 @@ function print_error {
 }
 
 function cd_project {
-  export PROJECT_PATH="$1"
-  export VIM_TAGS="${PROJECT_PATH}/tags"
+  case "$#" in
+    0)
+      if [ -n "${PROJECT_PATH}" ]; then
+        print_error "$0: Not in a project."
+      fi
+      cd "${PROJECT_PATH}" || exit 1
+      exit 0
+      ;;
+    1|2)
+      ;;
+    *)
+      print_error "$0: Invalid arguments."
+      exit 1
+      ;;
+  esac
 
-  cd "${PROJECT_PATH}" || exit 1
+  local project_path="$1" project_repo="$2"
+
+  export VIM_TAGS="${PROJECT_PATH}/tags"
+  local projects_path="${PROJECTS_PATH:=~/Documents}"
+
+  # If given path is absolute, use as is. Otherwise, it's relative to
+  # $PROJECTS_PATH.
+  if [[ "${project_path}" =~ ^/|^~ ]]; then
+    PROJECT_PATH=${project_path}
+  else
+    PROJECT_PATH="${projects_path}/${project_path}"
+  fi
+  export PROJECT_PATH
+
+  if ! cd "${PROJECT_PATH}" 2>/dev/null; then
+    # If project directory doesn't exist and we know where to get it from, go
+    # ahead and check it out.
+    if [ -n "${project_repo}" ]; then
+      git clone "${project_repo}" "${PROJECT_PATH}" || exit 1
+      cd "${PROJECT_PATH}"
+    else
+      exit 1
+    fi
+  fi
 
   # Only set CDPATH for interactive shells.
   if [[ $- == *i* ]]; then

@@ -28,6 +28,7 @@ base-files					install
 base-passwd					install
 bash						install
 bash-completion					install
+bat						install
 bc						install
 bcache-tools					install
 bind9-dnsutils					install
@@ -47,6 +48,7 @@ bsdutils					install
 btrfs-progs					install
 bubblewrap					install
 build-essential					install
+buildah						install
 busybox-initramfs				install
 busybox-static					install
 byobu						install
@@ -54,6 +56,7 @@ bzip2						install
 bzip2-doc					install
 ca-certificates					install
 ca-certificates-java				install
+catatonit					install
 cgroupfs-mount					deinstall
 cloud-guest-utils				install
 cloud-init					install
@@ -63,9 +66,11 @@ cmake						install
 cmake-data					install
 colord						deinstall
 command-not-found				install
+conmon						install
 console-setup					install
 console-setup-linux				install
 containerd					install
+containernetworking-plugins			install
 coreutils					install
 cpio						install
 cpp						install
@@ -89,6 +94,7 @@ dconf-gsettings-backend:amd64			install
 dconf-service					install
 debconf						install
 debconf-i18n					install
+debget						install
 debianutils					install
 default-jdk					install
 default-jdk-headless				install
@@ -137,6 +143,7 @@ fprintd						deinstall
 friendly-recovery				install
 ftp						install
 fuse						deinstall
+fuse-overlayfs					install
 fuse3						install
 fwupd						install
 fwupd-signed					install
@@ -184,6 +191,9 @@ gnupg						install
 gnupg-agent					install
 gnupg-l10n					install
 gnupg-utils					install
+golang-github-containernetworking-plugin-dnsname	install
+golang-github-containers-common			install
+golang-github-containers-image			install
 gpg						install
 gpg-agent					install
 gpg-wks-client					install
@@ -191,6 +201,8 @@ gpg-wks-server					install
 gpgconf						install
 gpgsm						install
 gpgv						install
+gprolog						install
+gprolog-doc					install
 grep						install
 groff-base					install
 gsettings-desktop-schemas			install
@@ -277,9 +289,11 @@ libatspi2.0-0:amd64				install
 libattr1:amd64					install
 libaudit-common					install
 libaudit1:amd64					install
+libauthen-sasl-perl				install
 libavahi-client3:amd64				install
 libavahi-common-data:amd64			install
 libavahi-common3:amd64				install
+libavahi-glib1:amd64				install
 libavc1394-0:amd64				install
 libbatik-java					install
 libbinutils:amd64				install
@@ -318,6 +332,7 @@ libcdparanoia0:amd64				install
 libclang-cpp11					install
 libclang-cpp14					install
 libclang1-11					install
+libclone-perl					install
 libcolord2:amd64				install
 libcom-err2:amd64				install
 libcommon-sense-perl:amd64			install
@@ -332,6 +347,7 @@ libctf0:amd64					install
 libcups2:amd64					install
 libcurl3-gnutls:amd64				install
 libcurl4:amd64					install
+libdata-dump-perl				install
 libdatrie1:amd64				install
 libdazzle-1.0-0:amd64				install
 libdazzle-common				install
@@ -364,6 +380,7 @@ libegl-mesa0:amd64				install
 libegl1:amd64					install
 libelf1:amd64					install
 libenchant-2-2:amd64				install
+libencode-locale-perl				install
 libepoxy0:amd64					install
 liberror-perl					install
 libestr0:amd64					install
@@ -381,9 +398,13 @@ libffi-dev:amd64				install
 libffi7:amd64					install
 libffi8:amd64					install
 libfido2-1:amd64				install
+libfile-basedir-perl				install
+libfile-desktopentry-perl			install
 libfile-fcntllock-perl				install
+libfile-listing-perl				install
+libfile-mimeinfo-perl				install
 libflac8:amd64					install
-libflashrom1:amd64				install
+libfont-afm-perl				install
 libfontbox2-java				install
 libfontconfig-dev:amd64				install
 libfontconfig1:amd64				install
@@ -394,7 +415,6 @@ libfreetype-dev:amd64				install
 libfreetype6:amd64				install
 libfreetype6-dev:amd64				install
 libfribidi0:amd64				install
-libftdi1-2:amd64				install
 libfuse3-3:amd64				install
 libfwupd2:amd64					install
 libfwupdplugin5:amd64				install
@@ -416,6 +436,7 @@ libgdk-pixbuf2.0-bin				install
 libgdk-pixbuf2.0-common				install
 libgee-0.8-2:amd64				install
 libgif7:amd64					install
+libgirara-gtk3-3:amd64				install
 libgirepository-1.0-1:amd64			install
 libgit2-1.1:amd64				install
 libgit2-glib-1.0-0:amd64			install
@@ -480,6 +501,16 @@ libhandy-1-0:amd64				install
 libharfbuzz-icu0:amd64				install
 libharfbuzz0b:amd64				install
 libhogweed6:amd64				install
+libhtml-form-perl				install
+libhtml-format-perl				install
+libhtml-parser-perl:amd64			install
+libhtml-tagset-perl				install
+libhtml-tree-perl				install
+libhttp-cookies-perl				install
+libhttp-daemon-perl				install
+libhttp-date-perl				install
+libhttp-message-perl				install
+libhttp-negotiate-perl				install
 libhttp-parser2.9:amd64				install
 libhunspell-1.7-0:amd64				install
 libhyphen0:amd64				install
@@ -494,10 +525,15 @@ libimagequant0:amd64				install
 libinih1:amd64					install
 libintl-perl					install
 libintl-xs-perl					install
+libio-html-perl					install
 libio-pty-perl					install
+libio-socket-ssl-perl				install
+libio-stringy-perl				install
 libip4tc2:amd64					install
 libip6tc2:amd64					install
 libipc-run-perl					install
+libipc-signal-perl				install
+libipc-system-simple-perl			install
 libisc-export1105:amd64				install
 libisl23:amd64					install
 libisns0:amd64					install
@@ -532,8 +568,8 @@ liblist-moreutils-perl				install
 liblist-moreutils-xs-perl			install
 libllvm10:amd64					install
 libllvm11:amd64					install
-libllvm13:amd64					install
 libllvm14:amd64					install
+libllvm15:amd64					install
 liblmdb0:amd64					install
 liblocale-gettext-perl				install
 liblsan0:amd64					install
@@ -541,12 +577,15 @@ libltdl-dev:amd64				install
 libltdl7:amd64					install
 liblua5.2-0:amd64				install
 liblvm2cmd2.03:amd64				install
+liblwp-mediatypes-perl				install
+liblwp-protocol-https-perl			install
 liblz4-1:amd64					install
 liblzma-dev:amd64				install
 liblzma5:amd64					install
 liblzo2-2:amd64					install
 libmagic-mgc					install
 libmagic1:amd64					install
+libmailtools-perl				install
 libmanette-0.2-0:amd64				install
 libmaxminddb0:amd64				install
 libmbedcrypto7:amd64				install
@@ -571,6 +610,10 @@ libncurses-dev:amd64				install
 libncurses5-dev:amd64				install
 libncurses6:amd64				install
 libncursesw6:amd64				install
+libnet-dbus-perl				install
+libnet-http-perl				install
+libnet-smtp-ssl-perl				install
+libnet-ssleay-perl:amd64			install
 libnetfilter-conntrack3:amd64			install
 libnetplan0:amd64				install
 libnettle8:amd64				install
@@ -609,6 +652,7 @@ libopus0:amd64					install
 liborc-0.4-0:amd64				install
 libossp-uuid-dev:amd64				install
 libossp-uuid16:amd64				install
+libostree-1-1:amd64				install
 libp11-kit-dev:amd64				install
 libp11-kit0:amd64				install
 libpackagekit-glib2-18:amd64			install
@@ -648,10 +692,13 @@ libpng-tools					install
 libpng16-16:amd64				install
 libpolkit-agent-1-0:amd64			install
 libpolkit-gobject-1-0:amd64			install
+libpoppler-glib8:amd64				install
+libpoppler118:amd64				install
 libpopt0:amd64					install
 libpq-dev					install
 libpq5:amd64					install
 libproc-processtable-perl:amd64			install
+libproc-waitstat-perl				install
 libprocps8:amd64				install
 libproxy1v5:amd64				install
 libpsl5:amd64					install
@@ -698,6 +745,7 @@ libsgutils2-2:amd64				install
 libshout3:amd64					install
 libsigsegv2:amd64				install
 libslang2:amd64					install
+libslirp0:amd64					install
 libsm-dev:amd64					install
 libsm6:amd64					install
 libsmartcols1:amd64				install
@@ -723,6 +771,7 @@ libssl3:amd64					install
 libstdc++-11-dev:amd64				install
 libstdc++6:amd64				install
 libstemmer0d:amd64				install
+libsynctex2:amd64				install
 libsystemd0:amd64				install
 libtag1v5:amd64					install
 libtag1v5-vanilla:amd64				install
@@ -739,6 +788,7 @@ libtext-wrapi18n-perl				install
 libthai-data					install
 libthai0:amd64					install
 libtheora0:amd64				install
+libtie-ixhash-perl				install
 libtiff5:amd64					install
 libtime-duration-perl				install
 libtimedate-perl				install
@@ -748,6 +798,7 @@ libtirpc-dev:amd64				install
 libtirpc3:amd64					install
 libtk8.6:amd64					install
 libtool						install
+libtry-tiny-perl				install
 libtsan0:amd64					install
 libtss2-esys-3.0.2-0:amd64			install
 libtss2-mu0:amd64				install
@@ -767,6 +818,7 @@ libunistring2:amd64				install
 libunwind-dev:amd64				install
 libunwind8:amd64				install
 liburcu8:amd64					install
+liburi-perl					install
 libusb-1.0-0:amd64				install
 libutempter0:amd64				install
 libuuid1:amd64					install
@@ -793,6 +845,8 @@ libwebpmux3:amd64				install
 libwebrtc-audio-processing1:amd64		install
 libwoff1:amd64					install
 libwrap0:amd64					install
+libwww-perl					install
+libwww-robotrules-perl				install
 libwxbase3.0-0v5:amd64				install
 libwxbase3.0-dev:amd64				install
 libwxgtk-webview3.0-gtk3-0v5:amd64		install
@@ -802,6 +856,7 @@ libwxgtk3.0-gtk3-dev:amd64			install
 libx11-6:amd64					install
 libx11-data					install
 libx11-dev:amd64				install
+libx11-protocol-perl				install
 libx11-xcb1:amd64				install
 libxalan2-java					install
 libxau-dev:amd64				install
@@ -836,6 +891,9 @@ libxkbcommon0:amd64				install
 libxkbfile1:amd64				install
 libxml-commons-external-java			install
 libxml-commons-resolver1.1-java			install
+libxml-parser-perl:amd64			install
+libxml-twig-perl				install
+libxml-xpathengine-perl				install
 libxml2:amd64					install
 libxml2-dev:amd64				install
 libxml2-utils					install
@@ -953,6 +1011,7 @@ pciutils					install
 perl						install
 perl-base					install
 perl-modules-5.34				install
+perl-openssl-defaults:amd64			install
 pigz						install
 pinentry-curses					install
 pinentry-gnome3					install
@@ -965,11 +1024,12 @@ pkg-config					install
 plotutils					install
 plymouth					install
 plymouth-theme-ubuntu-text			install
+podman						install
 policykit-1					install
 policykit-1-gnome				deinstall
 polkitd						install
 pollinate					install
-poppler-data					deinstall
+poppler-data					install
 popularity-contest				deinstall
 postgresql					install
 postgresql-12					deinstall
@@ -1037,6 +1097,7 @@ python3-launchpadlib				install
 python3-lazr.restfulclient			install
 python3-lazr.uri				install
 python3-lib2to3					install
+python3-magic					install
 python3-markupsafe				install
 python3-minimal					install
 python3-more-itertools				install
@@ -1115,6 +1176,7 @@ sgml-data					install
 shared-mime-info				install
 shellcheck					install
 show-motd					install
+slirp4netns					install
 snapd						install
 software-properties-common			install
 sosreport					install
@@ -1167,6 +1229,7 @@ ucf						install
 udev						install
 udisks2						install
 ufw						install
+uidmap						install
 unattended-upgrades				install
 universal-ctags					install
 unixodbc-common					install
@@ -1206,7 +1269,7 @@ wx3.0-headers					install
 x11-apps					install
 x11-common					install
 x11-utils					install
-x11-xserver-utils				deinstall
+x11-xserver-utils				install
 x11proto-core-dev				install
 x11proto-dev					install
 x11proto-scrnsaver-dev				install
@@ -1216,6 +1279,7 @@ xdg-dbus-proxy					install
 xdg-desktop-portal				install
 xdg-desktop-portal-gtk				install
 xdg-user-dirs					install
+xdg-utils					install
 xfonts-base					deinstall
 xfonts-utils					deinstall
 xfsprogs					install
@@ -1234,6 +1298,8 @@ xz-utils					install
 yaru-theme-gnome-shell				deinstall
 yelp						install
 yelp-xsl					install
+zathura						install
+zathura-pdf-poppler				install
 zenity						install
 zenity-common					install
 zerofree					install

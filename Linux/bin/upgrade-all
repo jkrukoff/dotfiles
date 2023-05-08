@@ -82,7 +82,7 @@ vim +PlugUpgrade +PlugUpdate +PlugClean +BlackUpgrade +qall
 # Upgrade global python packages. Intended for use with an asdf python version
 # active.
 python -m pip install --upgrade pip
-python -m pip install --user --upgrade awscli black pipenv
+python -m pip install --user --upgrade black
 
 # Upgrade z.sh directory switcher.
 curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh

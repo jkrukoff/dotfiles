@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+case "$#" in
+	1)
+		;;
+	*)
+		printf '%s\n' "$0: Unexpected arguments." 1>&2
+		exit 1
+		;;
+esac
+
+gvim.exe "\\\\wsl.localhost\\Ubuntu\\$(realpath "${1}")" > /dev/null 1>&2 &

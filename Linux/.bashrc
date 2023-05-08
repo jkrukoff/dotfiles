@@ -248,3 +248,9 @@ function track_who {
   fi
   TRACK_WHO="${who}"
 }
+
+# Enable SSH agent if not already running.
+
+if [ -z "${SSH_AGENT_PID}" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
