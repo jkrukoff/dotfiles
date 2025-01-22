@@ -56,7 +56,9 @@ function upgrade-argbash() {
 function upgrade-asdf() {
   local plugin
 
-  asdf update
+  #TODO: Figure out how to update asdf, once they figure out how they'll
+  # deploy the new golang rewrite for >= v0.16.0
+  # asdf update
   asdf plugin-update --all
 
   for plugin in $(asdf plugin list); do

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ~/.projects/lib.bash
-cd_project ~/Documents/dotfiles/"$(uname)"
+cd_project ~/local/dotfiles/"$(uname)"
 tags
 
 function save {
@@ -58,7 +58,7 @@ function restore {
 
   echo "Copying dotfiles from $PWD to ~/."
   local path
-  for path in bin .vimrc .ctags .dcrc .gitconfig .gitignore_global .git_template .inputrc .projects; do
+  for path in bin .vimrc .ctags .dcrc .gitconfig .gitignore_global .git_template .inputrc .tool-versions .projects; do
     cp -va "${path}" ~/
   done
 
@@ -86,8 +86,13 @@ function restore {
   curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 
   # Install asdf, a generic version management tool.
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+  if [ ! -d ~/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+  fi
 
-  # Install terraform-docs, a terraform documentation generation tool.
-  curl -#L https://github.com/segmentio/terraform-docs/releases/download/v0.16.0/terraform-docs_linux_amd64 -o ~/bin/terraform-docs
+  local plugin
+  while IFS= read -r line; do
+    plugin=$(echo "$line" | cut -d ' ' -f 1)
+    asdf plugin add "${plugin}"
+  done < ~/.tool-versions
 }
