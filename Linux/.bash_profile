@@ -10,7 +10,12 @@ export EDITOR
 export CLICOLOR=true
 
 # Development environment variables.
-export PROJECTS_PATH=~/Local
+for PROJECTS_PATH in "/mnt/x" "${HOME}/local" "${HOME}/Documents"; do
+  if [ -d "${PROJECTS_PATH}" ]; then
+    break
+  fi
+done
+export PROJECTS_PATH
 export GOPATH="${HOME}/Documents/go"
 export PATH="${PATH}:${GOPATH}/bin"
 export KUBECONFIG="${KUBECONFIG}:${HOME}/.kube/config"
