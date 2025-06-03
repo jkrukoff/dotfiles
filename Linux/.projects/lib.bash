@@ -22,8 +22,7 @@ function cd_project {
       cd "${PROJECT_PATH}" || exit 1
       exit 0
       ;;
-    1|2)
-      ;;
+    1 | 2) ;;
     *)
       print_error "$0: Invalid arguments."
       exit 1
@@ -44,7 +43,7 @@ function cd_project {
   fi
   export PROJECT_PATH
 
-  if ! cd "${PROJECT_PATH}" 2>/dev/null; then
+  if ! cd "${PROJECT_PATH}" 2> /dev/null; then
     # If project directory doesn't exist and we know where to get it from, go
     # ahead and check it out.
     if [ -n "${project_repo}" ]; then

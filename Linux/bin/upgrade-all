@@ -54,18 +54,32 @@ function upgrade-argbash() {
 }
 
 function upgrade-asdf() {
-  local download_to="${download_dir}/asdf.tar.gz"
-
-  local asdf_url
+  local asdf_url download_to="${download_dir}/asdf.tar.gz"
   asdf_url="$(curl -sL https://api.github.com/repos/asdf-vm/asdf/releases/latest | sed -nE '/"browser_download_url": *"[^"]*-linux-amd64.tar.gz"/s/ *"browser_download_url": *"([^"]*)"/\1/p')"
   curl -#L "${asdf_url}" -o "${download_to}"
   tar -zvf "${download_to}" -C ~/bin -x asdf
 
-  local plugin
   asdf plugin update --all
 
+  local plugin version
   for plugin in $(asdf plugin list); do
-    if ! (asdf install "${plugin}" latest && asdf set --home "${plugin}" latest); then
+    case "${plugin}" in
+      python)
+        # Python versions that end in "t" are experimental versions that break
+        # compiled modules, ignore them by default.
+        version="$(asdf latest python | sed -E 's/(.*)t$/\1/')"
+        ;;
+      vim)
+        # The vim plugin doesn't implement latest version handling, so try and
+        # work around it manually by assuming the last version in the list is
+        # the latest.
+        version="$(asdf list all vim | tr -s '\n' | tail -n 1)"
+        ;;
+      *)
+        version=latest
+        ;;
+    esac
+    if ! (asdf install "${plugin}" "${version}" && asdf set --home "${plugin}" "${version}"); then
       fail "Failed to update asdf plugin: ${plugin}"
     fi
   done
