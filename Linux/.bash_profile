@@ -2,7 +2,7 @@
 # ~/.bash_profile
 
 # User specific environment and startup programs.
-export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
+export PATH="${HOME}/.asdf/shims:${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.local/bin"
 export INPUTRC="${HOME}/.inputrc"
 export BASH_ENV="${HOME}/.bashrc"
 EDITOR="$(command -v vim)"
@@ -30,8 +30,7 @@ export ERL_AFLAGS="+pc unicode -enable-feature maybe_expr -kernel shell_history 
 # export GITHUB_ORGANIZATION=""
 
 # asdf version manager setup.
-source ~/.asdf/asdf.sh
-source ~/.asdf/completions/asdf.bash
+. <(asdf completion bash)
 
 # Get the aliases and functions.
 if [ -f ~/.bashrc ]; then

@@ -54,15 +54,18 @@ function upgrade-argbash() {
 }
 
 function upgrade-asdf() {
-  local plugin
+  local download_to="${download_dir}/asdf.tar.gz"
 
-  #TODO: Figure out how to update asdf, once they figure out how they'll
-  # deploy the new golang rewrite for >= v0.16.0
-  # asdf update
-  asdf plugin-update --all
+  local asdf_url
+  asdf_url="$(curl -sL https://api.github.com/repos/asdf-vm/asdf/releases/latest | sed -nE '/"browser_download_url": *"[^"]*-linux-amd64.tar.gz"/s/ *"browser_download_url": *"([^"]*)"/\1/p')"
+  curl -#L "${asdf_url}" -o "${download_to}"
+  tar -zvf "${download_to}" -C ~/bin -x asdf
+
+  local plugin
+  asdf plugin update --all
 
   for plugin in $(asdf plugin list); do
-    if ! (asdf install "${plugin}" latest && asdf global "${plugin}" latest); then
+    if ! (asdf install "${plugin}" latest && asdf set --home "${plugin}" latest); then
       fail "Failed to update asdf plugin: ${plugin}"
     fi
   done

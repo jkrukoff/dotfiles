@@ -86,13 +86,15 @@ function restore {
   curl -#L https://raw.githubusercontent.com/rupa/z/master/z.sh -o ~/bin/z.sh
 
   # Install asdf, a generic version management tool.
-  if [ ! -d ~/.asdf ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
-  fi
+  local asdf_tempdir asdf_url
+  asdf_tempdir="$(mktemp --tmpdir --directory dotfiles-restore-asdf.XXXXXX)"
+  asdf_url="$(curl -sL https://api.github.com/repos/asdf-vm/asdf/releases/latest | sed -nE '/"browser_download_url": *"[^"]*-linux-amd64.tar.gz"/s/ *"browser_download_url": *"([^"]*)"/\1/p')"
+  curl -#L "${asdf_url}" -o "${asdf_tempdir}/asdf.tar.gz"
+  tar -zvf "${asdf_tempdir}/asdf.tar.gz" -C ~/bin -x asdf
 
   local plugin
   while IFS= read -r line; do
     plugin=$(echo "$line" | cut -d ' ' -f 1)
-    asdf plugin add "${plugin}"
+    ~/bin/asdf plugin add "${plugin}"
   done < ~/.tool-versions
 }
