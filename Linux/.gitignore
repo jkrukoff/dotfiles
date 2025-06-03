@@ -1,13 +1,2 @@
-/.projects/public_cloud*
-/.projects/service_catalog*
-/bin/aws-mgmt-credentials
-/bin/awsclifedcredsmfa
-/bin/cfn_nag
-/bin/ecs-cli
-/bin/hadolint
-/bin/hub
-/bin/jet
-/bin/jp
-/bin/rg
-/bin/terraform-docs
+/bin/asdf
 /bin/z.sh
