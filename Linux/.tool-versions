@@ -1,4 +1,4 @@
-python 3.13.3
+python 3.13.4
 ripgrep 14.1.1
 jmespath 0.2.1
 shellcheck 0.10.0
@@ -18,7 +18,9 @@ rebar 3.25.0
 swiprolog 9.2.9
 rust 1.87.0
 gleam 1.11.0
-dust 1.2.0
+dust 1.2.1
 difftastic 0.63.0
 github-cli 2.74.0
-vim 9.1.1429
+vim 9.1.1432
+uv 0.7.11
+ruff 0.9.10

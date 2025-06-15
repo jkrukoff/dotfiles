@@ -30,6 +30,18 @@ export ERL_AFLAGS="+pc unicode -enable-feature maybe_expr -kernel shell_history 
 # export GITHUB_ORGANIZATION=""
 
 # asdf version manager setup.
+export ASDF_VIM_CONFIG='
+--with-tlib=ncurses \
+--with-compiledby=asdf \
+--enable-multibyte \
+--enable-cscope \
+--enable-terminal \
+--enable-perlinterp \
+--enable-python3interp \
+--enable-luainterp \
+--with-luajit \
+--enable-gui=yes \
+--with-x'
 . <(asdf completion bash)
 
 # Get the aliases and functions.

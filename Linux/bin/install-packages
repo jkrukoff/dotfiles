@@ -5,12 +5,12 @@ IFS=$'\n\t'
 
 case "$(lsb_release --id -s)" in
   Ubuntu)
-    sudo apt install apt-file apt-transport-https autoconf automake bat bpftrace build-essential build-essential buildah ca-certificates cmake crudini curl dc default-jdk dirmngr docker.io fop gettext gh gitg gitk gnupg-agent gpg jq libarchive-dev libbz2-dev libdb-dev libedit-dev libffi-dev libgoogle-perftools-dev liblzma-dev libncurses-dev libncurses5-dev libossp-uuid-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libssl-dev libtool libunwind-dev libwxgtk-webview3.0-gtk3-dev libwxgtk3.0-gtk3-dev libxml2-dev libxml2-utils libxmlsec1-dev libxslt-dev libyaml-dev linux-tools-common llvm make-guile meld moreutils podman postgresql python3-docutils python3-venv rhash rpl shellcheck software-properties-common source-highlight timelimit tk-dev tree universal-ctags unixodbc-dev unzip vim-gtk3 wget wslu x11-apps xsltproc xz-utils zip zlib1g-dev
+    sudo apt install apt-file apt-transport-https autoconf automake bat bpftrace build-essential build-essential buildah ca-certificates cmake crudini curl dc default-jdk dirmngr docker.io fop gettext gh gitg gitk gnupg-agent gpg jq libarchive-dev libbz2-dev libdb-dev libedit-dev libffi-dev libgoogle-perftools-dev libgtk-3-dev libgtk-4-dev libluajit-5.1-dev liblzma-dev libncurses-dev libncurses5-dev libossp-uuid-dev libperl-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libssl-dev libtool libunwind-dev libwxgtk-webview3.0-gtk3-dev libwxgtk3.0-gtk3-dev libxml2-dev libxml2-utils libxmlsec1-dev libxslt-dev libyaml-dev linux-tools-common llvm make-guile meld moreutils podman postgresql python3-docutils python3-venv rhash rpl shellcheck software-properties-common source-highlight timelimit tk-dev tree universal-ctags unixodbc-dev unzip vim-gtk3 wget x11-apps xsltproc xz-utils zip zlib1g-dev zstd
     # Check if we're in a WSL environment and install some additional
     # utilities.
     kernel_version=$(uname -r)
     if [ -z "${kernel_version##*[Mm]icrosoft*}" ]; then
-      sudo apt install ubuntu-wsl
+      sudo apt install ubuntu-wsl wslu
     fi
     ;;
 esac
